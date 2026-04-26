@@ -41,7 +41,7 @@ export function Process() {
                   borderTop: '1px solid var(--rule)',
                   borderBottom: i === STEPS.length - 1 ? '1px solid var(--rule)' : 'none',
                   background: 'transparent', color: 'var(--ink)',
-                  cursor: 'none', display: 'grid', gridTemplateColumns: 'auto 1fr auto', gap: 16, alignItems: 'center',
+                  display: 'grid', gridTemplateColumns: 'auto 1fr auto', gap: 16, alignItems: 'center',
                   fontFamily: 'inherit', position: 'relative',
                 }}
               >

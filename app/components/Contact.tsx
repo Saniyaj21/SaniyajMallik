@@ -163,7 +163,7 @@ export function Contact() {
                               border: `1px solid ${form.project === o.v ? 'var(--accent)' : muted30}`,
                               background: form.project === o.v ? 'var(--accent)' : 'rgba(255,255,255,0.04)',
                               color: form.project === o.v ? 'var(--accent-ink)' : 'var(--bg)',
-                              borderRadius: 8, cursor: 'none', transition: 'all 0.25s',
+                              borderRadius: 8, transition: 'all 0.25s',
                               textAlign: 'left',
                               display: 'flex', flexDirection: 'column', gap: 3,
                             }}

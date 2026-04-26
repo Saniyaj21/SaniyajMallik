@@ -177,7 +177,7 @@ export function SiteHeader({ theme, setTheme }: SiteHeaderProps) {
             onClick={() => setMegaOpen(v => !v)}
             style={{
               background: 'transparent', border: 'none', color: 'inherit', font: 'inherit',
-              fontSize: 13, padding: '8px 16px', borderRadius: 100, cursor: 'none',
+              fontSize: 13, padding: '8px 16px', borderRadius: 100,
               display: 'inline-flex', alignItems: 'center', gap: 6,
             }}
           >

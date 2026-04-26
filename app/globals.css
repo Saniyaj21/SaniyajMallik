@@ -95,7 +95,7 @@ body {
   transition: background 0.4s ease, color 0.4s ease;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 880px) {
   body { cursor: auto; }
 }
 
@@ -128,8 +128,11 @@ body {
   width: 4px; height: 24px;
   border-radius: 2px;
 }
-@media (max-width: 768px) {
+@media (max-width: 880px) {
   .cursor-dot, .cursor-ring { display: none; }
+  .btn { cursor: pointer; }
+  .hover-area { cursor: auto; }
+  .field input, .field textarea, .field select { cursor: auto; }
 }
 
 ::selection { background: var(--accent); color: var(--accent-ink); }

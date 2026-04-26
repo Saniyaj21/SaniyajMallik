@@ -19,7 +19,7 @@ function FAQItem({ q, a, num, isOpen, onClick }: { q: string; a: string; num: st
         onClick={onClick}
         style={{
           width: '100%', padding: '28px 0', display: 'grid', gridTemplateColumns: 'auto 1fr auto', gap: 24, alignItems: 'center',
-          background: 'transparent', border: 'none', cursor: 'none', textAlign: 'left',
+          background: 'transparent', border: 'none', textAlign: 'left',
           color: 'var(--ink)', fontFamily: 'inherit',
         }}
       >

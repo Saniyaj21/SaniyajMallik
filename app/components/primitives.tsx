@@ -160,7 +160,7 @@ export function ThemeToggle({ theme, setTheme }: ThemeToggleProps) {
         border: '1px solid rgba(255,255,255,0.4)',
         background: 'rgba(255,255,255,0.04)',
         backdropFilter: 'blur(10px)',
-        cursor: 'none', color: 'inherit',
+        color: 'inherit',
         display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
       }}
       aria-label="Toggle theme"

@@ -25,7 +25,7 @@ function FAQList({ items }: { items: { q: string; a: string }[] }) {
               style={{
                 width: '100%', padding: '24px 0',
                 display: 'grid', gridTemplateColumns: 'auto 1fr auto', gap: 20, alignItems: 'center',
-                background: 'transparent', border: 'none', cursor: 'none', textAlign: 'left',
+                background: 'transparent', border: 'none', textAlign: 'left',
                 color: 'var(--ink)', fontFamily: 'inherit',
               }}
             >
@@ -70,10 +70,10 @@ export function ServicePage({ pillar, pillarN, name, tagline, image, deliverable
       {/* HERO */}
       <section style={{ minHeight: '45vh', position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflow: 'hidden', paddingTop: 140, paddingBottom: 60 }}>
         {image && (
-          <>
-            <Image src={image} alt={name.replace('\n', ' ')} fill sizes="100vw" quality={100} style={{ objectFit: 'cover', objectPosition: 'center', zIndex: 0 }} priority />
+          <div className="sp-hero-media" style={{ position: 'absolute', inset: 0 }}>
+            <Image src={image} alt={name.replace('\n', ' ')} fill sizes="(max-width: 768px) 100vw, 60vw" quality={85} style={{ objectFit: 'cover', objectPosition: 'center', zIndex: 0 }} priority />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, var(--bg) 38%, transparent 72%)', zIndex: 1 }} />
-          </>
+          </div>
         )}
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <Reveal stagger>
@@ -132,7 +132,7 @@ export function ServicePage({ pillar, pillarN, name, tagline, image, deliverable
           </Reveal>
           <Reveal stagger style={{ display: 'grid', gridTemplateColumns: `repeat(${personas.length}, 1fr)`, gap: 'var(--gap-md)' }} className="sp-personas">
             {personas.map((p, i) => (
-              <div key={i} style={{ border: '1px solid var(--rule)', background: 'var(--paper)', padding: 28, minHeight: 240 }}>
+              <div key={i} style={{ background: 'var(--paper)', padding: 28, minHeight: 240, minWidth: 0 }}>
                 <div className="label" style={{ marginBottom: 24 }}>{String(i + 1).padStart(2, '0')}</div>
                 <h3 className="serif-i" style={{ fontSize: 28, marginBottom: 12 }}>{p.h}</h3>
                 <p style={{ fontSize: 15, lineHeight: 1.5, color: 'var(--ink-soft)' }}>{p.d}</p>
@@ -218,11 +218,14 @@ export function ServicePage({ pillar, pillarN, name, tagline, image, deliverable
       </section>
 
       <style>{`
+        @media (max-width: 768px) {
+          .sp-hero-media { display: none; }
+        }
         @media (max-width: 880px) {
           .sp-block { grid-template-columns: 1fr !important; }
           .sp-label, .sp-content { grid-column: 1 / -1 !important; }
           .sp-personas, .sp-steps { grid-template-columns: 1fr !important; }
-          .sp-personas > div, .sp-steps > div { border-right: none !important; }
+          .sp-steps > div { border-right: none !important; }
           .sp-deliv { grid-template-columns: 1fr !important; }
           .sp-deliv > div { border-right: none !important; }
         }

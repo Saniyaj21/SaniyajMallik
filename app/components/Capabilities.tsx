@@ -105,8 +105,8 @@ export function Capabilities() {
       </div>
 
       <style>{`
-        @media (max-width: 980px) { .cap-grid { grid-template-columns: 1fr !important; } }
-        @media (max-width: 768px) {
+        @media (max-width: 980px) {
+          .cap-grid { grid-template-columns: 1fr !important; }
           .cap-head { grid-template-columns: 1fr !important; }
           .cap-label, .cap-headline { grid-column: 1 / -1 !important; }
         }

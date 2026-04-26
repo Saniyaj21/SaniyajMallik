@@ -150,6 +150,7 @@ export function HeroEditorial() {
           .hero-card { max-width: 360px; margin: 0 auto; }
         }
         @media (max-width: 600px) {
+          .hero-card { display: none !important; }
           .hero-creds { grid-template-columns: 1fr !important; gap: 10px !important; }
         }
       `}</style>

@@ -149,9 +149,9 @@ function ProjectCard({ p, reverse }: { p: typeof PROJECTS[number]; reverse: bool
         className={`pc-grid ${reverse ? 'pc-reverse' : ''}`}
       >
         <div style={{ order: reverse ? 2 : 1 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 32, fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.7 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '4px 16px', marginBottom: 32, fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.7 }}>
             <span>№ {p.n} · {p.type}</span>
-            <span>↗ Case Study</span>
+            <span style={{ flexShrink: 0 }}>↗ Case Study</span>
           </div>
           <h3 style={{ fontSize: 'clamp(48px, 7vw, 104px)', lineHeight: 0.95, marginBottom: 18 }}>{p.name}</h3>
           <p className="serif-i" style={{ fontSize: 'clamp(20px, 2vw, 28px)', marginBottom: 20, opacity: 0.85 }}>{p.tagline}</p>
@@ -227,7 +227,7 @@ export function FeaturedWork() {
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 880px) {
           .fw-head { grid-template-columns: 1fr !important; }
           .fw-label, .fw-headline { grid-column: 1 / -1 !important; }
         }
