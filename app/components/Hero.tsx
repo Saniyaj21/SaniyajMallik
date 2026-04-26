@@ -23,6 +23,7 @@ function cornerBorders(idx: number): CSSProperties {
 
 export function HeroEditorial() {
   const [i, setI] = useState(0);
+  const [modelLoaded, setModelLoaded] = useState(false);
 
   useEffect(() => {
     const t = setInterval(() => setI(x => (x + 1) % roles.length), 2200);
@@ -87,21 +88,27 @@ export function HeroEditorial() {
               <span>EST. 2024</span>
               <span>Folio №01</span>
             </div>
-            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-              <svg viewBox="0 0 200 200" style={{ width: '70%', height: 'auto' }}>
-                <defs>
-                  <pattern id="hatch" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                    <line x1="0" y1="0" x2="0" y2="3" stroke="var(--ink)" strokeWidth="0.6" />
-                  </pattern>
-                </defs>
-                <circle cx="100" cy="100" r="95" fill="none" stroke="var(--rule)" strokeWidth="0.6" />
-                <circle cx="100" cy="100" r="70" fill="url(#hatch)" opacity="0.18" />
-                <text x="100" y="118" textAnchor="middle" fontFamily="var(--font-display)" fontSize="100" fontStyle="italic" fill="var(--ink)">SM</text>
-              </svg>
+            <div style={{ flex: 1, position: 'relative', minHeight: 220 }}>
+              <iframe
+                title="3D Model"
+                src="https://sketchfab.com/models/971b17ac6f7048899d68cc4fb00be7fa/embed?autostart=1&ui_controls=0&ui_hint=0&ui_infos=0&ui_watermark=0&ui_watermark_link=0&ui_ar=0&ui_help=0&ui_settings=0&ui_vr=0&ui_fullscreen=0&ui_annotations=0&ui_stop=0"
+                frameBorder="0"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                onLoad={() => setModelLoaded(true)}
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }}
+              />
+              {/* Loading overlay — hides Sketchfab progress bar until model is ready */}
+              {!modelLoaded && (
+                <div style={{ position: 'absolute', inset: 0, background: 'var(--paper)', zIndex: 2, pointerEvents: 'none' }} />
+              )}
+              {/* Top cover — hides Sketchfab creator bar */}
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 52, background: 'var(--paper)', zIndex: 2, pointerEvents: 'auto' }} />
+              {/* Bottom cover — hides Sketchfab video/controls bar */}
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 64, background: 'var(--paper)', zIndex: 2, pointerEvents: 'auto' }} />
               {cornerPositions.map((pos, idx) => (
                 <span
                   key={idx}
-                  style={{ position: 'absolute', width: 8, height: 8, ...cornerBorders(idx), ...pos }}
+                  style={{ position: 'absolute', width: 8, height: 8, zIndex: 3, ...cornerBorders(idx), ...pos }}
                 />
               ))}
             </div>
