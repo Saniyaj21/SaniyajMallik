@@ -15,6 +15,25 @@ export function WordPressMigrationsHero() {
         .from('p',            { y: 20, opacity: 0, duration: 0.55 }, '-=0.35')
         .from('.wpm-cta',     { y: 16, opacity: 0, duration: 0.5  }, '-=0.35')
         .from('.wpm-stage',   { x: 40, opacity: 0, duration: 0.75 }, '-=0.8');
+
+      gsap.timeline({ delay: 0.6, defaults: { ease: 'back.out(1.4)' } })
+        .from('#wpm-shield',          { scale: 0.2, opacity: 0, transformOrigin: '280px 250px', duration: 0.7, ease: 'back.out(1.7)' })
+        .from('#wpm-orbit-dots',      { scale: 0.4, opacity: 0, transformOrigin: '280px 280px', duration: 0.6 }, '-=0.3')
+        .from('#wpm-pulse',           { scale: 0,   opacity: 0, transformOrigin: '280px 250px', duration: 0.7 }, '-=0.4')
+        .from('#wpm-pipe',            { opacity: 0, duration: 0.5, ease: 'power2.out' }, '-=0.3')
+        .from('#wpm-src-card',        { x: -60, opacity: 0, duration: 0.55 }, '-=0.2')
+        .from('#wpm-dst-card',        { x:  60, opacity: 0, duration: 0.55 }, '-=0.4')
+        .from('#wpm-badge-seo',       { x: -40, y: -40, opacity: 0, duration: 0.55 }, '-=0.2')
+        .from('#wpm-badge-data',      { y: -60,         opacity: 0, duration: 0.55 }, '-=0.4')
+        .from('#wpm-badge-media',     { x:  40, y: -40, opacity: 0, duration: 0.55 }, '-=0.4')
+        .from('#wpm-badge-redirects', { x: -40, y:  40, opacity: 0, duration: 0.55 }, '-=0.4')
+        .from('#wpm-badge-users',     { y:  60,         opacity: 0, duration: 0.55 }, '-=0.4')
+        .from('#wpm-badge-ssl',       { x:  40, y:  40, opacity: 0, duration: 0.55 }, '-=0.4')
+        .from('#wpm-packets',         { opacity: 0, duration: 0.35, ease: 'power2.out' }, '-=0.3')
+        .from('#wpm-chip',            { x: -40,         opacity: 0, duration: 0.45 }, '-=0.3')
+        .from('#wpm-connectors',      { opacity: 0, duration: 0.35, ease: 'power2.out' }, '-=0.3')
+        .from('#wpm-gear',            { scale: 0, opacity: 0, transformOrigin: '490px 240px', duration: 0.5 }, '-=0.3')
+        .from('#wpm-dots',            { opacity: 0, duration: 0.35, ease: 'power2.out' }, '-=0.2');
     }, heroRef);
     return () => ctx.revert();
   }, []);
@@ -172,171 +191,186 @@ export function WordPressMigrationsHero() {
             <circle cx="280" cy="280" r="240" fill="url(#wpm-centerGlow)"/>
             <circle cx="280" cy="280" r="200" fill="none" stroke="#cfdde5" strokeWidth="1" strokeDasharray="2 6" opacity="0.7"/>
             <circle cx="280" cy="280" r="248" fill="none" stroke="#cfdde5" strokeWidth="1" strokeDasharray="2 6" opacity="0.5"/>
-            <g className="wpm-orbit">
-              <circle cx="480" cy="280" r="3" fill="#21759b"/>
-              <circle cx="80" cy="280" r="3" fill="#7c6cf2"/>
-              <circle cx="280" cy="80" r="2.4" fill="#3fb98d"/>
+
+            <g id="wpm-orbit-dots">
+              <g className="wpm-orbit">
+                <circle cx="480" cy="280" r="3" fill="#21759b"/>
+                <circle cx="80" cy="280" r="3" fill="#7c6cf2"/>
+                <circle cx="280" cy="80" r="2.4" fill="#3fb98d"/>
+              </g>
+              <g className="wpm-orbit-rev">
+                <circle cx="280" cy="528" r="2.4" fill="#ffb74a"/>
+                <circle cx="421" cy="421" r="2" fill="#ef6ea8"/>
+                <circle cx="139" cy="139" r="2" fill="#21759b" opacity="0.7"/>
+              </g>
             </g>
-            <g className="wpm-orbit-rev">
-              <circle cx="280" cy="528" r="2.4" fill="#ffb74a"/>
-              <circle cx="421" cy="421" r="2" fill="#ef6ea8"/>
-              <circle cx="139" cy="139" r="2" fill="#21759b" opacity="0.7"/>
-            </g>
-            <g transform="translate(280 250)">
-              <circle className="wpm-ring" r="80" fill="none" stroke="#7c6cf2" strokeWidth="1.6" opacity="0.5"/>
-              <circle className="wpm-ring" style={{ animationDelay: '1.3s' }} r="80" fill="none" stroke="#21759b" strokeWidth="1.6" opacity="0.5"/>
+            <g id="wpm-pulse">
+              <g transform="translate(280 250)">
+                <circle className="wpm-ring" r="80" fill="none" stroke="#7c6cf2" strokeWidth="1.6" opacity="0.5"/>
+                <circle className="wpm-ring" style={{ animationDelay: '1.3s' }} r="80" fill="none" stroke="#21759b" strokeWidth="1.6" opacity="0.5"/>
+              </g>
             </g>
 
-            {/* Migration arc pipe */}
-            <path d="M 110 320 C 180 180, 380 180, 450 320" fill="none" stroke="url(#wpm-pipeFill)" strokeWidth="36" strokeLinecap="round" opacity="0.55"/>
-            <path d="M 110 320 C 180 180, 380 180, 450 320" fill="none" stroke="url(#wpm-pipeGrad)" strokeWidth="3" strokeLinecap="round" opacity="0.9"/>
-            <path className="wpm-dash-fwd" d="M 110 320 C 180 180, 380 180, 450 320" fill="none" stroke="#ffffff" strokeWidth="2.4" strokeLinecap="round" opacity="0.85"/>
-            <g transform="translate(450 320)">
-              <circle r="10" fill="#21759b"/>
-              <path d="M -3 -4 L 3 0 L -3 4 Z" fill="#ffffff"/>
-            </g>
-            <g transform="translate(110 320)">
-              <circle r="10" fill="#6b8294"/>
-              <circle r="4" fill="#ffffff"/>
+            <g id="wpm-pipe">
+              {/* Migration arc pipe */}
+              <path d="M 110 320 C 180 180, 380 180, 450 320" fill="none" stroke="url(#wpm-pipeFill)" strokeWidth="36" strokeLinecap="round" opacity="0.55"/>
+              <path d="M 110 320 C 180 180, 380 180, 450 320" fill="none" stroke="url(#wpm-pipeGrad)" strokeWidth="3" strokeLinecap="round" opacity="0.9"/>
+              <path className="wpm-dash-fwd" d="M 110 320 C 180 180, 380 180, 450 320" fill="none" stroke="#ffffff" strokeWidth="2.4" strokeLinecap="round" opacity="0.85"/>
+              <g transform="translate(450 320)">
+                <circle r="10" fill="#21759b"/>
+                <path d="M -3 -4 L 3 0 L -3 4 Z" fill="#ffffff"/>
+              </g>
+              <g transform="translate(110 320)">
+                <circle r="10" fill="#6b8294"/>
+                <circle r="4" fill="#ffffff"/>
+              </g>
             </g>
 
-            {/* Data packets */}
-            <g className="wpm-packet">
-              <g transform="translate(-12 -10)">
-                <rect width="24" height="20" rx="5" fill="#ffffff" stroke="#21759b" strokeWidth="1.4"/>
-                <ellipse cx="12" cy="6" rx="6" ry="2" fill="none" stroke="#21759b" strokeWidth="1.2"/>
-                <path d="M 6 6 V 14 a 6 2 0 0 0 12 0 V 6" fill="none" stroke="#21759b" strokeWidth="1.2"/>
+            <g id="wpm-packets">
+              {/* Data packets */}
+              <g className="wpm-packet">
+                <g transform="translate(-12 -10)">
+                  <rect width="24" height="20" rx="5" fill="#ffffff" stroke="#21759b" strokeWidth="1.4"/>
+                  <ellipse cx="12" cy="6" rx="6" ry="2" fill="none" stroke="#21759b" strokeWidth="1.2"/>
+                  <path d="M 6 6 V 14 a 6 2 0 0 0 12 0 V 6" fill="none" stroke="#21759b" strokeWidth="1.2"/>
+                </g>
               </g>
-            </g>
-            <g className="wpm-packet wpm-packet-2">
-              <g transform="translate(-12 -10)">
-                <rect width="24" height="20" rx="5" fill="#ffffff" stroke="#7c6cf2" strokeWidth="1.4"/>
-                <rect x="6" y="6" width="12" height="1.6" fill="#7c6cf2"/>
-                <rect x="6" y="10" width="12" height="1.6" fill="#7c6cf2" opacity="0.6"/>
-                <rect x="6" y="14" width="8" height="1.6" fill="#7c6cf2" opacity="0.4"/>
+              <g className="wpm-packet wpm-packet-2">
+                <g transform="translate(-12 -10)">
+                  <rect width="24" height="20" rx="5" fill="#ffffff" stroke="#7c6cf2" strokeWidth="1.4"/>
+                  <rect x="6" y="6" width="12" height="1.6" fill="#7c6cf2"/>
+                  <rect x="6" y="10" width="12" height="1.6" fill="#7c6cf2" opacity="0.6"/>
+                  <rect x="6" y="14" width="8" height="1.6" fill="#7c6cf2" opacity="0.4"/>
+                </g>
               </g>
-            </g>
-            <g className="wpm-packet wpm-packet-3">
-              <g transform="translate(-12 -10)">
-                <rect width="24" height="20" rx="5" fill="#ffffff" stroke="#f5a623" strokeWidth="1.4"/>
-                <circle cx="9" cy="9" r="2" fill="#f5a623"/>
-                <path d="M 4 16 L 10 11 L 14 14 L 20 8" fill="none" stroke="#f5a623" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+              <g className="wpm-packet wpm-packet-3">
+                <g transform="translate(-12 -10)">
+                  <rect width="24" height="20" rx="5" fill="#ffffff" stroke="#f5a623" strokeWidth="1.4"/>
+                  <circle cx="9" cy="9" r="2" fill="#f5a623"/>
+                  <path d="M 4 16 L 10 11 L 14 14 L 20 8" fill="none" stroke="#f5a623" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                </g>
               </g>
-            </g>
-            <g className="wpm-packet wpm-packet-4">
-              <g transform="translate(-12 -10)">
-                <rect width="24" height="20" rx="5" fill="#ffffff" stroke="#ff6b5b" strokeWidth="1.4"/>
-                <circle cx="12" cy="9" r="2.4" fill="#ff6b5b"/>
-                <path d="M 6 16 a 6 4 0 0 1 12 0" fill="none" stroke="#ff6b5b" strokeWidth="1.4" strokeLinecap="round"/>
+              <g className="wpm-packet wpm-packet-4">
+                <g transform="translate(-12 -10)">
+                  <rect width="24" height="20" rx="5" fill="#ffffff" stroke="#ff6b5b" strokeWidth="1.4"/>
+                  <circle cx="12" cy="9" r="2.4" fill="#ff6b5b"/>
+                  <path d="M 6 16 a 6 4 0 0 1 12 0" fill="none" stroke="#ff6b5b" strokeWidth="1.4" strokeLinecap="round"/>
+                </g>
               </g>
-            </g>
-            <g className="wpm-packet wpm-packet-5">
-              <g transform="translate(-12 -10)">
-                <rect width="24" height="20" rx="5" fill="#ffffff" stroke="#3fb98d" strokeWidth="1.4"/>
-                <path d="M 6 12 H 14 L 11 9 M 14 12 L 11 15" fill="none" stroke="#3fb98d" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M 18 8 H 12 L 15 5" fill="none" stroke="#3fb98d" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.6"/>
+              <g className="wpm-packet wpm-packet-5">
+                <g transform="translate(-12 -10)">
+                  <rect width="24" height="20" rx="5" fill="#ffffff" stroke="#3fb98d" strokeWidth="1.4"/>
+                  <path d="M 6 12 H 14 L 11 9 M 14 12 L 11 15" fill="none" stroke="#3fb98d" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M 18 8 H 12 L 15 5" fill="none" stroke="#3fb98d" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.6"/>
+                </g>
               </g>
             </g>
 
             {/* Source card */}
-            <g className="wpm-float-a">
-              <g transform="translate(60 300)">
-                <rect x="4" y="6" width="120" height="150" rx="14" fill="#0c4a63" opacity="0.10"/>
-                <rect x="0" y="0" width="120" height="150" rx="14" fill="url(#wpm-cardBg)" stroke="#cfdde5"/>
-                <rect x="0" y="0" width="120" height="28" rx="14" fill="url(#wpm-srcHeader)"/>
-                <rect x="0" y="14" width="120" height="14" fill="url(#wpm-srcHeader)"/>
-                <circle cx="12" cy="14" r="2.6" fill="#ffffff" opacity="0.9"/>
-                <circle cx="22" cy="14" r="2.6" fill="#ffffff" opacity="0.6"/>
-                <circle cx="32" cy="14" r="2.6" fill="#ffffff" opacity="0.4"/>
-                <rect x="46" y="11" width="50" height="6" rx="3" fill="#ffffff" opacity="0.8"/>
-                <g transform="translate(60 70)">
-                  <g className="wpm-spin">
-                    <circle r="22" fill="#eef3f6" stroke="#cfdde5"/>
-                    <circle r="8" fill="#6b8294"/>
-                    <g fill="#6b8294">
-                      <rect x="-2" y="-26" width="4" height="6" rx="1.5"/>
-                      <rect x="-2" y="20" width="4" height="6" rx="1.5"/>
-                      <rect x="-26" y="-2" width="6" height="4" rx="1.5"/>
-                      <rect x="20" y="-2" width="6" height="4" rx="1.5"/>
-                      <rect x="-21" y="-21" width="6" height="4" rx="1.5" transform="rotate(45)"/>
-                      <rect x="14" y="-21" width="6" height="4" rx="1.5" transform="rotate(45)"/>
-                      <rect x="-21" y="16" width="6" height="4" rx="1.5" transform="rotate(45)"/>
-                      <rect x="14" y="16" width="6" height="4" rx="1.5" transform="rotate(45)"/>
+            <g id="wpm-src-card">
+              <g className="wpm-float-a">
+                <g transform="translate(60 300)">
+                  <rect x="4" y="6" width="120" height="150" rx="14" fill="#0c4a63" opacity="0.10"/>
+                  <rect x="0" y="0" width="120" height="150" rx="14" fill="url(#wpm-cardBg)" stroke="#cfdde5"/>
+                  <rect x="0" y="0" width="120" height="28" rx="14" fill="url(#wpm-srcHeader)"/>
+                  <rect x="0" y="14" width="120" height="14" fill="url(#wpm-srcHeader)"/>
+                  <circle cx="12" cy="14" r="2.6" fill="#ffffff" opacity="0.9"/>
+                  <circle cx="22" cy="14" r="2.6" fill="#ffffff" opacity="0.6"/>
+                  <circle cx="32" cy="14" r="2.6" fill="#ffffff" opacity="0.4"/>
+                  <rect x="46" y="11" width="50" height="6" rx="3" fill="#ffffff" opacity="0.8"/>
+                  <g transform="translate(60 70)">
+                    <g className="wpm-spin">
+                      <circle r="22" fill="#eef3f6" stroke="#cfdde5"/>
+                      <circle r="8" fill="#6b8294"/>
+                      <g fill="#6b8294">
+                        <rect x="-2" y="-26" width="4" height="6" rx="1.5"/>
+                        <rect x="-2" y="20" width="4" height="6" rx="1.5"/>
+                        <rect x="-26" y="-2" width="6" height="4" rx="1.5"/>
+                        <rect x="20" y="-2" width="6" height="4" rx="1.5"/>
+                        <rect x="-21" y="-21" width="6" height="4" rx="1.5" transform="rotate(45)"/>
+                        <rect x="14" y="-21" width="6" height="4" rx="1.5" transform="rotate(45)"/>
+                        <rect x="-21" y="16" width="6" height="4" rx="1.5" transform="rotate(45)"/>
+                        <rect x="14" y="16" width="6" height="4" rx="1.5" transform="rotate(45)"/>
+                      </g>
                     </g>
                   </g>
-                </g>
-                <rect x="14" y="108" width="92" height="6" rx="3" fill="#cfdde5"/>
-                <rect x="14" y="120" width="64" height="5" rx="2.5" fill="#dde6ec"/>
-                <rect x="14" y="130" width="78" height="5" rx="2.5" fill="#dde6ec"/>
-                <g transform="translate(102 122)">
-                  <circle r="10" fill="#ffffff" stroke="#cfdde5"/>
-                  <path d="M -3 0 H 4 M 1 -3 L 4 0 L 1 3" stroke="#6b8294" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                  <rect x="14" y="108" width="92" height="6" rx="3" fill="#cfdde5"/>
+                  <rect x="14" y="120" width="64" height="5" rx="2.5" fill="#dde6ec"/>
+                  <rect x="14" y="130" width="78" height="5" rx="2.5" fill="#dde6ec"/>
+                  <g transform="translate(102 122)">
+                    <circle r="10" fill="#ffffff" stroke="#cfdde5"/>
+                    <path d="M -3 0 H 4 M 1 -3 L 4 0 L 1 3" stroke="#6b8294" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                  </g>
                 </g>
               </g>
             </g>
 
             {/* Destination card */}
-            <g className="wpm-float-b">
-              <g transform="translate(320 300)">
-                <rect x="4" y="6" width="180" height="160" rx="14" fill="#0c4a63" opacity="0.12"/>
-                <rect x="0" y="0" width="180" height="160" rx="14" fill="url(#wpm-cardBg)" stroke="#cfdde5"/>
-                <rect x="0" y="0" width="180" height="32" rx="14" fill="url(#wpm-dstHeader)"/>
-                <rect x="0" y="16" width="180" height="16" fill="url(#wpm-dstHeader)"/>
-                <circle cx="12" cy="16" r="3" fill="#ffffff" opacity="0.9"/>
-                <circle cx="24" cy="16" r="3" fill="#ffffff" opacity="0.6"/>
-                <circle cx="36" cy="16" r="3" fill="#ffffff" opacity="0.4"/>
-                <rect x="50" y="13" width="78" height="6" rx="3" fill="#ffffff" opacity="0.85"/>
-                <g transform="translate(160 16)">
-                  <circle r="4" fill="#4fd1a8"/>
-                  <circle r="4" fill="#4fd1a8" opacity="0.4">
-                    <animate attributeName="r" values="4;9;4" dur="2s" repeatCount="indefinite"/>
-                    <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
-                  </circle>
-                </g>
-                <g transform="translate(40 78)">
-                  <circle r="22" fill="#21759b"/>
-                  <circle r="22" fill="none" stroke="#ffffff" strokeWidth="1.4" opacity="0.5"/>
-                  <g fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M -12 -5 L -5 10 L 0 -2"/><path d="M 0 -2 L 5 10 L 12 -5"/>
+            <g id="wpm-dst-card">
+              <g className="wpm-float-b">
+                <g transform="translate(320 300)">
+                  <rect x="4" y="6" width="180" height="160" rx="14" fill="#0c4a63" opacity="0.12"/>
+                  <rect x="0" y="0" width="180" height="160" rx="14" fill="url(#wpm-cardBg)" stroke="#cfdde5"/>
+                  <rect x="0" y="0" width="180" height="32" rx="14" fill="url(#wpm-dstHeader)"/>
+                  <rect x="0" y="16" width="180" height="16" fill="url(#wpm-dstHeader)"/>
+                  <circle cx="12" cy="16" r="3" fill="#ffffff" opacity="0.9"/>
+                  <circle cx="24" cy="16" r="3" fill="#ffffff" opacity="0.6"/>
+                  <circle cx="36" cy="16" r="3" fill="#ffffff" opacity="0.4"/>
+                  <rect x="50" y="13" width="78" height="6" rx="3" fill="#ffffff" opacity="0.85"/>
+                  <g transform="translate(160 16)">
+                    <circle r="4" fill="#4fd1a8"/>
+                    <circle r="4" fill="#4fd1a8" opacity="0.4">
+                      <animate attributeName="r" values="4;9;4" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+                    </circle>
                   </g>
-                </g>
-                <rect x="74" y="60" width="86" height="8" rx="3" fill="#0e2230"/>
-                <rect x="74" y="74" width="68" height="5" rx="2.5" fill="#cfdde5"/>
-                <rect x="74" y="84" width="78" height="5" rx="2.5" fill="#dde6ec"/>
-                <g transform="translate(20 110)">
-                  <rect x="0" y="0" width="46" height="22" rx="5" fill="#eef7fc" stroke="#cfdde5"/>
-                  <rect x="6" y="6" width="34" height="3.5" rx="1.5" fill="#21759b"/>
-                  <rect x="6" y="14" width="22" height="2.5" rx="1.2" fill="#cfdde5"/>
-                  <rect x="54" y="0" width="46" height="22" rx="5" fill="#f3eeff" stroke="#cfdde5"/>
-                  <rect x="60" y="6" width="34" height="3.5" rx="1.5" fill="#7c6cf2"/>
-                  <rect x="60" y="14" width="22" height="2.5" rx="1.2" fill="#cfdde5"/>
-                  <rect x="108" y="0" width="46" height="22" rx="5" fill="#e8f8f0" stroke="#cfdde5"/>
-                  <rect x="114" y="6" width="34" height="3.5" rx="1.5" fill="#3fb98d"/>
-                  <rect x="114" y="14" width="22" height="2.5" rx="1.2" fill="#cfdde5"/>
-                </g>
-                <rect x="23" y="138" width="134" height="10" rx="5" fill="#eef3f6" stroke="#cfdde5"/>
-                <g clipPath="url(#wpm-progressClip)">
-                  <rect className="wpm-progress-fill" x="23" y="138" width="134" height="10" rx="5" fill="url(#wpm-dstHeader)"/>
-                </g>
-                <g clipPath="url(#wpm-dstClip)">
-                  <rect className="wpm-shimmer" x="-80" y="0" width="60" height="160" fill="url(#wpm-shimmerGrad)" opacity="0.55"/>
+                  <g transform="translate(40 78)">
+                    <circle r="22" fill="#21759b"/>
+                    <circle r="22" fill="none" stroke="#ffffff" strokeWidth="1.4" opacity="0.5"/>
+                    <g fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M -12 -5 L -5 10 L 0 -2"/><path d="M 0 -2 L 5 10 L 12 -5"/>
+                    </g>
+                  </g>
+                  <rect x="74" y="60" width="86" height="8" rx="3" fill="#0e2230"/>
+                  <rect x="74" y="74" width="68" height="5" rx="2.5" fill="#cfdde5"/>
+                  <rect x="74" y="84" width="78" height="5" rx="2.5" fill="#dde6ec"/>
+                  <g transform="translate(20 110)">
+                    <rect x="0" y="0" width="46" height="22" rx="5" fill="#eef7fc" stroke="#cfdde5"/>
+                    <rect x="6" y="6" width="34" height="3.5" rx="1.5" fill="#21759b"/>
+                    <rect x="6" y="14" width="22" height="2.5" rx="1.2" fill="#cfdde5"/>
+                    <rect x="54" y="0" width="46" height="22" rx="5" fill="#f3eeff" stroke="#cfdde5"/>
+                    <rect x="60" y="6" width="34" height="3.5" rx="1.5" fill="#7c6cf2"/>
+                    <rect x="60" y="14" width="22" height="2.5" rx="1.2" fill="#cfdde5"/>
+                    <rect x="108" y="0" width="46" height="22" rx="5" fill="#e8f8f0" stroke="#cfdde5"/>
+                    <rect x="114" y="6" width="34" height="3.5" rx="1.5" fill="#3fb98d"/>
+                    <rect x="114" y="14" width="22" height="2.5" rx="1.2" fill="#cfdde5"/>
+                  </g>
+                  <rect x="23" y="138" width="134" height="10" rx="5" fill="#eef3f6" stroke="#cfdde5"/>
+                  <g clipPath="url(#wpm-progressClip)">
+                    <rect className="wpm-progress-fill" x="23" y="138" width="134" height="10" rx="5" fill="url(#wpm-dstHeader)"/>
+                  </g>
+                  <g clipPath="url(#wpm-dstClip)">
+                    <rect className="wpm-shimmer" x="-80" y="0" width="60" height="160" fill="url(#wpm-shimmerGrad)" opacity="0.55"/>
+                  </g>
                 </g>
               </g>
             </g>
 
             {/* Center shield */}
-            <g className="wpm-float-c">
-              <g transform="translate(280 250)">
-                <path d="M 0 -42 L 36 -28 L 36 6 Q 36 30 0 46 Q -36 30 -36 6 L -36 -28 Z" fill="#ffffff" stroke="#21759b" strokeWidth="2"/>
-                <path d="M 0 -38 L 32 -25 L 32 5 Q 32 26 0 41 Q -32 26 -32 5 L -32 -25 Z" fill="url(#wpm-dstHeader)" opacity="0.12"/>
-                <g className="wpm-check">
-                  <path d="M -14 0 L -3 12 L 16 -10" fill="none" stroke="#21759b" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
+            <g id="wpm-shield">
+              <g className="wpm-float-c">
+                <g transform="translate(280 250)">
+                  <path d="M 0 -42 L 36 -28 L 36 6 Q 36 30 0 46 Q -36 30 -36 6 L -36 -28 Z" fill="#ffffff" stroke="#21759b" strokeWidth="2"/>
+                  <path d="M 0 -38 L 32 -25 L 32 5 Q 32 26 0 41 Q -32 26 -32 5 L -32 -25 Z" fill="url(#wpm-dstHeader)" opacity="0.12"/>
+                  <g className="wpm-check">
+                    <path d="M -14 0 L -3 12 L 16 -10" fill="none" stroke="#21759b" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </g>
                 </g>
               </g>
             </g>
 
             {/* Connector lines */}
-            <g fill="none" strokeLinecap="round">
+            <g id="wpm-connectors" fill="none" strokeLinecap="round">
               <path d="M 280 208 Q 230 170 178 142" stroke="#3fb98d" strokeWidth="1.6" opacity="0.28"/>
               <path className="wpm-dash-fwd" d="M 280 208 Q 230 170 178 142" stroke="#3fb98d" strokeWidth="1.8"/>
               <path d="M 280 208 L 280 122" stroke="#21759b" strokeWidth="1.6" opacity="0.28"/>
@@ -352,139 +386,155 @@ export function WordPressMigrationsHero() {
             </g>
 
             {/* SEO badge */}
-            <g className="wpm-float-a" style={{ animationDelay: '-.2s' }}>
-              <g transform="translate(150 120)">
-                <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#wpm-badgeSeo)" stroke="#2ea077" strokeWidth="1"/>
-                <path d="M -22 -13 L 0 -26 L 22 -13" fill="none" stroke="#ffffff" strokeWidth="1" opacity="0.3"/>
-                <g transform="translate(-3 -3)" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round">
-                  <circle r="7"/><path d="M 5 5 L 11 11"/>
-                </g>
-                <g transform="translate(0 44)">
-                  <circle cx="-8" cy="0" r="2" fill="#3fb98d" opacity="0.9"/>
-                  <circle cx="0" cy="0" r="2" fill="#3fb98d" opacity="0.5"/>
-                  <circle cx="8" cy="0" r="2" fill="#3fb98d" opacity="0.25"/>
+            <g id="wpm-badge-seo">
+              <g className="wpm-float-a" style={{ animationDelay: '-.2s' }}>
+                <g transform="translate(150 120)">
+                  <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#wpm-badgeSeo)" stroke="#2ea077" strokeWidth="1"/>
+                  <path d="M -22 -13 L 0 -26 L 22 -13" fill="none" stroke="#ffffff" strokeWidth="1" opacity="0.3"/>
+                  <g transform="translate(-3 -3)" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round">
+                    <circle r="7"/><path d="M 5 5 L 11 11"/>
+                  </g>
+                  <g transform="translate(0 44)">
+                    <circle cx="-8" cy="0" r="2" fill="#3fb98d" opacity="0.9"/>
+                    <circle cx="0" cy="0" r="2" fill="#3fb98d" opacity="0.5"/>
+                    <circle cx="8" cy="0" r="2" fill="#3fb98d" opacity="0.25"/>
+                  </g>
                 </g>
               </g>
             </g>
 
             {/* DATA badge */}
-            <g className="wpm-float-b" style={{ animationDelay: '-.5s' }}>
-              <g transform="translate(280 92)">
-                <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#wpm-badgeData)" stroke="#0c4a63" strokeWidth="1"/>
-                <g transform="translate(0 -4)" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round">
-                  <ellipse cx="0" cy="-5" rx="9" ry="3" fill="#ffffff"/>
-                  <path d="M -9 -5 V 5 a 9 3 0 0 0 18 0 V -5"/>
-                  <path d="M -9 0 a 9 3 0 0 0 18 0" opacity="0.6"/>
-                </g>
-                <g transform="translate(0 44)">
-                  <circle cx="-8" cy="0" r="2" fill="#21759b" opacity="0.9"/>
-                  <circle cx="0" cy="0" r="2" fill="#21759b" opacity="0.5"/>
-                  <circle cx="8" cy="0" r="2" fill="#21759b" opacity="0.25"/>
+            <g id="wpm-badge-data">
+              <g className="wpm-float-b" style={{ animationDelay: '-.5s' }}>
+                <g transform="translate(280 92)">
+                  <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#wpm-badgeData)" stroke="#0c4a63" strokeWidth="1"/>
+                  <g transform="translate(0 -4)" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round">
+                    <ellipse cx="0" cy="-5" rx="9" ry="3" fill="#ffffff"/>
+                    <path d="M -9 -5 V 5 a 9 3 0 0 0 18 0 V -5"/>
+                    <path d="M -9 0 a 9 3 0 0 0 18 0" opacity="0.6"/>
+                  </g>
+                  <g transform="translate(0 44)">
+                    <circle cx="-8" cy="0" r="2" fill="#21759b" opacity="0.9"/>
+                    <circle cx="0" cy="0" r="2" fill="#21759b" opacity="0.5"/>
+                    <circle cx="8" cy="0" r="2" fill="#21759b" opacity="0.25"/>
+                  </g>
                 </g>
               </g>
             </g>
 
             {/* MEDIA badge */}
-            <g className="wpm-float-c" style={{ animationDelay: '-.8s' }}>
-              <g transform="translate(410 120)">
-                <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#wpm-badgeMedia)" stroke="#d68812" strokeWidth="1"/>
-                <g transform="translate(0 -2)" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round">
-                  <rect x="-10" y="-7" width="20" height="14" rx="2"/>
-                  <circle cx="-4" cy="-2" r="2" fill="#ffffff" stroke="none"/>
-                  <path d="M -10 5 L -2 -1 L 4 3 L 10 -2"/>
-                </g>
-                <g transform="translate(0 44)">
-                  <circle cx="-8" cy="0" r="2" fill="#f5a623" opacity="0.9"/>
-                  <circle cx="0" cy="0" r="2" fill="#f5a623" opacity="0.5"/>
-                  <circle cx="8" cy="0" r="2" fill="#f5a623" opacity="0.25"/>
+            <g id="wpm-badge-media">
+              <g className="wpm-float-c" style={{ animationDelay: '-.8s' }}>
+                <g transform="translate(410 120)">
+                  <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#wpm-badgeMedia)" stroke="#d68812" strokeWidth="1"/>
+                  <g transform="translate(0 -2)" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round">
+                    <rect x="-10" y="-7" width="20" height="14" rx="2"/>
+                    <circle cx="-4" cy="-2" r="2" fill="#ffffff" stroke="none"/>
+                    <path d="M -10 5 L -2 -1 L 4 3 L 10 -2"/>
+                  </g>
+                  <g transform="translate(0 44)">
+                    <circle cx="-8" cy="0" r="2" fill="#f5a623" opacity="0.9"/>
+                    <circle cx="0" cy="0" r="2" fill="#f5a623" opacity="0.5"/>
+                    <circle cx="8" cy="0" r="2" fill="#f5a623" opacity="0.25"/>
+                  </g>
                 </g>
               </g>
             </g>
 
             {/* REDIRECTS badge */}
-            <g className="wpm-float-a" style={{ animationDelay: '-1.0s' }}>
-              <g transform="translate(120 488)">
-                <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#wpm-badgeRedir)" stroke="#5847d4" strokeWidth="1"/>
-                <g transform="translate(0 -2)" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M -10 4 H 6 L 2 0 M 6 4 L 2 8"/>
-                  <path d="M 10 -4 H -2 L 2 -8 M -2 -4 L 2 0" opacity="0.7"/>
-                </g>
-                <g transform="translate(0 -44)">
-                  <circle cx="-8" cy="0" r="2" fill="#7c6cf2" opacity="0.9"/>
-                  <circle cx="0" cy="0" r="2" fill="#7c6cf2" opacity="0.5"/>
-                  <circle cx="8" cy="0" r="2" fill="#7c6cf2" opacity="0.25"/>
+            <g id="wpm-badge-redirects">
+              <g className="wpm-float-a" style={{ animationDelay: '-1.0s' }}>
+                <g transform="translate(120 488)">
+                  <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#wpm-badgeRedir)" stroke="#5847d4" strokeWidth="1"/>
+                  <g transform="translate(0 -2)" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M -10 4 H 6 L 2 0 M 6 4 L 2 8"/>
+                    <path d="M 10 -4 H -2 L 2 -8 M -2 -4 L 2 0" opacity="0.7"/>
+                  </g>
+                  <g transform="translate(0 -44)">
+                    <circle cx="-8" cy="0" r="2" fill="#7c6cf2" opacity="0.9"/>
+                    <circle cx="0" cy="0" r="2" fill="#7c6cf2" opacity="0.5"/>
+                    <circle cx="8" cy="0" r="2" fill="#7c6cf2" opacity="0.25"/>
+                  </g>
                 </g>
               </g>
             </g>
 
             {/* USERS badge */}
-            <g className="wpm-float-b" style={{ animationDelay: '-1.3s' }}>
-              <g transform="translate(280 500)">
-                <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#wpm-badgeUsers)" stroke="#c0382e" strokeWidth="1"/>
-                <g transform="translate(0 -2)" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round">
-                  <circle cx="-5" cy="-4" r="3.5" fill="#ffffff"/>
-                  <circle cx="6" cy="-3" r="3" fill="#ffffff" opacity="0.85"/>
-                  <path d="M -12 8 a 7 5 0 0 1 14 0" strokeLinejoin="round"/>
-                  <path d="M 0 8 a 6 4 0 0 1 12 0" opacity="0.85" strokeLinejoin="round"/>
-                </g>
-                <g transform="translate(0 -44)">
-                  <circle cx="-8" cy="0" r="2" fill="#ff6b5b" opacity="0.9"/>
-                  <circle cx="0" cy="0" r="2" fill="#ff6b5b" opacity="0.5"/>
-                  <circle cx="8" cy="0" r="2" fill="#ff6b5b" opacity="0.25"/>
+            <g id="wpm-badge-users">
+              <g className="wpm-float-b" style={{ animationDelay: '-1.3s' }}>
+                <g transform="translate(280 500)">
+                  <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#wpm-badgeUsers)" stroke="#c0382e" strokeWidth="1"/>
+                  <g transform="translate(0 -2)" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round">
+                    <circle cx="-5" cy="-4" r="3.5" fill="#ffffff"/>
+                    <circle cx="6" cy="-3" r="3" fill="#ffffff" opacity="0.85"/>
+                    <path d="M -12 8 a 7 5 0 0 1 14 0" strokeLinejoin="round"/>
+                    <path d="M 0 8 a 6 4 0 0 1 12 0" opacity="0.85" strokeLinejoin="round"/>
+                  </g>
+                  <g transform="translate(0 -44)">
+                    <circle cx="-8" cy="0" r="2" fill="#ff6b5b" opacity="0.9"/>
+                    <circle cx="0" cy="0" r="2" fill="#ff6b5b" opacity="0.5"/>
+                    <circle cx="8" cy="0" r="2" fill="#ff6b5b" opacity="0.25"/>
+                  </g>
                 </g>
               </g>
             </g>
 
             {/* SSL badge */}
-            <g className="wpm-float-c" style={{ animationDelay: '-1.6s' }}>
-              <g transform="translate(440 488)">
-                <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#wpm-badgeSsl)" stroke="#b94a82" strokeWidth="1"/>
-                <g transform="translate(0 -2)" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="-7" y="0" width="14" height="10" rx="2" fill="#ffffff" stroke="none"/>
-                  <path d="M -4 0 V -4 a 4 4 0 0 1 8 0 V 0"/>
-                  <circle cx="0" cy="5" r="1.4" fill="#ef6ea8" stroke="none"/>
-                </g>
-                <g transform="translate(0 -44)">
-                  <circle cx="-8" cy="0" r="2" fill="#ef6ea8" opacity="0.9"/>
-                  <circle cx="0" cy="0" r="2" fill="#ef6ea8" opacity="0.5"/>
-                  <circle cx="8" cy="0" r="2" fill="#ef6ea8" opacity="0.25"/>
+            <g id="wpm-badge-ssl">
+              <g className="wpm-float-c" style={{ animationDelay: '-1.6s' }}>
+                <g transform="translate(440 488)">
+                  <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#wpm-badgeSsl)" stroke="#b94a82" strokeWidth="1"/>
+                  <g transform="translate(0 -2)" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="-7" y="0" width="14" height="10" rx="2" fill="#ffffff" stroke="none"/>
+                    <path d="M -4 0 V -4 a 4 4 0 0 1 8 0 V 0"/>
+                    <circle cx="0" cy="5" r="1.4" fill="#ef6ea8" stroke="none"/>
+                  </g>
+                  <g transform="translate(0 -44)">
+                    <circle cx="-8" cy="0" r="2" fill="#ef6ea8" opacity="0.9"/>
+                    <circle cx="0" cy="0" r="2" fill="#ef6ea8" opacity="0.5"/>
+                    <circle cx="8" cy="0" r="2" fill="#ef6ea8" opacity="0.25"/>
+                  </g>
                 </g>
               </g>
             </g>
 
             {/* 301 chip */}
-            <g className="wpm-float-a" style={{ animationDelay: '-.4s' }}>
-              <g transform="translate(40 240)">
-                <rect width="92" height="28" rx="14" fill="#ffffff" stroke="#cfdde5"/>
-                <g transform="translate(15 14)" stroke="#21759b" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M -7 -4 H 5 L 1 -8 M 5 -4 L 1 0"/>
-                  <path d="M 7 4 H -5 L -1 8 M -5 4 L -1 0" opacity="0.6"/>
+            <g id="wpm-chip">
+              <g className="wpm-float-a" style={{ animationDelay: '-.4s' }}>
+                <g transform="translate(40 240)">
+                  <rect width="92" height="28" rx="14" fill="#ffffff" stroke="#cfdde5"/>
+                  <g transform="translate(15 14)" stroke="#21759b" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M -7 -4 H 5 L 1 -8 M 5 -4 L 1 0"/>
+                    <path d="M 7 4 H -5 L -1 8 M -5 4 L -1 0" opacity="0.6"/>
+                  </g>
+                  <rect x="34" y="9" width="44" height="4" rx="2" fill="#21759b" opacity="0.85"/>
+                  <rect x="34" y="17" width="30" height="4" rx="2" fill="#cfdde5"/>
                 </g>
-                <rect x="34" y="9" width="44" height="4" rx="2" fill="#21759b" opacity="0.85"/>
-                <rect x="34" y="17" width="30" height="4" rx="2" fill="#cfdde5"/>
               </g>
             </g>
 
             {/* Spinning gear */}
-            <g transform="translate(490 240)">
-              <g className="wpm-spin">
-                <circle r="22" fill="#ffffff" stroke="#cfdde5" strokeWidth="1.4"/>
-                <circle r="9" fill="#21759b"/>
-                <circle r="4" fill="#0c4a63"/>
-                <g fill="#21759b">
-                  <rect x="-2.5" y="-26" width="5" height="7" rx="1.5"/>
-                  <rect x="-2.5" y="19" width="5" height="7" rx="1.5"/>
-                  <rect x="-26" y="-2.5" width="7" height="5" rx="1.5"/>
-                  <rect x="19" y="-2.5" width="7" height="5" rx="1.5"/>
-                  <rect x="-21" y="-21" width="7" height="5" rx="1.5" transform="rotate(45)"/>
-                  <rect x="14" y="-21" width="7" height="5" rx="1.5" transform="rotate(45)"/>
-                  <rect x="-21" y="16" width="7" height="5" rx="1.5" transform="rotate(45)"/>
-                  <rect x="14" y="16" width="7" height="5" rx="1.5" transform="rotate(45)"/>
+            <g id="wpm-gear">
+              <g transform="translate(490 240)">
+                <g className="wpm-spin">
+                  <circle r="22" fill="#ffffff" stroke="#cfdde5" strokeWidth="1.4"/>
+                  <circle r="9" fill="#21759b"/>
+                  <circle r="4" fill="#0c4a63"/>
+                  <g fill="#21759b">
+                    <rect x="-2.5" y="-26" width="5" height="7" rx="1.5"/>
+                    <rect x="-2.5" y="19" width="5" height="7" rx="1.5"/>
+                    <rect x="-26" y="-2.5" width="7" height="5" rx="1.5"/>
+                    <rect x="19" y="-2.5" width="7" height="5" rx="1.5"/>
+                    <rect x="-21" y="-21" width="7" height="5" rx="1.5" transform="rotate(45)"/>
+                    <rect x="14" y="-21" width="7" height="5" rx="1.5" transform="rotate(45)"/>
+                    <rect x="-21" y="16" width="7" height="5" rx="1.5" transform="rotate(45)"/>
+                    <rect x="14" y="16" width="7" height="5" rx="1.5" transform="rotate(45)"/>
+                  </g>
                 </g>
               </g>
             </g>
 
-            <g>
+            <g id="wpm-dots">
               <circle className="wpm-dot" cx="280" cy="40" r="3" fill="#7c6cf2"/>
               <circle className="wpm-dot" style={{ animationDelay: '.4s' }} cx="40" cy="180" r="2.5" fill="#21759b"/>
               <circle className="wpm-dot" style={{ animationDelay: '.8s' }} cx="520" cy="180" r="2.5" fill="#3fb98d"/>

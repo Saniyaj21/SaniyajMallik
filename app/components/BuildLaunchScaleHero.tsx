@@ -9,12 +9,27 @@ export function BuildLaunchScaleHero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Hero text reveal
       gsap.timeline({ defaults: { ease: 'power3.out' } })
         .from('.bls-eyebrow', { y: 20, opacity: 0, duration: 0.5 })
         .from('h1',           { y: 32, opacity: 0, duration: 0.65 }, '-=0.25')
         .from('p',            { y: 20, opacity: 0, duration: 0.55 }, '-=0.35')
         .from('.bls-cta',     { y: 16, opacity: 0, duration: 0.5  }, '-=0.35')
         .from('.bls-stage',   { x: 40, opacity: 0, duration: 0.75 }, '-=0.8');
+
+      // SVG assembly — dismantled → final form
+      gsap.timeline({ delay: 0.6, defaults: { ease: 'back.out(1.4)' } })
+        .from('#bls-hub',          { scale: 0.2, opacity: 0, transformOrigin: '280px 280px', duration: 0.7, ease: 'back.out(1.7)' })
+        .from('#bls-orbit-rings',  { scale: 0.4, opacity: 0, transformOrigin: '280px 280px', duration: 0.6 }, '-=0.3')
+        .from('#bls-connectors',   { opacity: 0, duration: 0.5, ease: 'power2.out' }, '-=0.3')
+        .from('#bls-tile-build',   { x: -60, y: -60, opacity: 0, duration: 0.55 }, '-=0.2')
+        .from('#bls-tile-launch',  { y: -70,         opacity: 0, duration: 0.55 }, '-=0.4')
+        .from('#bls-tile-scale',   { x:  60, y: -60, opacity: 0, duration: 0.55 }, '-=0.4')
+        .from('#bls-tile-lms',     { x: -60, y:  60, opacity: 0, duration: 0.55 }, '-=0.4')
+        .from('#bls-tile-ecom',    { x:  60, y:  60, opacity: 0, duration: 0.55 }, '-=0.4')
+        .from('#bls-chip',         { x: -40,         opacity: 0, duration: 0.45 }, '-=0.3')
+        .from('#bls-gear',         { scale: 0, opacity: 0, transformOrigin: '490px 250px', duration: 0.5 }, '-=0.3')
+        .from('#bls-dots',         { opacity: 0, duration: 0.35, ease: 'power2.out' }, '-=0.2');
     }, heroRef);
     return () => ctx.revert();
   }, []);
@@ -169,7 +184,7 @@ export function BuildLaunchScaleHero() {
             <circle cx="280" cy="280" r="240" fill="url(#bls-centerGlow)"/>
             <circle cx="280" cy="280" r="200" fill="none" stroke="#cfdde5" strokeWidth="1" strokeDasharray="2 6" opacity="0.7"/>
             <circle cx="280" cy="280" r="248" fill="none" stroke="#cfdde5" strokeWidth="1" strokeDasharray="2 6" opacity="0.5"/>
-            <g className="bls-orbit">
+            <g id="bls-orbit-rings"><g className="bls-orbit">
               <circle cx="480" cy="280" r="3" fill="#21759b"/>
               <circle cx="80" cy="280" r="3" fill="#7c6cf2"/>
               <circle cx="280" cy="80" r="2.4" fill="#3fb98d"/>
@@ -182,10 +197,10 @@ export function BuildLaunchScaleHero() {
             <g transform="translate(280 280)">
               <circle className="bls-ring" r="120" fill="none" stroke="#7c6cf2" strokeWidth="1.6" opacity="0.5"/>
               <circle className="bls-ring" style={{ animationDelay: '1.3s' }} r="120" fill="none" stroke="#21759b" strokeWidth="1.6" opacity="0.5"/>
-            </g>
+            </g></g>
 
             {/* Center hub — dashboard card with animateTransform float */}
-            <g>
+            <g id="bls-hub">
               <g>
                 <animateTransform attributeName="transform" type="translate" values="0 0; 0 -8; 0 0" dur="8s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0.05 0.55 0.95; 0.45 0.05 0.55 0.95"/>
                 <rect x="174" y="178" width="220" height="220" rx="18" fill="#0c4a63" opacity="0.10"/>
@@ -244,7 +259,7 @@ export function BuildLaunchScaleHero() {
             </g>
 
             {/* Connector lines */}
-            <g fill="none" strokeLinecap="round">
+            <g id="bls-connectors" fill="none" strokeLinecap="round">
               <path d="M 220 196 Q 165 155 128 118" stroke="#21759b" strokeWidth="1.6" opacity="0.3"/>
               <path className="bls-dash" d="M 220 196 Q 165 155 128 118" stroke="#21759b" strokeWidth="1.8"/>
               <path d="M 280 170 L 280 102" stroke="#ff6b5b" strokeWidth="1.6" opacity="0.3"/>
@@ -258,7 +273,7 @@ export function BuildLaunchScaleHero() {
             </g>
 
             {/* BUILD tile (top-left) */}
-            <g>
+            <g id="bls-tile-build">
               <g transform="translate(110 100)">
                 <animateTransform attributeName="transform" type="translate" values="110 100; 110 90; 110 100" dur="7s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0.05 0.55 0.95; 0.45 0.05 0.55 0.95"/>
                 <path d="M -32 -18 L 0 -36 L 32 -18 L 32 18 L 0 36 L -32 18 Z" fill="url(#bls-modBuild)" stroke="#0c4a63" strokeWidth="1"/>
@@ -277,7 +292,7 @@ export function BuildLaunchScaleHero() {
             </g>
 
             {/* LAUNCH tile (top-center) */}
-            <g>
+            <g id="bls-tile-launch">
               <g transform="translate(280 70)">
                 <animateTransform attributeName="transform" type="translate" values="280 70; 280 56; 280 70" dur="8s" begin="-0.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0.05 0.55 0.95; 0.45 0.05 0.55 0.95"/>
                 <path d="M -34 -19 L 0 -38 L 34 -19 L 34 19 L 0 38 L -34 19 Z" fill="url(#bls-modLaunch)" stroke="#c0382e" strokeWidth="1"/>
@@ -297,7 +312,7 @@ export function BuildLaunchScaleHero() {
             </g>
 
             {/* SCALE tile (top-right) */}
-            <g>
+            <g id="bls-tile-scale">
               <g transform="translate(450 100)">
                 <animateTransform attributeName="transform" type="translate" values="450 100; 450 92; 450 100" dur="6.5s" begin="-0.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0.05 0.55 0.95; 0.45 0.05 0.55 0.95"/>
                 <path d="M -32 -18 L 0 -36 L 32 -18 L 32 18 L 0 36 L -32 18 Z" fill="url(#bls-modScale)" stroke="#5847d4" strokeWidth="1"/>
@@ -316,7 +331,7 @@ export function BuildLaunchScaleHero() {
             </g>
 
             {/* LMS tile (bottom-left) */}
-            <g>
+            <g id="bls-tile-lms">
               <g transform="translate(120 470)">
                 <animateTransform attributeName="transform" type="translate" values="120 470; 120 462; 120 470" dur="6.5s" begin="-0.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0.05 0.55 0.95; 0.45 0.05 0.55 0.95"/>
                 <path d="M -32 -18 L 0 -36 L 32 -18 L 32 18 L 0 36 L -32 18 Z" fill="url(#bls-modLms)" stroke="#2ea077" strokeWidth="1"/>
@@ -335,7 +350,7 @@ export function BuildLaunchScaleHero() {
             </g>
 
             {/* ECOMMERCE tile (bottom-right) */}
-            <g>
+            <g id="bls-tile-ecom">
               <g transform="translate(440 470)">
                 <animateTransform attributeName="transform" type="translate" values="440 470; 440 460; 440 470" dur="7s" begin="-1s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0.05 0.55 0.95; 0.45 0.05 0.55 0.95"/>
                 <path d="M -32 -18 L 0 -36 L 32 -18 L 32 18 L 0 36 L -32 18 Z" fill="url(#bls-modShop)" stroke="#d68812" strokeWidth="1"/>
@@ -353,7 +368,7 @@ export function BuildLaunchScaleHero() {
             </g>
 
             {/* Code chip (top-left atmosphere) with animateTransform float */}
-            <g>
+            <g id="bls-chip">
               <g transform="translate(40 240)">
                 <animateTransform attributeName="transform" type="translate" values="40 240; 40 232; 40 240" dur="6.5s" begin="-0.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0.05 0.55 0.95; 0.45 0.05 0.55 0.95"/>
                 <rect width="86" height="28" rx="14" fill="#ffffff" stroke="#cfdde5"/>
@@ -368,7 +383,7 @@ export function BuildLaunchScaleHero() {
             </g>
 
             {/* Spinning gear (top-right) */}
-            <g transform="translate(490 250)">
+            <g id="bls-gear"><g transform="translate(490 250)">
               <g className="bls-spin">
                 <circle r="22" fill="#ffffff" stroke="#cfdde5" strokeWidth="1.4"/>
                 <circle r="9" fill="#21759b"/>
@@ -384,9 +399,9 @@ export function BuildLaunchScaleHero() {
                   <rect x="14" y="16" width="7" height="5" rx="1.5" transform="rotate(45)"/>
                 </g>
               </g>
-            </g>
+            </g></g>
 
-            <g>
+            <g id="bls-dots">
               <circle className="bls-dot" cx="280" cy="40" r="3" fill="#ff6b5b"/>
               <circle className="bls-dot" style={{ animationDelay: '.4s' }} cx="40" cy="370" r="2.5" fill="#21759b"/>
               <circle className="bls-dot" style={{ animationDelay: '.8s' }} cx="520" cy="370" r="2.5" fill="#7c6cf2"/>

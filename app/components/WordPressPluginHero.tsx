@@ -15,6 +15,20 @@ export function WordPressPluginHero() {
         .from('p',            { y: 20, opacity: 0, duration: 0.55 }, '-=0.35')
         .from('.wpp-cta',     { y: 16, opacity: 0, duration: 0.5  }, '-=0.35')
         .from('.wpp-stage',   { x: 40, opacity: 0, duration: 0.75 }, '-=0.8');
+
+      gsap.timeline({ delay: 0.6, defaults: { ease: 'back.out(1.4)' } })
+        .from('#wpp-socket',     { scale: 0.2, opacity: 0, transformOrigin: '615px 270px', duration: 0.7, ease: 'back.out(1.7)' })
+        .from('#wpp-editor',     { x: -60, y: -20, opacity: 0, duration: 0.65 }, '-=0.3')
+        .from('#wpp-cable',      { opacity: 0, duration: 0.4, ease: 'power2.out' }, '-=0.2')
+        .from('#wpp-plug',       { x:  50, opacity: 0, duration: 0.55 }, '-=0.2')
+        .from('#wpp-chip-hook',  { x: -30, y: -40, opacity: 0, duration: 0.5 }, '-=0.2')
+        .from('#wpp-chip-rest',  { x:  40, y: -40, opacity: 0, duration: 0.5 }, '-=0.4')
+        .from('#wpp-chip-admin', { x:  50,         opacity: 0, duration: 0.5 }, '-=0.4')
+        .from('#wpp-chip-cron',  { x: -40, y:  40, opacity: 0, duration: 0.5 }, '-=0.4')
+        .from('#wpp-gears',      { scale: 0, opacity: 0, transformOrigin: '580px 95px', duration: 0.5 }, '-=0.3')
+        .from('#wpp-version',    { y: -20, opacity: 0, duration: 0.4, ease: 'power2.out' }, '-=0.2')
+        .from('#wpp-tests',      { y: -20, opacity: 0, duration: 0.4, ease: 'power2.out' }, '-=0.3')
+        .from('#wpp-snippet',    { x: -30, y:  20, opacity: 0, duration: 0.4, ease: 'power2.out' }, '-=0.3');
     }, heroRef);
     return () => ctx.revert();
   }, []);
@@ -92,248 +106,272 @@ export function WordPressPluginHero() {
                   <ellipse cx="400" cy="430" rx="320" ry="36" fill="url(#wpp-groundShadow)"/>
 
                   {/* Code editor */}
-                  <g className="wpp-anim-float-a">
-                    <g transform="translate(120 150)">
-                      <path d="M 320 30 L 340 42 L 340 230 L 320 218 Z" fill="url(#wpp-editorSide)"/>
-                      <path d="M 0 218 L 320 218 L 340 230 L 20 230 Z" fill="#0a1a25"/>
-                      <rect x="0" y="0" width="320" height="220" rx="10" fill="url(#wpp-editorTop)" stroke="#0a1a25"/>
-                      <rect x="0" y="0" width="320" height="26" rx="10" fill="url(#wpp-editorChrome)"/>
-                      <rect x="0" y="14" width="320" height="12" fill="url(#wpp-editorChrome)"/>
-                      <circle cx="14" cy="13" r="4" fill="#ff6b5b"/>
-                      <circle cx="28" cy="13" r="4" fill="#ffb74a"/>
-                      <circle cx="42" cy="13" r="4" fill="#4fd1a8"/>
-                      <rect x="62" y="6" width="142" height="20" rx="4" fill="#0e2230"/>
-                      <path d="M 70 16 l 4 -4 l 0 8 z" fill="#7c6cf2"/>
-                      <text x="80" y="20" fontFamily="ui-monospace, Menlo, monospace" fontSize="11" fill="#cfdde5">my-plugin.php</text>
-                      <g stroke="#6b8294" strokeWidth="1.4" strokeLinecap="round">
-                        <path d="M 192 12 L 198 18"/>
-                        <path d="M 198 12 L 192 18"/>
-                      </g>
-                      <rect x="0" y="26" width="64" height="194" fill="#0a1a25"/>
-                      <g fontFamily="ui-monospace, Menlo, monospace" fontSize="9" fill="#6b8294">
-                        <text x="8" y="44">▾ src</text>
-                        <text x="14" y="58" fill="#cfdde5">plugin.php</text>
-                        <text x="14" y="72">hooks.php</text>
-                        <text x="14" y="86">admin.php</text>
-                        <text x="8" y="102">▸ assets</text>
-                        <text x="8" y="116">▸ tests</text>
-                        <text x="8" y="130">readme.md</text>
-                      </g>
-                      <rect x="2" y="49" width="60" height="12" rx="2" fill="#21759b" opacity="0.25"/>
-                      <g transform="translate(72 36)">
-                        <g fontFamily="ui-monospace, Menlo, monospace" fontSize="9" fill="#3a5366" textAnchor="end">
-                          <text x="14" y="10">1</text>
-                          <text x="14" y="24">2</text>
-                          <text x="14" y="38">3</text>
-                          <text x="14" y="52">4</text>
-                          <text x="14" y="66">5</text>
-                          <text x="14" y="80">6</text>
-                          <text x="14" y="94">7</text>
-                          <text x="14" y="108">8</text>
-                          <text x="14" y="122">9</text>
-                          <text x="14" y="136">10</text>
-                          <text x="14" y="150">11</text>
-                          <text x="14" y="164">12</text>
-                          <text x="14" y="178">13</text>
+                  <g id="wpp-editor">
+                    <g className="wpp-anim-float-a">
+                      <g transform="translate(120 150)">
+                        <path d="M 320 30 L 340 42 L 340 230 L 320 218 Z" fill="url(#wpp-editorSide)"/>
+                        <path d="M 0 218 L 320 218 L 340 230 L 20 230 Z" fill="#0a1a25"/>
+                        <rect x="0" y="0" width="320" height="220" rx="10" fill="url(#wpp-editorTop)" stroke="#0a1a25"/>
+                        <rect x="0" y="0" width="320" height="26" rx="10" fill="url(#wpp-editorChrome)"/>
+                        <rect x="0" y="14" width="320" height="12" fill="url(#wpp-editorChrome)"/>
+                        <circle cx="14" cy="13" r="4" fill="#ff6b5b"/>
+                        <circle cx="28" cy="13" r="4" fill="#ffb74a"/>
+                        <circle cx="42" cy="13" r="4" fill="#4fd1a8"/>
+                        <rect x="62" y="6" width="142" height="20" rx="4" fill="#0e2230"/>
+                        <path d="M 70 16 l 4 -4 l 0 8 z" fill="#7c6cf2"/>
+                        <text x="80" y="20" fontFamily="ui-monospace, Menlo, monospace" fontSize="11" fill="#cfdde5">my-plugin.php</text>
+                        <g stroke="#6b8294" strokeWidth="1.4" strokeLinecap="round">
+                          <path d="M 192 12 L 198 18"/>
+                          <path d="M 198 12 L 192 18"/>
                         </g>
-                        <g transform="translate(22 4)">
-                          <rect y="0" width="42" height="6" rx="2" fill="#ef6ea8"/>
-                          <rect y="14" width="120" height="5" rx="2" fill="#3a5366"/>
-                          <rect y="28" width="80" height="5" rx="2" fill="#3a5366"/>
-                          <rect y="42" width="36" height="6" rx="2" fill="#7c6cf2"/>
-                          <rect x="40" y="42" width="78" height="6" rx="2" fill="#cfdde5"/>
-                          <rect y="70" width="44" height="6" rx="2" fill="#4fd1a8"/>
-                          <rect x="48" y="70" width="6" height="6" rx="1" fill="#cfdde5"/>
-                          <rect x="58" y="70" width="64" height="6" rx="2" fill="#ffb74a"/>
-                          <rect x="126" y="70" width="6" height="6" rx="1" fill="#cfdde5"/>
-                          <rect x="136" y="70" width="46" height="6" rx="2" fill="#7c6cf2"/>
-                          <rect y="84" width="52" height="6" rx="2" fill="#7c6cf2"/>
-                          <rect x="56" y="84" width="68" height="6" rx="2" fill="#4fd1a8"/>
-                          <rect x="128" y="84" width="40" height="6" rx="2" fill="#cfdde5"/>
-                          <rect x="14" y="98" width="36" height="6" rx="2" fill="#ef6ea8"/>
-                          <rect x="54" y="98" width="80" height="6" rx="2" fill="#cfdde5"/>
-                          <rect x="14" y="112" width="56" height="6" rx="2" fill="#4fd1a8"/>
-                          <rect x="74" y="112" width="40" height="6" rx="2" fill="#ffb74a"/>
-                          <rect x="14" y="126" width="76" height="6" rx="2" fill="#cfdde5"/>
-                          <rect y="140" width="6" height="6" rx="1" fill="#ef6ea8"/>
-                          <rect y="154" width="36" height="6" rx="2" fill="#7c6cf2"/>
-                          <rect x="40" y="154" width="64" height="6" rx="2" fill="#cfdde5">
-                            <animate attributeName="width" values="0;64;64;64" keyTimes="0;0.4;0.9;1" dur="3.4s" repeatCount="indefinite"/>
-                          </rect>
-                          <rect className="wpp-anim-caret" x="106" y="153" width="2" height="9" fill="#ffffff"/>
+                        <rect x="0" y="26" width="64" height="194" fill="#0a1a25"/>
+                        <g fontFamily="ui-monospace, Menlo, monospace" fontSize="9" fill="#6b8294">
+                          <text x="8" y="44">▾ src</text>
+                          <text x="14" y="58" fill="#cfdde5">plugin.php</text>
+                          <text x="14" y="72">hooks.php</text>
+                          <text x="14" y="86">admin.php</text>
+                          <text x="8" y="102">▸ assets</text>
+                          <text x="8" y="116">▸ tests</text>
+                          <text x="8" y="130">readme.md</text>
                         </g>
+                        <rect x="2" y="49" width="60" height="12" rx="2" fill="#21759b" opacity="0.25"/>
+                        <g transform="translate(72 36)">
+                          <g fontFamily="ui-monospace, Menlo, monospace" fontSize="9" fill="#3a5366" textAnchor="end">
+                            <text x="14" y="10">1</text>
+                            <text x="14" y="24">2</text>
+                            <text x="14" y="38">3</text>
+                            <text x="14" y="52">4</text>
+                            <text x="14" y="66">5</text>
+                            <text x="14" y="80">6</text>
+                            <text x="14" y="94">7</text>
+                            <text x="14" y="108">8</text>
+                            <text x="14" y="122">9</text>
+                            <text x="14" y="136">10</text>
+                            <text x="14" y="150">11</text>
+                            <text x="14" y="164">12</text>
+                            <text x="14" y="178">13</text>
+                          </g>
+                          <g transform="translate(22 4)">
+                            <rect y="0" width="42" height="6" rx="2" fill="#ef6ea8"/>
+                            <rect y="14" width="120" height="5" rx="2" fill="#3a5366"/>
+                            <rect y="28" width="80" height="5" rx="2" fill="#3a5366"/>
+                            <rect y="42" width="36" height="6" rx="2" fill="#7c6cf2"/>
+                            <rect x="40" y="42" width="78" height="6" rx="2" fill="#cfdde5"/>
+                            <rect y="70" width="44" height="6" rx="2" fill="#4fd1a8"/>
+                            <rect x="48" y="70" width="6" height="6" rx="1" fill="#cfdde5"/>
+                            <rect x="58" y="70" width="64" height="6" rx="2" fill="#ffb74a"/>
+                            <rect x="126" y="70" width="6" height="6" rx="1" fill="#cfdde5"/>
+                            <rect x="136" y="70" width="46" height="6" rx="2" fill="#7c6cf2"/>
+                            <rect y="84" width="52" height="6" rx="2" fill="#7c6cf2"/>
+                            <rect x="56" y="84" width="68" height="6" rx="2" fill="#4fd1a8"/>
+                            <rect x="128" y="84" width="40" height="6" rx="2" fill="#cfdde5"/>
+                            <rect x="14" y="98" width="36" height="6" rx="2" fill="#ef6ea8"/>
+                            <rect x="54" y="98" width="80" height="6" rx="2" fill="#cfdde5"/>
+                            <rect x="14" y="112" width="56" height="6" rx="2" fill="#4fd1a8"/>
+                            <rect x="74" y="112" width="40" height="6" rx="2" fill="#ffb74a"/>
+                            <rect x="14" y="126" width="76" height="6" rx="2" fill="#cfdde5"/>
+                            <rect y="140" width="6" height="6" rx="1" fill="#ef6ea8"/>
+                            <rect y="154" width="36" height="6" rx="2" fill="#7c6cf2"/>
+                            <rect x="40" y="154" width="64" height="6" rx="2" fill="#cfdde5">
+                              <animate attributeName="width" values="0;64;64;64" keyTimes="0;0.4;0.9;1" dur="3.4s" repeatCount="indefinite"/>
+                            </rect>
+                            <rect className="wpp-anim-caret" x="106" y="153" width="2" height="9" fill="#ffffff"/>
+                          </g>
+                        </g>
+                        <rect x="0" y="206" width="320" height="14" fill="#21759b"/>
+                        <g fontFamily="ui-monospace, Menlo, monospace" fontSize="8" fill="#ffffff" opacity="0.9">
+                          <text x="8" y="216">PHP</text>
+                          <text x="32" y="216">UTF-8</text>
+                          <text x="68" y="216">Ln 12, Col 18</text>
+                        </g>
+                        <circle cx="306" cy="213" r="3" fill="#4fd1a8"/>
                       </g>
-                      <rect x="0" y="206" width="320" height="14" fill="#21759b"/>
-                      <g fontFamily="ui-monospace, Menlo, monospace" fontSize="8" fill="#ffffff" opacity="0.9">
-                        <text x="8" y="216">PHP</text>
-                        <text x="32" y="216">UTF-8</text>
-                        <text x="68" y="216">Ln 12, Col 18</text>
-                      </g>
-                      <circle cx="306" cy="213" r="3" fill="#4fd1a8"/>
                     </g>
                   </g>
 
                   {/* Cable */}
-                  <path d="M 380 300 C 430 320, 470 300, 500 280" fill="none" stroke="url(#wpp-plugCable)" strokeWidth="6" strokeLinecap="round"/>
-                  <path className="wpp-anim-dash" d="M 380 300 C 430 320, 470 300, 500 280" fill="none" stroke="#ffffff" strokeWidth="1.6" strokeLinecap="round" opacity="0.55"/>
+                  <g id="wpp-cable">
+                    <path d="M 380 300 C 430 320, 470 300, 500 280" fill="none" stroke="url(#wpp-plugCable)" strokeWidth="6" strokeLinecap="round"/>
+                    <path className="wpp-anim-dash" d="M 380 300 C 430 320, 470 300, 500 280" fill="none" stroke="#ffffff" strokeWidth="1.6" strokeLinecap="round" opacity="0.55"/>
+                  </g>
 
                   {/* Plug */}
-                  <g className="wpp-anim-float-b">
-                    <g transform="translate(500 240)">
-                      <rect x="-46" y="22" width="22" height="18" rx="4" fill="#0c4a63"/>
-                      <rect x="-46" y="24" width="22" height="3" fill="#1a6486"/>
-                      <rect x="-46" y="32" width="22" height="3" fill="#1a6486"/>
-                      <rect x="-26" y="14" width="56" height="34" rx="8" fill="url(#wpp-plugBody)" stroke="#0c4a63"/>
-                      <rect x="-22" y="18" width="48" height="4" rx="2" fill="#ffffff" opacity="0.35"/>
-                      <g stroke="#ffffff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none">
-                        <path d="M -10 30 L -5 40 L 0 32"/>
-                        <path d="M 0 32 L 5 40 L 10 30"/>
+                  <g id="wpp-plug">
+                    <g className="wpp-anim-float-b">
+                      <g transform="translate(500 240)">
+                        <rect x="-46" y="22" width="22" height="18" rx="4" fill="#0c4a63"/>
+                        <rect x="-46" y="24" width="22" height="3" fill="#1a6486"/>
+                        <rect x="-46" y="32" width="22" height="3" fill="#1a6486"/>
+                        <rect x="-26" y="14" width="56" height="34" rx="8" fill="url(#wpp-plugBody)" stroke="#0c4a63"/>
+                        <rect x="-22" y="18" width="48" height="4" rx="2" fill="#ffffff" opacity="0.35"/>
+                        <g stroke="#ffffff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none">
+                          <path d="M -10 30 L -5 40 L 0 32"/>
+                          <path d="M 0 32 L 5 40 L 10 30"/>
+                        </g>
+                        <rect x="30" y="20" width="22" height="5" rx="2" fill="#cfdde5" stroke="#9bbccd"/>
+                        <rect x="30" y="36" width="22" height="5" rx="2" fill="#cfdde5" stroke="#9bbccd"/>
+                        <rect x="50" y="20" width="3" height="5" fill="#9bbccd"/>
+                        <rect x="50" y="36" width="3" height="5" fill="#9bbccd"/>
                       </g>
-                      <rect x="30" y="20" width="22" height="5" rx="2" fill="#cfdde5" stroke="#9bbccd"/>
-                      <rect x="30" y="36" width="22" height="5" rx="2" fill="#cfdde5" stroke="#9bbccd"/>
-                      <rect x="50" y="20" width="3" height="5" fill="#9bbccd"/>
-                      <rect x="50" y="36" width="3" height="5" fill="#9bbccd"/>
                     </g>
                   </g>
 
                   {/* Socket */}
-                  <g className="wpp-anim-float-c">
-                    <g transform="translate(615 270)">
-                      <circle r="62" fill="url(#wpp-socketGlow)"/>
-                      <circle className="wpp-anim-ring" r="34" fill="none" stroke="#7c6cf2" strokeWidth="1.8" opacity="0.5"/>
-                      <circle className="wpp-anim-ring" r="34" style={{ animationDelay: '1.3s' }} fill="none" stroke="#7c6cf2" strokeWidth="1.8" opacity="0.5"/>
-                      <circle r="38" fill="#ffffff" stroke="#cfdde5" strokeWidth="1.5"/>
-                      <circle r="32" fill="#f3f7fa" stroke="#dfe9ef"/>
-                      <circle r="22" fill="none" stroke="#21759b" strokeWidth="2" opacity="0.55"/>
-                      <rect x="-2" y="-12" width="4" height="10" rx="1.5" fill="#0e2230"/>
-                      <rect x="-2" y="2" width="4" height="10" rx="1.5" fill="#0e2230"/>
-                      <circle r="3" fill="#9bbccd"/>
-                      <path d="M -2 0 L 2 0" stroke="#0e2230" strokeWidth="1" strokeLinecap="round"/>
+                  <g id="wpp-socket">
+                    <g className="wpp-anim-float-c">
+                      <g transform="translate(615 270)">
+                        <circle r="62" fill="url(#wpp-socketGlow)"/>
+                        <circle className="wpp-anim-ring" r="34" fill="none" stroke="#7c6cf2" strokeWidth="1.8" opacity="0.5"/>
+                        <circle className="wpp-anim-ring" r="34" style={{ animationDelay: '1.3s' }} fill="none" stroke="#7c6cf2" strokeWidth="1.8" opacity="0.5"/>
+                        <circle r="38" fill="#ffffff" stroke="#cfdde5" strokeWidth="1.5"/>
+                        <circle r="32" fill="#f3f7fa" stroke="#dfe9ef"/>
+                        <circle r="22" fill="none" stroke="#21759b" strokeWidth="2" opacity="0.55"/>
+                        <rect x="-2" y="-12" width="4" height="10" rx="1.5" fill="#0e2230"/>
+                        <rect x="-2" y="2" width="4" height="10" rx="1.5" fill="#0e2230"/>
+                        <circle r="3" fill="#9bbccd"/>
+                        <path d="M -2 0 L 2 0" stroke="#0e2230" strokeWidth="1" strokeLinecap="round"/>
+                      </g>
                     </g>
                   </g>
 
                   {/* HOOK chip */}
-                  <g className="wpp-anim-float-a" style={{ animationDelay: '.4s' }}>
-                    <g transform="translate(420 110) scale(0.75)">
-                      <rect x="-44" y="-16" width="88" height="32" rx="8" fill="url(#wpp-chipMint)" stroke="#2ea077" strokeWidth="1.2"/>
-                      <circle cx="0" cy="-16" r="6" fill="#fbfdff" stroke="#2ea077" strokeWidth="1.2"/>
-                      <g transform="translate(-26 0)" stroke="#ffffff" strokeWidth="2.4" fill="none" strokeLinecap="round">
-                        <path d="M -6 -4 L -6 2 a 6 6 0 0 0 12 0"/>
-                        <circle cx="-6" cy="-6" r="1.6" fill="#ffffff" stroke="none"/>
+                  <g id="wpp-chip-hook">
+                    <g className="wpp-anim-float-a" style={{ animationDelay: '.4s' }}>
+                      <g transform="translate(420 110) scale(0.75)">
+                        <rect x="-44" y="-16" width="88" height="32" rx="8" fill="url(#wpp-chipMint)" stroke="#2ea077" strokeWidth="1.2"/>
+                        <circle cx="0" cy="-16" r="6" fill="#fbfdff" stroke="#2ea077" strokeWidth="1.2"/>
+                        <g transform="translate(-26 0)" stroke="#ffffff" strokeWidth="2.4" fill="none" strokeLinecap="round">
+                          <path d="M -6 -4 L -6 2 a 6 6 0 0 0 12 0"/>
+                          <circle cx="-6" cy="-6" r="1.6" fill="#ffffff" stroke="none"/>
+                        </g>
+                        <text x="-8" y="4" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="700" fill="#ffffff">HOOK</text>
                       </g>
-                      <text x="-8" y="4" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="700" fill="#ffffff">HOOK</text>
                     </g>
                   </g>
 
                   {/* REST chip */}
-                  <g className="wpp-anim-float-c" style={{ animationDelay: '.8s' }}>
-                    <g transform="translate(660 150) scale(0.75)">
-                      <rect x="-46" y="-16" width="92" height="32" rx="8" fill="url(#wpp-chipViolet)" stroke="#5847d4" strokeWidth="1.2"/>
-                      <circle cx="-46" cy="0" r="6" fill="#fbfdff" stroke="#5847d4" strokeWidth="1.2"/>
-                      <g transform="translate(-30 0)" stroke="#ffffff" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M -4 -6 q -4 0 -4 4 q 0 2 -2 2 q 2 0 2 2 q 0 4 4 4"/>
-                        <path d="M 4 -6 q 4 0 4 4 q 0 2 2 2 q -2 0 -2 2 q 0 4 -4 4"/>
+                  <g id="wpp-chip-rest">
+                    <g className="wpp-anim-float-c" style={{ animationDelay: '.8s' }}>
+                      <g transform="translate(660 150) scale(0.75)">
+                        <rect x="-46" y="-16" width="92" height="32" rx="8" fill="url(#wpp-chipViolet)" stroke="#5847d4" strokeWidth="1.2"/>
+                        <circle cx="-46" cy="0" r="6" fill="#fbfdff" stroke="#5847d4" strokeWidth="1.2"/>
+                        <g transform="translate(-30 0)" stroke="#ffffff" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M -4 -6 q -4 0 -4 4 q 0 2 -2 2 q 2 0 2 2 q 0 4 4 4"/>
+                          <path d="M 4 -6 q 4 0 4 4 q 0 2 2 2 q -2 0 -2 2 q 0 4 -4 4"/>
+                        </g>
+                        <text x="-12" y="4" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="700" fill="#ffffff">REST</text>
                       </g>
-                      <text x="-12" y="4" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="700" fill="#ffffff">REST</text>
                     </g>
                   </g>
 
                   {/* ADMIN chip */}
-                  <g className="wpp-anim-float-b" style={{ animationDelay: '.2s' }}>
-                    <g transform="translate(700 360) scale(0.75)">
-                      <rect x="-50" y="-16" width="100" height="32" rx="8" fill="url(#wpp-chipAmber)" stroke="#d68812" strokeWidth="1.2"/>
-                      <circle cx="-50" cy="0" r="6" fill="#fbfdff" stroke="#d68812" strokeWidth="1.2"/>
-                      <g transform="translate(-32 0)" stroke="#ffffff" strokeWidth="1.8" fill="none" strokeLinejoin="round">
-                        <rect x="-7" y="-6" width="14" height="12" rx="1.5"/>
-                        <path d="M -7 -2 L 7 -2"/>
-                        <circle cx="-4.5" cy="-4.2" r="0.8" fill="#ffffff" stroke="none"/>
+                  <g id="wpp-chip-admin">
+                    <g className="wpp-anim-float-b" style={{ animationDelay: '.2s' }}>
+                      <g transform="translate(700 360) scale(0.75)">
+                        <rect x="-50" y="-16" width="100" height="32" rx="8" fill="url(#wpp-chipAmber)" stroke="#d68812" strokeWidth="1.2"/>
+                        <circle cx="-50" cy="0" r="6" fill="#fbfdff" stroke="#d68812" strokeWidth="1.2"/>
+                        <g transform="translate(-32 0)" stroke="#ffffff" strokeWidth="1.8" fill="none" strokeLinejoin="round">
+                          <rect x="-7" y="-6" width="14" height="12" rx="1.5"/>
+                          <path d="M -7 -2 L 7 -2"/>
+                          <circle cx="-4.5" cy="-4.2" r="0.8" fill="#ffffff" stroke="none"/>
+                        </g>
+                        <text x="-15" y="4" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="700" fill="#ffffff">ADMIN</text>
                       </g>
-                      <text x="-15" y="4" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="700" fill="#ffffff">ADMIN</text>
                     </g>
                   </g>
 
                   {/* CRON chip */}
-                  <g className="wpp-anim-float-a" style={{ animationDelay: '1s' }}>
-                    <g transform="translate(360 410) scale(0.75)">
-                      <rect x="-42" y="-16" width="84" height="32" rx="8" fill="url(#wpp-chipPink)" stroke="#c0508c" strokeWidth="1.2"/>
-                      <circle cx="42" cy="0" r="6" fill="#fbfdff" stroke="#c0508c" strokeWidth="1.2"/>
-                      <g transform="translate(-24 0)" stroke="#ffffff" strokeWidth="2" fill="none" strokeLinecap="round">
-                        <circle r="7"/>
-                        <path d="M 0 -4 L 0 0 L 4 2"/>
+                  <g id="wpp-chip-cron">
+                    <g className="wpp-anim-float-a" style={{ animationDelay: '1s' }}>
+                      <g transform="translate(360 410) scale(0.75)">
+                        <rect x="-42" y="-16" width="84" height="32" rx="8" fill="url(#wpp-chipPink)" stroke="#c0508c" strokeWidth="1.2"/>
+                        <circle cx="42" cy="0" r="6" fill="#fbfdff" stroke="#c0508c" strokeWidth="1.2"/>
+                        <g transform="translate(-24 0)" stroke="#ffffff" strokeWidth="2" fill="none" strokeLinecap="round">
+                          <circle r="7"/>
+                          <path d="M 0 -4 L 0 0 L 4 2"/>
+                        </g>
+                        <text x="-10" y="4" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="700" fill="#ffffff">CRON</text>
                       </g>
-                      <text x="-10" y="4" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="700" fill="#ffffff">CRON</text>
                     </g>
                   </g>
 
                   {/* Gear cluster */}
-                  <g transform="translate(580 95)">
-                    <g className="wpp-anim-spin">
-                      <circle r="28" fill="#ffffff" stroke="#cfdde5" strokeWidth="1.5"/>
-                      <circle r="11" fill="#21759b"/>
-                      <circle r="5" fill="#0c4a63"/>
-                      <g fill="#21759b">
-                        <rect x="-3" y="-32" width="6" height="9" rx="1.5"/>
-                        <rect x="-3" y="23" width="6" height="9" rx="1.5"/>
-                        <rect x="-32" y="-3" width="9" height="6" rx="1.5"/>
-                        <rect x="23" y="-3" width="9" height="6" rx="1.5"/>
-                        <rect x="-26" y="-26" width="9" height="6" rx="1.5" transform="rotate(45)"/>
-                        <rect x="17" y="-26" width="9" height="6" rx="1.5" transform="rotate(45)"/>
-                        <rect x="-26" y="20" width="9" height="6" rx="1.5" transform="rotate(45)"/>
-                        <rect x="17" y="20" width="9" height="6" rx="1.5" transform="rotate(45)"/>
+                  <g id="wpp-gears">
+                    <g transform="translate(580 95)">
+                      <g className="wpp-anim-spin">
+                        <circle r="28" fill="#ffffff" stroke="#cfdde5" strokeWidth="1.5"/>
+                        <circle r="11" fill="#21759b"/>
+                        <circle r="5" fill="#0c4a63"/>
+                        <g fill="#21759b">
+                          <rect x="-3" y="-32" width="6" height="9" rx="1.5"/>
+                          <rect x="-3" y="23" width="6" height="9" rx="1.5"/>
+                          <rect x="-32" y="-3" width="9" height="6" rx="1.5"/>
+                          <rect x="23" y="-3" width="9" height="6" rx="1.5"/>
+                          <rect x="-26" y="-26" width="9" height="6" rx="1.5" transform="rotate(45)"/>
+                          <rect x="17" y="-26" width="9" height="6" rx="1.5" transform="rotate(45)"/>
+                          <rect x="-26" y="20" width="9" height="6" rx="1.5" transform="rotate(45)"/>
+                          <rect x="17" y="20" width="9" height="6" rx="1.5" transform="rotate(45)"/>
+                        </g>
                       </g>
-                    </g>
-                    <g transform="translate(34 30)" className="wpp-anim-spin-rev">
-                      <circle r="14" fill="#ffffff" stroke="#cfdde5" strokeWidth="1.2"/>
-                      <circle r="5" fill="#7c6cf2"/>
-                      <g fill="#7c6cf2">
-                        <rect x="-1.6" y="-17" width="3.2" height="5" rx="1"/>
-                        <rect x="-1.6" y="12" width="3.2" height="5" rx="1"/>
-                        <rect x="-17" y="-1.6" width="5" height="3.2" rx="1"/>
-                        <rect x="12" y="-1.6" width="5" height="3.2" rx="1"/>
-                        <rect x="-13" y="-13" width="5" height="3.2" rx="1" transform="rotate(45)"/>
-                        <rect x="8" y="-13" width="5" height="3.2" rx="1" transform="rotate(45)"/>
-                        <rect x="-13" y="10" width="5" height="3.2" rx="1" transform="rotate(45)"/>
-                        <rect x="8" y="10" width="5" height="3.2" rx="1" transform="rotate(45)"/>
+                      <g transform="translate(34 30)" className="wpp-anim-spin-rev">
+                        <circle r="14" fill="#ffffff" stroke="#cfdde5" strokeWidth="1.2"/>
+                        <circle r="5" fill="#7c6cf2"/>
+                        <g fill="#7c6cf2">
+                          <rect x="-1.6" y="-17" width="3.2" height="5" rx="1"/>
+                          <rect x="-1.6" y="12" width="3.2" height="5" rx="1"/>
+                          <rect x="-17" y="-1.6" width="5" height="3.2" rx="1"/>
+                          <rect x="12" y="-1.6" width="5" height="3.2" rx="1"/>
+                          <rect x="-13" y="-13" width="5" height="3.2" rx="1" transform="rotate(45)"/>
+                          <rect x="8" y="-13" width="5" height="3.2" rx="1" transform="rotate(45)"/>
+                          <rect x="-13" y="10" width="5" height="3.2" rx="1" transform="rotate(45)"/>
+                          <rect x="8" y="10" width="5" height="3.2" rx="1" transform="rotate(45)"/>
+                        </g>
                       </g>
                     </g>
                   </g>
 
                   {/* Version pill */}
-                  <g className="wpp-anim-float-c" style={{ animationDelay: '.6s' }}>
-                    <g transform="translate(140 105)">
-                      <rect width="92" height="24" rx="12" fill="#ffffff" stroke="#cfdde5"/>
-                      <circle cx="13" cy="12" r="4" fill="#4fd1a8"/>
-                      <text x="24" y="16" fontFamily="ui-monospace, Menlo, monospace" fontSize="10" fontWeight="700" fill="#0e2230">v1.0.0</text>
-                      <text x="60" y="16" fontFamily="Inter, sans-serif" fontSize="9" fontWeight="600" fill="#3fb98d">stable</text>
+                  <g id="wpp-version">
+                    <g className="wpp-anim-float-c" style={{ animationDelay: '.6s' }}>
+                      <g transform="translate(140 105)">
+                        <rect width="92" height="24" rx="12" fill="#ffffff" stroke="#cfdde5"/>
+                        <circle cx="13" cy="12" r="4" fill="#4fd1a8"/>
+                        <text x="24" y="16" fontFamily="ui-monospace, Menlo, monospace" fontSize="10" fontWeight="700" fill="#0e2230">v1.0.0</text>
+                        <text x="60" y="16" fontFamily="Inter, sans-serif" fontSize="9" fontWeight="600" fill="#3fb98d">stable</text>
+                      </g>
                     </g>
                   </g>
 
                   {/* Hook snippet */}
-                  <g className="wpp-anim-float-b" style={{ animationDelay: '1.2s' }}>
-                    <g transform="translate(80 380)">
-                      <rect width="170" height="44" rx="8" fill="#ffffff" stroke="#cfdde5"/>
-                      <text x="14" y="20" fontFamily="ui-monospace, Menlo, monospace" fontSize="10" fill="#0e2230">
-                        <tspan fill="#4fd1a8">add_filter</tspan>
-                        <tspan fill="#0e2230">(</tspan>
-                        <tspan fill="#ffb74a">&apos;init&apos;</tspan>
-                        <tspan fill="#0e2230">,</tspan>
-                      </text>
-                      <text x="22" y="34" fontFamily="ui-monospace, Menlo, monospace" fontSize="10">
-                        <tspan fill="#7c6cf2">__namespace</tspan>
-                        <tspan fill="#0e2230">\boot);</tspan>
-                      </text>
+                  <g id="wpp-snippet">
+                    <g className="wpp-anim-float-b" style={{ animationDelay: '1.2s' }}>
+                      <g transform="translate(80 380)">
+                        <rect width="170" height="44" rx="8" fill="#ffffff" stroke="#cfdde5"/>
+                        <text x="14" y="20" fontFamily="ui-monospace, Menlo, monospace" fontSize="10" fill="#0e2230">
+                          <tspan fill="#4fd1a8">add_filter</tspan>
+                          <tspan fill="#0e2230">(</tspan>
+                          <tspan fill="#ffb74a">&apos;init&apos;</tspan>
+                          <tspan fill="#0e2230">,</tspan>
+                        </text>
+                        <text x="22" y="34" fontFamily="ui-monospace, Menlo, monospace" fontSize="10">
+                          <tspan fill="#7c6cf2">__namespace</tspan>
+                          <tspan fill="#0e2230">\boot);</tspan>
+                        </text>
+                      </g>
                     </g>
                   </g>
 
                   {/* Tests passing badge */}
-                  <g className="wpp-anim-float-a" style={{ animationDelay: '.9s' }}>
-                    <g transform="translate(290 70)">
-                      <rect width="120" height="24" rx="12" fill="#0e2230"/>
-                      <g transform="translate(11 12)">
-                        <circle r="6" fill="#4fd1a8"/>
-                        <path d="M -2.4 0 L -0.5 2 L 2.6 -1.6" stroke="#0e2230" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                  <g id="wpp-tests">
+                    <g className="wpp-anim-float-a" style={{ animationDelay: '.9s' }}>
+                      <g transform="translate(290 70)">
+                        <rect width="120" height="24" rx="12" fill="#0e2230"/>
+                        <g transform="translate(11 12)">
+                          <circle r="6" fill="#4fd1a8"/>
+                          <path d="M -2.4 0 L -0.5 2 L 2.6 -1.6" stroke="#0e2230" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                        </g>
+                        <text x="24" y="16" fontFamily="ui-monospace, Menlo, monospace" fontSize="10" fontWeight="600" fill="#ffffff">tests passing</text>
                       </g>
-                      <text x="24" y="16" fontFamily="ui-monospace, Menlo, monospace" fontSize="10" fontWeight="600" fill="#ffffff">tests passing</text>
                     </g>
                   </g>
                 </svg>

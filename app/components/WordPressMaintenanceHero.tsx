@@ -9,12 +9,29 @@ export function WordPressMaintenanceHero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Hero text reveal
       gsap.timeline({ defaults: { ease: 'power3.out' } })
         .from('.wpmaint-eyebrow', { y: 20, opacity: 0, duration: 0.5 })
         .from('h1',               { y: 32, opacity: 0, duration: 0.65 }, '-=0.25')
         .from('p',                { y: 20, opacity: 0, duration: 0.55 }, '-=0.35')
         .from('.wpmaint-cta',     { y: 16, opacity: 0, duration: 0.5  }, '-=0.35')
         .from('.wpmaint-stage',   { x: 40, opacity: 0, duration: 0.75 }, '-=0.8');
+
+      // SVG assembly — dismantled → final form
+      gsap.timeline({ delay: 0.6, defaults: { ease: 'back.out(1.4)' } })
+        .from('#wpmaint-hub',            { scale: 0.2, opacity: 0, transformOrigin: '280px 280px', duration: 0.7, ease: 'back.out(1.7)' })
+        .from('#wpmaint-orbit-dots',     { scale: 0.4, opacity: 0, transformOrigin: '280px 280px', duration: 0.6 }, '-=0.3')
+        .from('#wpmaint-ring',           { scale: 0,   opacity: 0, transformOrigin: '280px 280px', duration: 0.7 }, '-=0.4')
+        .from('#wpmaint-connectors',     { opacity: 0, duration: 0.5, ease: 'power2.out' }, '-=0.3')
+        .from('#wpmaint-badge-updates',  { x: -60, y: -60, opacity: 0, duration: 0.55 }, '-=0.2')
+        .from('#wpmaint-badge-backups',  { y: -70,         opacity: 0, duration: 0.55 }, '-=0.4')
+        .from('#wpmaint-badge-security', { x:  60, y: -60, opacity: 0, duration: 0.55 }, '-=0.4')
+        .from('#wpmaint-badge-uptime',   { x: -60, y:  60, opacity: 0, duration: 0.55 }, '-=0.4')
+        .from('#wpmaint-badge-speed',    { y:  70,         opacity: 0, duration: 0.55 }, '-=0.4')
+        .from('#wpmaint-badge-support',  { x:  60, y:  60, opacity: 0, duration: 0.55 }, '-=0.4')
+        .from('#wpmaint-chip',           { x: -40,         opacity: 0, duration: 0.45 }, '-=0.3')
+        .from('#wpmaint-gears',          { scale: 0, opacity: 0, transformOrigin: '470px 265px', duration: 0.5 }, '-=0.3')
+        .from('#wpmaint-dots',           { opacity: 0, duration: 0.35, ease: 'power2.out' }, '-=0.2');
     }, heroRef);
     return () => ctx.revert();
   }, []);
@@ -168,15 +185,15 @@ export function WordPressMaintenanceHero() {
             <circle cx="280" cy="280" r="248" fill="none" stroke="#cfdde5" strokeWidth="1" strokeDasharray="2 6" opacity="0.5"/>
 
             {/* Outer rotating schedule ring */}
-            <g className="wpmaint-clock">
+            <g id="wpmaint-ring"><g className="wpmaint-clock">
               <circle cx="280" cy="280" r="224" fill="none" stroke="#7c6cf2" strokeWidth="1.4" strokeDasharray="3 12" opacity="0.45"/>
               <circle cx="504" cy="280" r="3" fill="#21759b"/>
               <circle cx="280" cy="504" r="3" fill="#3fb98d"/>
               <circle cx="56" cy="280" r="3" fill="#7c6cf2"/>
               <circle cx="280" cy="56" r="3" fill="#ffb74a"/>
-            </g>
+            </g></g>
 
-            <g className="wpmaint-orbit">
+            <g id="wpmaint-orbit-dots"><g className="wpmaint-orbit">
               <circle cx="480" cy="280" r="2.6" fill="#21759b"/>
               <circle cx="80" cy="280" r="2.6" fill="#7c6cf2"/>
             </g>
@@ -187,10 +204,10 @@ export function WordPressMaintenanceHero() {
             <g transform="translate(280 280)">
               <circle className="wpmaint-ring" r="120" fill="none" stroke="#7c6cf2" strokeWidth="1.6" opacity="0.5"/>
               <circle className="wpmaint-ring" style={{ animationDelay: '1.3s' }} r="120" fill="none" stroke="#21759b" strokeWidth="1.6" opacity="0.5"/>
-            </g>
+            </g></g>
 
             {/* Center hub card */}
-            <g className="wpmaint-float-b">
+            <g id="wpmaint-hub"><g className="wpmaint-float-b">
               <rect x="174" y="178" width="220" height="220" rx="18" fill="#0c4a63" opacity="0.10"/>
               <rect x="170" y="170" width="220" height="220" rx="18" fill="url(#wpmaint-cardBg)" stroke="#cfdde5"/>
               <rect x="170" y="170" width="220" height="40" rx="18" fill="url(#wpmaint-hubHeader)"/>
@@ -260,10 +277,10 @@ export function WordPressMaintenanceHero() {
               <g clipPath="url(#wpmaint-hubClip)">
                 <rect className="wpmaint-shimmer" x="170" y="170" width="60" height="220" fill="url(#wpmaint-shimmerGrad)" opacity="0.55"/>
               </g>
-            </g>
+            </g></g>
 
             {/* Connector dashes */}
-            <g fill="none" strokeLinecap="round">
+            <g id="wpmaint-connectors" fill="none" strokeLinecap="round">
               <path d="M 220 196 Q 165 155 128 118" stroke="#21759b" strokeWidth="1.6" opacity="0.28"/>
               <path className="wpmaint-dash-fwd" d="M 220 196 Q 165 155 128 118" stroke="#21759b" strokeWidth="1.8"/>
               <path d="M 280 170 L 280 102" stroke="#3fb98d" strokeWidth="1.6" opacity="0.28"/>
@@ -279,7 +296,7 @@ export function WordPressMaintenanceHero() {
             </g>
 
             {/* UPDATES badge (top-left) */}
-            <g className="wpmaint-float-a">
+            <g id="wpmaint-badge-updates"><g className="wpmaint-float-a">
               <g transform="translate(110 100)">
                 <path d="M -32 -18 L 0 -36 L 32 -18 L 32 18 L 0 36 L -32 18 Z" fill="url(#wpmaint-bUpd)" stroke="#0c4a63" strokeWidth="1"/>
                 <path d="M -28 -16 L 0 -32 L 28 -16" fill="none" stroke="#ffffff" strokeWidth="1" opacity="0.3"/>
@@ -295,8 +312,10 @@ export function WordPressMaintenanceHero() {
               </g>
             </g>
 
+            </g>
+
             {/* BACKUPS badge (top-center) */}
-            <g className="wpmaint-float-b">
+            <g id="wpmaint-badge-backups"><g className="wpmaint-float-b">
               <g transform="translate(280 70)">
                 <path d="M -34 -19 L 0 -38 L 34 -19 L 34 19 L 0 38 L -34 19 Z" fill="url(#wpmaint-bBkp)" stroke="#2ea077" strokeWidth="1"/>
                 <g transform="translate(0 -4)" fill="#ffffff" stroke="#ffffff" strokeWidth="1.5" strokeLinejoin="round">
@@ -314,8 +333,10 @@ export function WordPressMaintenanceHero() {
               </g>
             </g>
 
+            </g>
+
             {/* SECURITY badge (top-right) */}
-            <g className="wpmaint-float-c">
+            <g id="wpmaint-badge-security"><g className="wpmaint-float-c">
               <g transform="translate(450 100)">
                 <path d="M -32 -18 L 0 -36 L 32 -18 L 32 18 L 0 36 L -32 18 Z" fill="url(#wpmaint-bSec)" stroke="#5847d4" strokeWidth="1"/>
                 <g transform="translate(0 -2)">
@@ -330,8 +351,10 @@ export function WordPressMaintenanceHero() {
               </g>
             </g>
 
+            </g>
+
             {/* UPTIME badge (bottom-left) */}
-            <g className="wpmaint-float-a" style={{ animationDelay: '-.8s' }}>
+            <g id="wpmaint-badge-uptime"><g className="wpmaint-float-a" style={{ animationDelay: '-.8s' }}>
               <g transform="translate(120 470)">
                 <path d="M -32 -18 L 0 -36 L 32 -18 L 32 18 L 0 36 L -32 18 Z" fill="url(#wpmaint-bUpt)" stroke="#c0382e" strokeWidth="1"/>
                 <g transform="translate(0 -2)">
@@ -350,8 +373,10 @@ export function WordPressMaintenanceHero() {
               </g>
             </g>
 
+            </g>
+
             {/* SPEED badge (bottom-center) */}
-            <g className="wpmaint-float-b" style={{ animationDelay: '-1.0s' }}>
+            <g id="wpmaint-badge-speed"><g className="wpmaint-float-b" style={{ animationDelay: '-1.0s' }}>
               <g transform="translate(280 500)">
                 <path d="M -34 -19 L 0 -38 L 34 -19 L 34 19 L 0 38 L -34 19 Z" fill="url(#wpmaint-bSpd)" stroke="#d68812" strokeWidth="1"/>
                 <g transform="translate(0 -2)" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -368,8 +393,10 @@ export function WordPressMaintenanceHero() {
               </g>
             </g>
 
+            </g>
+
             {/* SUPPORT badge (bottom-right) */}
-            <g className="wpmaint-float-c" style={{ animationDelay: '-1.2s' }}>
+            <g id="wpmaint-badge-support"><g className="wpmaint-float-c" style={{ animationDelay: '-1.2s' }}>
               <g transform="translate(440 470)">
                 <path d="M -32 -18 L 0 -36 L 32 -18 L 32 18 L 0 36 L -32 18 Z" fill="url(#wpmaint-bSup)" stroke="#b94a82" strokeWidth="1"/>
                 <g transform="translate(0 -1)" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -387,8 +414,10 @@ export function WordPressMaintenanceHero() {
               </g>
             </g>
 
+            </g>
+
             {/* 24/7 chip */}
-            <g className="wpmaint-float-a" style={{ animationDelay: '-.4s' }}>
+            <g id="wpmaint-chip"><g className="wpmaint-float-a" style={{ animationDelay: '-.4s' }}>
               <g transform="translate(40 240)">
                 <rect width="92" height="28" rx="14" fill="#ffffff" stroke="#cfdde5"/>
                 <g transform="translate(15 14)" fill="none" stroke="#21759b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -404,7 +433,10 @@ export function WordPressMaintenanceHero() {
               </g>
             </g>
 
-            {/* Big spinning gear */}
+            </g>
+
+            {/* Gears */}
+            <g id="wpmaint-gears">
             <g transform="translate(490 250)">
               <g className="wpmaint-spin">
                 <circle r="22" fill="#ffffff" stroke="#cfdde5" strokeWidth="1.4"/>
@@ -441,7 +473,9 @@ export function WordPressMaintenanceHero() {
               </g>
             </g>
 
-            <g>
+            </g>
+
+            <g id="wpmaint-dots">
               <circle className="wpmaint-dot" cx="280" cy="40" r="3" fill="#3fb98d"/>
               <circle className="wpmaint-dot" style={{ animationDelay: '.4s' }} cx="40" cy="370" r="2.5" fill="#21759b"/>
               <circle className="wpmaint-dot" style={{ animationDelay: '.8s' }} cx="520" cy="370" r="2.5" fill="#7c6cf2"/>

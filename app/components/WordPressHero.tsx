@@ -15,6 +15,19 @@ export function WordPressHero() {
         .from('p',            { y: 20, opacity: 0, duration: 0.55 }, '-=0.35')
         .from('.wph-cta',     { y: 16, opacity: 0, duration: 0.5  }, '-=0.35')
         .from('.wph-stage',   { x: 40, opacity: 0, duration: 0.75 }, '-=0.8');
+
+      gsap.timeline({ delay: 0.6, defaults: { ease: 'back.out(1.4)' } })
+        .from('#wph-platform', { scale: 0.7, opacity: 0, transformOrigin: '400px 400px', duration: 0.7, ease: 'back.out(1.7)' })
+        .from('#wph-puck',     { y:  40, opacity: 0, duration: 0.55 }, '-=0.3')
+        .from('#wph-browser',  { x: -50, y: -20, opacity: 0, duration: 0.65 }, '-=0.3')
+        .from('#wph-rocket',   { y: -60, opacity: 0, duration: 0.6 }, '-=0.2')
+        .from('#wph-block-a',  { x:  40,         opacity: 0, duration: 0.5 }, '-=0.2')
+        .from('#wph-block-b',  { x:  40, y: -20, opacity: 0, duration: 0.5 }, '-=0.4')
+        .from('#wph-block-c',  { x:  40, y: -30, opacity: 0, duration: 0.5 }, '-=0.4')
+        .from('#wph-wrench',   { x: -40,         opacity: 0, duration: 0.45 }, '-=0.3')
+        .from('#wph-trail',    { opacity: 0, duration: 0.35, ease: 'power2.out' }, '-=0.3')
+        .from('#wph-micro',    { y: -15, opacity: 0, duration: 0.4, ease: 'power2.out' }, '-=0.2')
+        .from('#wph-cursor',   { opacity: 0, duration: 0.3, ease: 'power2.out' }, '-=0.2');
     }, heroRef);
     return () => ctx.revert();
   }, []);
@@ -114,7 +127,7 @@ export function WordPressHero() {
                   <ellipse cx="400" cy="430" rx="320" ry="40" fill="url(#wph-groundShadow)"/>
 
                   {/* Platform */}
-                  <g>
+                  <g id="wph-platform">
                     <path d="M 400 280 L 660 360 L 400 440 L 140 360 Z" fill="url(#wph-platTop)" stroke="#bdd3de" strokeWidth="1.2"/>
                     <path d="M 660 360 L 660 388 L 400 468 L 400 440 Z" fill="url(#wph-platSide)"/>
                     <path d="M 140 360 L 140 388 L 400 468 L 400 440 Z" fill="url(#wph-platFront)"/>
@@ -133,118 +146,132 @@ export function WordPressHero() {
                   </g>
 
                   {/* Browser window */}
-                  <g className="wph-anim-float-a" style={{ animationDelay: '.2s' }}>
-                    <g transform="translate(180 175)">
-                      <path d="M 0 18 L 14 26 L 14 142 L 0 134 Z" fill="url(#wph-cardSide)"/>
-                      <path d="M 0 134 L 14 142 L 184 60 L 170 52 Z" fill="#94b3c2"/>
-                      <rect x="0" y="0" width="170" height="118" rx="8" fill="#ffffff" stroke="#cfdde5"/>
-                      <rect x="0" y="0" width="170" height="18" rx="8" fill="#eef4f8"/>
-                      <rect x="0" y="10" width="170" height="8" fill="#eef4f8"/>
-                      <circle cx="10" cy="9" r="3" fill="#ff6b5b"/>
-                      <circle cx="22" cy="9" r="3" fill="#ffb74a"/>
-                      <circle cx="34" cy="9" r="3" fill="#4fd1a8"/>
-                      <rect x="60" y="5" width="80" height="8" rx="4" fill="#dfe7ec"/>
-                      <rect x="12" y="28" width="60" height="38" rx="4" fill="#21759b"/>
-                      <rect x="20" y="36" width="36" height="4" rx="2" fill="#ffffff" opacity="0.85"/>
-                      <rect x="20" y="44" width="44" height="3" rx="1.5" fill="#ffffff" opacity="0.55"/>
-                      <rect x="20" y="50" width="28" height="3" rx="1.5" fill="#ffffff" opacity="0.55"/>
-                      <rect x="80" y="28" width="78" height="14" rx="3" fill="#e7eef3"/>
-                      <rect x="80" y="46" width="78" height="6" rx="2" fill="#eef3f6"/>
-                      <rect x="80" y="56" width="60" height="6" rx="2" fill="#eef3f6"/>
-                      <rect x="12" y="74" width="46" height="34" rx="4" fill="#f3f7fa" stroke="#e1ebf0"/>
-                      <rect x="62" y="74" width="46" height="34" rx="4" fill="#f3f7fa" stroke="#e1ebf0"/>
-                      <rect x="112" y="74" width="46" height="34" rx="4" fill="#f3f7fa" stroke="#e1ebf0"/>
-                      <circle cx="35" cy="86" r="4" fill="#7c6cf2"/>
-                      <rect x="22" y="96" width="26" height="3" rx="1.5" fill="#cfdde5"/>
-                      <circle cx="85" cy="86" r="4" fill="#4fd1a8"/>
-                      <rect x="72" y="96" width="26" height="3" rx="1.5" fill="#cfdde5"/>
-                      <circle cx="135" cy="86" r="4" fill="#ffb74a"/>
-                      <rect x="122" y="96" width="26" height="3" rx="1.5" fill="#cfdde5"/>
-                      <g clipPath="url(#wph-cardClip)">
-                        <rect x="-60" y="18" width="60" height="100" fill="url(#wph-shimmerGrad)" opacity="0.6">
-                          <animateTransform attributeName="transform" type="translate" values="-60 0; 230 0" dur="3.5s" repeatCount="indefinite"/>
-                        </rect>
+                  <g id="wph-browser">
+                    <g className="wph-anim-float-a" style={{ animationDelay: '.2s' }}>
+                      <g transform="translate(180 175)">
+                        <path d="M 0 18 L 14 26 L 14 142 L 0 134 Z" fill="url(#wph-cardSide)"/>
+                        <path d="M 0 134 L 14 142 L 184 60 L 170 52 Z" fill="#94b3c2"/>
+                        <rect x="0" y="0" width="170" height="118" rx="8" fill="#ffffff" stroke="#cfdde5"/>
+                        <rect x="0" y="0" width="170" height="18" rx="8" fill="#eef4f8"/>
+                        <rect x="0" y="10" width="170" height="8" fill="#eef4f8"/>
+                        <circle cx="10" cy="9" r="3" fill="#ff6b5b"/>
+                        <circle cx="22" cy="9" r="3" fill="#ffb74a"/>
+                        <circle cx="34" cy="9" r="3" fill="#4fd1a8"/>
+                        <rect x="60" y="5" width="80" height="8" rx="4" fill="#dfe7ec"/>
+                        <rect x="12" y="28" width="60" height="38" rx="4" fill="#21759b"/>
+                        <rect x="20" y="36" width="36" height="4" rx="2" fill="#ffffff" opacity="0.85"/>
+                        <rect x="20" y="44" width="44" height="3" rx="1.5" fill="#ffffff" opacity="0.55"/>
+                        <rect x="20" y="50" width="28" height="3" rx="1.5" fill="#ffffff" opacity="0.55"/>
+                        <rect x="80" y="28" width="78" height="14" rx="3" fill="#e7eef3"/>
+                        <rect x="80" y="46" width="78" height="6" rx="2" fill="#eef3f6"/>
+                        <rect x="80" y="56" width="60" height="6" rx="2" fill="#eef3f6"/>
+                        <rect x="12" y="74" width="46" height="34" rx="4" fill="#f3f7fa" stroke="#e1ebf0"/>
+                        <rect x="62" y="74" width="46" height="34" rx="4" fill="#f3f7fa" stroke="#e1ebf0"/>
+                        <rect x="112" y="74" width="46" height="34" rx="4" fill="#f3f7fa" stroke="#e1ebf0"/>
+                        <circle cx="35" cy="86" r="4" fill="#7c6cf2"/>
+                        <rect x="22" y="96" width="26" height="3" rx="1.5" fill="#cfdde5"/>
+                        <circle cx="85" cy="86" r="4" fill="#4fd1a8"/>
+                        <rect x="72" y="96" width="26" height="3" rx="1.5" fill="#cfdde5"/>
+                        <circle cx="135" cy="86" r="4" fill="#ffb74a"/>
+                        <rect x="122" y="96" width="26" height="3" rx="1.5" fill="#cfdde5"/>
+                        <g clipPath="url(#wph-cardClip)">
+                          <rect x="-60" y="18" width="60" height="100" fill="url(#wph-shimmerGrad)" opacity="0.6">
+                            <animateTransform attributeName="transform" type="translate" values="-60 0; 230 0" dur="3.5s" repeatCount="indefinite"/>
+                          </rect>
+                        </g>
                       </g>
                     </g>
                   </g>
 
                   {/* WP puck */}
-                  <g className="wph-anim-float-b">
-                    <g transform="translate(400 295)">
-                      <path d="M -70 0 C -70 22 -38 36 0 36 C 38 36 70 22 70 0 L 70 -22 C 70 0 38 14 0 14 C -38 14 -70 0 -70 -22 Z" fill="url(#wph-wpSide)"/>
-                      <ellipse cx="0" cy="-22" rx="70" ry="22" fill="url(#wph-wpTop)" stroke="#0c4a63" strokeWidth="0.8"/>
-                      <ellipse cx="0" cy="-22" rx="60" ry="18.5" fill="none" stroke="#ffffff" strokeWidth="1.5" opacity="0.45"/>
-                      <g transform="translate(0 -22) scale(1 0.34)">
-                        <circle r="46" fill="#ffffff"/>
-                        <circle r="46" fill="none" stroke="#0c4a63" strokeWidth="2.2" opacity="0.25"/>
-                        <g fill="none" stroke="#21759b" strokeWidth="7.5" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M -30 -16 L -16 22 L -2 -8"/>
-                          <path d="M -2 -8 L 12 22 L 26 -16"/>
+                  <g id="wph-puck">
+                    <g className="wph-anim-float-b">
+                      <g transform="translate(400 295)">
+                        <path d="M -70 0 C -70 22 -38 36 0 36 C 38 36 70 22 70 0 L 70 -22 C 70 0 38 14 0 14 C -38 14 -70 0 -70 -22 Z" fill="url(#wph-wpSide)"/>
+                        <ellipse cx="0" cy="-22" rx="70" ry="22" fill="url(#wph-wpTop)" stroke="#0c4a63" strokeWidth="0.8"/>
+                        <ellipse cx="0" cy="-22" rx="60" ry="18.5" fill="none" stroke="#ffffff" strokeWidth="1.5" opacity="0.45"/>
+                        <g transform="translate(0 -22) scale(1 0.34)">
+                          <circle r="46" fill="#ffffff"/>
+                          <circle r="46" fill="none" stroke="#0c4a63" strokeWidth="2.2" opacity="0.25"/>
+                          <g fill="none" stroke="#21759b" strokeWidth="7.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M -30 -16 L -16 22 L -2 -8"/>
+                            <path d="M -2 -8 L 12 22 L 26 -16"/>
+                          </g>
+                          <path d="M -2 -8 L -2 -22" stroke="#21759b" strokeWidth="6" strokeLinecap="round"/>
                         </g>
-                        <path d="M -2 -8 L -2 -22" stroke="#21759b" strokeWidth="6" strokeLinecap="round"/>
                       </g>
                     </g>
                   </g>
 
                   {/* Block A: mint */}
-                  <g className="wph-anim-float-c">
-                    <g transform="translate(545 295)">
-                      <path d="M 0 0 L 50 -16 L 100 0 L 50 16 Z" fill="url(#wph-blockMint)"/>
-                      <path d="M 100 0 L 100 36 L 50 52 L 50 16 Z" fill="#2ea077"/>
-                      <path d="M 0 0 L 0 36 L 50 52 L 50 16 Z" fill="#3fb98d"/>
-                      <g transform="translate(50 0) scale(1 0.5)" stroke="#ffffff" strokeWidth="3" strokeLinecap="round">
-                        <path d="M -7 0 L 7 0"/>
-                        <path d="M 0 -7 L 0 7"/>
+                  <g id="wph-block-a">
+                    <g className="wph-anim-float-c">
+                      <g transform="translate(545 295)">
+                        <path d="M 0 0 L 50 -16 L 100 0 L 50 16 Z" fill="url(#wph-blockMint)"/>
+                        <path d="M 100 0 L 100 36 L 50 52 L 50 16 Z" fill="#2ea077"/>
+                        <path d="M 0 0 L 0 36 L 50 52 L 50 16 Z" fill="#3fb98d"/>
+                        <g transform="translate(50 0) scale(1 0.5)" stroke="#ffffff" strokeWidth="3" strokeLinecap="round">
+                          <path d="M -7 0 L 7 0"/>
+                          <path d="M 0 -7 L 0 7"/>
+                        </g>
                       </g>
                     </g>
                   </g>
 
                   {/* Block B: violet */}
-                  <g className="wph-anim-float-a" style={{ animationDelay: '.6s' }}>
-                    <g transform="translate(560 240)">
-                      <path d="M 0 0 L 45 -14 L 90 0 L 45 14 Z" fill="url(#wph-blockViolet)"/>
-                      <path d="M 90 0 L 90 32 L 45 46 L 45 14 Z" fill="#5847d4"/>
-                      <path d="M 0 0 L 0 32 L 45 46 L 45 14 Z" fill="#6a58e6"/>
-                      <g transform="translate(45 0) scale(1 0.5)" fill="none" stroke="#ffffff" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M -10 -5 L -16 0 L -10 5"/>
-                        <path d="M 10 -5 L 16 0 L 10 5"/>
+                  <g id="wph-block-b">
+                    <g className="wph-anim-float-a" style={{ animationDelay: '.6s' }}>
+                      <g transform="translate(560 240)">
+                        <path d="M 0 0 L 45 -14 L 90 0 L 45 14 Z" fill="url(#wph-blockViolet)"/>
+                        <path d="M 90 0 L 90 32 L 45 46 L 45 14 Z" fill="#5847d4"/>
+                        <path d="M 0 0 L 0 32 L 45 46 L 45 14 Z" fill="#6a58e6"/>
+                        <g transform="translate(45 0) scale(1 0.5)" fill="none" stroke="#ffffff" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M -10 -5 L -16 0 L -10 5"/>
+                          <path d="M 10 -5 L 16 0 L 10 5"/>
+                        </g>
                       </g>
                     </g>
                   </g>
 
                   {/* Block C: amber */}
-                  <g className="wph-anim-float-b" style={{ animationDelay: '.4s' }}>
-                    <g transform="translate(605 188)">
-                      <path d="M 0 0 L 38 -12 L 76 0 L 38 12 Z" fill="url(#wph-blockAmber)"/>
-                      <path d="M 76 0 L 76 26 L 38 38 L 38 12 Z" fill="#d68812"/>
-                      <path d="M 0 0 L 0 26 L 38 38 L 38 12 Z" fill="#f5a623"/>
-                      <g transform="translate(38 0) scale(1 0.5)" fill="none" stroke="#ffffff" strokeWidth="2.4" strokeLinejoin="round">
-                        <rect x="-9" y="-6" width="18" height="12" rx="1.5"/>
-                        <circle cx="-3" cy="-2" r="1.5" fill="#ffffff" stroke="none"/>
-                        <path d="M -9 4 L -2 -1 L 4 3 L 9 0"/>
+                  <g id="wph-block-c">
+                    <g className="wph-anim-float-b" style={{ animationDelay: '.4s' }}>
+                      <g transform="translate(605 188)">
+                        <path d="M 0 0 L 38 -12 L 76 0 L 38 12 Z" fill="url(#wph-blockAmber)"/>
+                        <path d="M 76 0 L 76 26 L 38 38 L 38 12 Z" fill="#d68812"/>
+                        <path d="M 0 0 L 0 26 L 38 38 L 38 12 Z" fill="#f5a623"/>
+                        <g transform="translate(38 0) scale(1 0.5)" fill="none" stroke="#ffffff" strokeWidth="2.4" strokeLinejoin="round">
+                          <rect x="-9" y="-6" width="18" height="12" rx="1.5"/>
+                          <circle cx="-3" cy="-2" r="1.5" fill="#ffffff" stroke="none"/>
+                          <path d="M -9 4 L -2 -1 L 4 3 L 9 0"/>
+                        </g>
                       </g>
                     </g>
                   </g>
 
                   {/* Wrench */}
-                  <g className="wph-anim-float-c" style={{ animationDelay: '.8s' }}>
-                    <g transform="translate(120 320) rotate(-22)">
-                      <rect x="0" y="-6" width="80" height="12" rx="6" fill="#4a9bc4"/>
-                      <rect x="6" y="-6" width="60" height="2" fill="#ffffff" opacity="0.35"/>
-                      <path d="M 80 -14 a 16 16 0 1 1 0 28 L 80 8 a 8 8 0 0 0 0 -16 Z" fill="#21759b"/>
-                      <circle cx="86" cy="0" r="4" fill="#0c4a63"/>
+                  <g id="wph-wrench">
+                    <g className="wph-anim-float-c" style={{ animationDelay: '.8s' }}>
+                      <g transform="translate(120 320) rotate(-22)">
+                        <rect x="0" y="-6" width="80" height="12" rx="6" fill="#4a9bc4"/>
+                        <rect x="6" y="-6" width="60" height="2" fill="#ffffff" opacity="0.35"/>
+                        <path d="M 80 -14 a 16 16 0 1 1 0 28 L 80 8 a 8 8 0 0 0 0 -16 Z" fill="#21759b"/>
+                        <circle cx="86" cy="0" r="4" fill="#0c4a63"/>
+                      </g>
                     </g>
                   </g>
 
                   {/* Cursor */}
-                  <g className="wph-anim-cursor">
-                    <g transform="translate(335 250)">
-                      <path d="M 0 0 L 14 4 L 6 7 L 9 16 L 5 17 L 2 9 L -3 12 Z" fill="#0e2230" stroke="#ffffff" strokeWidth="1.4" strokeLinejoin="round"/>
+                  <g id="wph-cursor">
+                    <g className="wph-anim-cursor">
+                      <g transform="translate(335 250)">
+                        <path d="M 0 0 L 14 4 L 6 7 L 9 16 L 5 17 L 2 9 L -3 12 Z" fill="#0e2230" stroke="#ffffff" strokeWidth="1.4" strokeLinejoin="round"/>
+                      </g>
                     </g>
                   </g>
 
                   {/* Trail dots */}
-                  <g opacity="0.55">
+                  <g id="wph-trail" opacity="0.55">
                     <circle cx="475" cy="280" r="2.6" fill="#21759b"/>
                     <circle cx="473" cy="265" r="2.2" fill="#21759b" opacity="0.8"/>
                     <circle cx="471" cy="248" r="1.8" fill="#21759b" opacity="0.6"/>
@@ -253,34 +280,36 @@ export function WordPressHero() {
                   </g>
 
                   {/* Rocket */}
-                  <g className="wph-anim-rocket">
-                    <g transform="translate(478 130)">
-                      <path d="M -10 58 Q -14 78 0 96 Q 14 78 10 58 Z" fill="url(#wph-flameGrad)"/>
-                      <path d="M -5 60 Q -7 76 0 88 Q 7 76 5 60 Z" fill="#ffe28a" opacity="0.95"/>
-                      <circle className="wph-anim-spark" cx="-6" cy="92" r="2" fill="#ffb74a"/>
-                      <circle className="wph-anim-spark" cx="6" cy="92" r="1.6" fill="#ff6b5b" style={{ animationDelay: '.4s' }}/>
-                      <circle className="wph-anim-spark" cx="0" cy="96" r="1.4" fill="#ffd06b" style={{ animationDelay: '.8s' }}/>
-                      <circle className="wph-anim-spark" cx="-3" cy="94" r="1.2" fill="#ffb74a" style={{ animationDelay: '1.2s' }}/>
-                      <path d="M -16 0 Q -16 -32 0 -52 Q 16 -32 16 0 L 16 56 Q 0 64 -16 56 Z" fill="url(#wph-rocketBody)" stroke="#9bbccd" strokeWidth="1"/>
-                      <path d="M 0 -50 L 0 60" stroke="#cfdde5" strokeWidth="0.8"/>
-                      <path d="M -16 -2 Q -16 -32 0 -52 Q 16 -32 16 -2 Z" fill="url(#wph-rocketNose)"/>
-                      <path d="M -4 -42 Q 0 -50 4 -42" stroke="#ffffff" strokeWidth="1.5" fill="none" opacity="0.7"/>
-                      <circle cx="0" cy="6" r="11" fill="#0c4a63"/>
-                      <circle cx="0" cy="6" r="9" fill="#21759b"/>
-                      <circle cx="-3" cy="3" r="3" fill="#ffffff" opacity="0.45"/>
-                      <g stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" fill="none">
-                        <path d="M -5 4 L -2.5 9 L 0 5.5"/>
-                        <path d="M 0 5.5 L 2.5 9 L 5 4"/>
+                  <g id="wph-rocket">
+                    <g className="wph-anim-rocket">
+                      <g transform="translate(478 130)">
+                        <path d="M -10 58 Q -14 78 0 96 Q 14 78 10 58 Z" fill="url(#wph-flameGrad)"/>
+                        <path d="M -5 60 Q -7 76 0 88 Q 7 76 5 60 Z" fill="#ffe28a" opacity="0.95"/>
+                        <circle className="wph-anim-spark" cx="-6" cy="92" r="2" fill="#ffb74a"/>
+                        <circle className="wph-anim-spark" cx="6" cy="92" r="1.6" fill="#ff6b5b" style={{ animationDelay: '.4s' }}/>
+                        <circle className="wph-anim-spark" cx="0" cy="96" r="1.4" fill="#ffd06b" style={{ animationDelay: '.8s' }}/>
+                        <circle className="wph-anim-spark" cx="-3" cy="94" r="1.2" fill="#ffb74a" style={{ animationDelay: '1.2s' }}/>
+                        <path d="M -16 0 Q -16 -32 0 -52 Q 16 -32 16 0 L 16 56 Q 0 64 -16 56 Z" fill="url(#wph-rocketBody)" stroke="#9bbccd" strokeWidth="1"/>
+                        <path d="M 0 -50 L 0 60" stroke="#cfdde5" strokeWidth="0.8"/>
+                        <path d="M -16 -2 Q -16 -32 0 -52 Q 16 -32 16 -2 Z" fill="url(#wph-rocketNose)"/>
+                        <path d="M -4 -42 Q 0 -50 4 -42" stroke="#ffffff" strokeWidth="1.5" fill="none" opacity="0.7"/>
+                        <circle cx="0" cy="6" r="11" fill="#0c4a63"/>
+                        <circle cx="0" cy="6" r="9" fill="#21759b"/>
+                        <circle cx="-3" cy="3" r="3" fill="#ffffff" opacity="0.45"/>
+                        <g stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" fill="none">
+                          <path d="M -5 4 L -2.5 9 L 0 5.5"/>
+                          <path d="M 0 5.5 L 2.5 9 L 5 4"/>
+                        </g>
+                        <path d="M -16 30 L -28 56 L -16 56 Z" fill="url(#wph-rocketFin)"/>
+                        <path d="M  16 30 L  28 56 L  16 56 Z" fill="url(#wph-rocketFin)"/>
+                        <circle cx="0" cy="32" r="1.4" fill="#9bbccd"/>
+                        <circle cx="0" cy="44" r="1.4" fill="#9bbccd"/>
                       </g>
-                      <path d="M -16 30 L -28 56 L -16 56 Z" fill="url(#wph-rocketFin)"/>
-                      <path d="M  16 30 L  28 56 L  16 56 Z" fill="url(#wph-rocketFin)"/>
-                      <circle cx="0" cy="32" r="1.4" fill="#9bbccd"/>
-                      <circle cx="0" cy="44" r="1.4" fill="#9bbccd"/>
                     </g>
                   </g>
 
                   {/* Micro-elements */}
-                  <g opacity="0.85">
+                  <g id="wph-micro" opacity="0.85">
                     <g className="wph-anim-float-a" style={{ animationDelay: '1s' }}>
                       <g transform="translate(290 150)">
                         <rect x="0" y="0" width="44" height="20" rx="4" fill="#ffffff" stroke="#cfdde5"/>
