@@ -82,7 +82,7 @@ export function WordPressMaintenanceHero() {
         .wpmaint-spin-rev { animation: wpmaint-spin-rev 28s linear infinite; transform-origin: center; transform-box: fill-box; }
         .wpmaint-orbit { animation: wpmaint-orbit-anim 32s linear infinite; transform-origin: 280px 280px; }
         .wpmaint-orbit-rev { animation: wpmaint-orbit-rev-anim 38s linear infinite; transform-origin: 280px 280px; }
-        .wpmaint-clock { animation: wpmaint-clock-sweep 8s linear infinite; transform-origin: center; transform-box: fill-box; }
+        .wpmaint-clock { animation: wpmaint-clock-sweep 8s linear infinite; transform-origin: 280px 280px; }
         .wpmaint-dash-fwd { stroke-dasharray: 6 6; animation: wpmaint-dash-fwd 2.2s linear infinite; }
         .wpmaint-dot { animation: wpmaint-pop-dot 3s cubic-bezier(.45,.05,.55,.95) infinite; transform-origin: center; transform-box: fill-box; }
         .wpmaint-heart { animation: wpmaint-heart-beat 1.6s cubic-bezier(.45,.05,.55,.95) infinite; transform-origin: center; transform-box: fill-box; }
@@ -168,12 +168,12 @@ export function WordPressMaintenanceHero() {
             <circle cx="280" cy="280" r="248" fill="none" stroke="#cfdde5" strokeWidth="1" strokeDasharray="2 6" opacity="0.5"/>
 
             {/* Outer rotating schedule ring */}
-            <g className="wpmaint-clock" transform="translate(280 280)">
-              <circle r="224" fill="none" stroke="#7c6cf2" strokeWidth="1.4" strokeDasharray="3 12" opacity="0.45"/>
-              <circle cx="224" cy="0" r="3" fill="#21759b"/>
-              <circle cx="0" cy="224" r="3" fill="#3fb98d"/>
-              <circle cx="-224" cy="0" r="3" fill="#7c6cf2"/>
-              <circle cx="0" cy="-224" r="3" fill="#ffb74a"/>
+            <g className="wpmaint-clock">
+              <circle cx="280" cy="280" r="224" fill="none" stroke="#7c6cf2" strokeWidth="1.4" strokeDasharray="3 12" opacity="0.45"/>
+              <circle cx="504" cy="280" r="3" fill="#21759b"/>
+              <circle cx="280" cy="504" r="3" fill="#3fb98d"/>
+              <circle cx="56" cy="280" r="3" fill="#7c6cf2"/>
+              <circle cx="280" cy="56" r="3" fill="#ffb74a"/>
             </g>
 
             <g className="wpmaint-orbit">
