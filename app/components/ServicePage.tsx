@@ -5,6 +5,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Reveal, Magnetic } from './primitives';
 import type { ServiceData } from '../services/data';
+import { WordPressHero } from './WordPressHero';
+import { WordPressPluginHero } from './WordPressPluginHero';
+import { WordPressMigrationsHero } from './WordPressMigrationsHero';
+import { WordPressMaintenanceHero } from './WordPressMaintenanceHero';
 
 const STEPS = [
   { n: '01', h: 'Discover', d: 'Strategy call, scope alignment, success criteria.' },
@@ -64,38 +68,48 @@ function FAQList({ items }: { items: { q: string; a: string }[] }) {
   );
 }
 
-export function ServicePage({ pillar, pillarN, name, tagline, image, deliverables, personas, faqs, caseStudy }: ServiceData) {
+export function ServicePage({ slug, pillar, pillarN, name, tagline, image, deliverables, personas, faqs, caseStudy }: ServiceData) {
   return (
     <>
       {/* HERO */}
-      <section style={{ minHeight: '45vh', position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflow: 'hidden', paddingTop: 140, paddingBottom: 60 }}>
-        {image && (
-          <div className="sp-hero-media" style={{ position: 'absolute', inset: 0 }}>
-            <Image src={image} alt={name.replace('\n', ' ')} fill sizes="(max-width: 768px) 100vw, 60vw" quality={85} style={{ objectFit: 'cover', objectPosition: 'center', zIndex: 0 }} priority />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, var(--bg) 38%, transparent 72%)', zIndex: 1 }} />
-          </div>
-        )}
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <Reveal stagger>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 32 }}>
-              <span className="label">№ {pillarN}</span>
-              <span style={{ width: 60, height: 1, background: 'var(--rule)' }} />
-              <span className="label">{pillar}</span>
+      {slug === 'wordpress-development' ? (
+        <WordPressHero />
+      ) : slug === 'wordpress-plugins' ? (
+        <WordPressPluginHero />
+      ) : slug === 'wordpress-migrations' ? (
+        <WordPressMigrationsHero />
+      ) : slug === 'wordpress-maintenance' ? (
+        <WordPressMaintenanceHero />
+      ) : (
+        <section style={{ minHeight: '45vh', position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflow: 'hidden', paddingTop: 140, paddingBottom: 60 }}>
+          {image && (
+            <div className="sp-hero-media" style={{ position: 'absolute', inset: 0 }}>
+              <Image src={image} alt={name.replace('\n', ' ')} fill sizes="(max-width: 768px) 100vw, 60vw" quality={85} style={{ objectFit: 'cover', objectPosition: 'center', zIndex: 0 }} priority />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, var(--bg) 38%, transparent 72%)', zIndex: 1 }} />
             </div>
-            <h1 style={{ fontSize: 'clamp(56px, 9vw, 144px)', lineHeight: 0.92, marginBottom: 32, maxWidth: '14ch' }}>
-              {name.split('\n').map((line, i, arr) => (
-                <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
-              ))}
-            </h1>
-            <p className="serif-i" style={{ fontSize: 'clamp(22px, 2.4vw, 36px)', lineHeight: 1.2, color: 'var(--ink-soft)', marginBottom: 40, maxWidth: 720 }}>{tagline}</p>
-            <Magnetic>
-              <a href="/#contact" className="btn">
-                Book a strategy call <span className="btn-arrow">→</span>
-              </a>
-            </Magnetic>
-          </Reveal>
-        </div>
-      </section>
+          )}
+          <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+            <Reveal stagger>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 32 }}>
+                <span className="label">№ {pillarN}</span>
+                <span style={{ width: 60, height: 1, background: 'var(--rule)' }} />
+                <span className="label">{pillar}</span>
+              </div>
+              <h1 style={{ fontSize: 'clamp(56px, 9vw, 144px)', lineHeight: 0.92, marginBottom: 32, maxWidth: '14ch' }}>
+                {name.split('\n').map((line, i, arr) => (
+                  <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+                ))}
+              </h1>
+              <p className="serif-i" style={{ fontSize: 'clamp(22px, 2.4vw, 36px)', lineHeight: 1.2, color: 'var(--ink-soft)', marginBottom: 40, maxWidth: 720 }}>{tagline}</p>
+              <Magnetic>
+                <a href="/#contact" className="btn">
+                  Book a strategy call <span className="btn-arrow">→</span>
+                </a>
+              </Magnetic>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* DELIVERABLES */}
       <section style={{ borderTop: '1px solid var(--rule)', background: 'var(--bg-soft)' }}>

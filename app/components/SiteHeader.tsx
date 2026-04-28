@@ -201,7 +201,6 @@ export function SiteHeader() {
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setMenuOpen(o => !o)}
             style={{
-              display: 'none',
               width: 38, height: 38,
               borderRadius: 100,
               border: '1px solid rgba(14,34,48,0.15)',
@@ -365,9 +364,10 @@ export function SiteHeader() {
       </div>
 
       <style>{`
+        .hamburger { display: none; }
         @media (max-width: 880px) {
           .hcta-desktop { display: none !important; }
-          .hamburger { display: inline-flex !important; }
+          .hamburger { display: inline-flex; }
         }
       `}</style>
     </>

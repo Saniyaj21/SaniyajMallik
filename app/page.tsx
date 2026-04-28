@@ -1,8 +1,6 @@
-'use client';
-
 import { CustomCursor } from './components/primitives';
 import { SiteHeader } from './components/SiteHeader';
-import { HeroEditorial } from './components/Hero';
+import { BuildLaunchScaleHero } from './components/BuildLaunchScaleHero';
 import { ProblemSolution } from './components/ProblemSolution';
 import { Capabilities } from './components/Capabilities';
 import { FeaturedWork } from './components/FeaturedWork';
@@ -19,7 +17,7 @@ export default function Home() {
       <CustomCursor />
       <SiteHeader />
       <main>
-        <HeroEditorial />
+        <BuildLaunchScaleHero />
         <ProblemSolution />
         <Capabilities />
         <FeaturedWork />

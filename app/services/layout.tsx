@@ -1,5 +1,3 @@
-'use client';
-
 import { CustomCursor } from '../components/primitives';
 import { SiteHeader } from '../components/SiteHeader';
 import { Footer } from '../components/Footer';

@@ -69,6 +69,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
 }
 
 body {
@@ -239,6 +240,7 @@ section {
   justify-content: space-between;
   align-items: center;
   pointer-events: none;
+  overflow: hidden;
 }
 .site-header > * { pointer-events: auto; }
 .site-header .logo {
@@ -247,6 +249,9 @@ section {
   text-decoration: none;
   color: inherit;
   letter-spacing: -0.02em;
+  white-space: nowrap;
+  flex-shrink: 1;
+  min-width: 0;
 }
 .site-header .logo em { font-style: italic; }
 
@@ -271,7 +276,7 @@ section {
   cursor: none;
 }
 .nav-pill a:hover { background: rgba(14, 34, 48, 0.06); }
-@media (max-width: 880px) { .nav-pill { display: none; } }
+@media (max-width: 880px) { .nav-pill { display: none !important; } }
 
 .header-cta {
   font-size: 13px;
@@ -370,25 +375,54 @@ section {
 
 /* Contact section: full-border inputs with visible fill */
 #contact .field input,
-#contact .field textarea {
+#contact .field textarea,
+#contact .field select {
   color: var(--bg);
   border: 1px solid color-mix(in srgb, var(--bg) 22%, transparent);
   border-radius: 6px;
   padding: 14px 16px;
   background: rgba(255, 255, 255, 0.05);
+  font-size: 15px;
+  appearance: none;
+  -webkit-appearance: none;
 }
 #contact .field input:focus,
-#contact .field textarea:focus {
+#contact .field textarea:focus,
+#contact .field select:focus {
   border-color: var(--accent);
   background: rgba(255, 255, 255, 0.08);
   outline: none;
 }
 #contact .field input::placeholder,
 #contact .field textarea::placeholder {
-  color: color-mix(in srgb, var(--bg) 38%, transparent);
+  color: color-mix(in srgb, var(--bg) 35%, transparent);
   opacity: 1;
 }
+#contact .field select option {
+  background: var(--ink);
+  color: var(--bg);
+}
 #contact .field label {
-  color: color-mix(in srgb, var(--bg) 70%, transparent);
+  color: color-mix(in srgb, var(--bg) 60%, transparent);
+  font-size: 11px;
+}
+#contact .field.error input,
+#contact .field.error textarea,
+#contact .field.error select {
+  border-color: #d23a2a;
+}
+#contact .field-msg { color: #c0392b; }
+#contact .field.ok .field-msg { color: #22a06b; }
+
+/* Select chevron */
+.select-wrap { position: relative; }
+.select-wrap::after {
+  content: '↓';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 12px;
+  pointer-events: none;
+  color: color-mix(in srgb, var(--bg) 50%, transparent);
 }
