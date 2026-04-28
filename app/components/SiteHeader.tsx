@@ -2,12 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ThemeToggle } from './primitives';
-
-interface SiteHeaderProps {
-  theme: 'light' | 'dark';
-  setTheme: (t: 'light' | 'dark') => void;
-}
 
 const SERVICE_GROUPS = [
   {
@@ -121,7 +115,7 @@ function ServicesMega({ open, onClose }: { open: boolean; onClose: () => void })
   );
 }
 
-export function SiteHeader({ theme, setTheme }: SiteHeaderProps) {
+export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -158,14 +152,16 @@ export function SiteHeader({ theme, setTheme }: SiteHeaderProps) {
         className="site-header"
         style={{
           background: scrolled || menuOpen
-            ? theme === 'dark' ? 'rgba(14,13,10,0.92)' : 'rgba(242,239,231,0.92)'
-            : 'transparent',
-          backdropFilter: scrolled || menuOpen ? 'blur(14px)' : 'none',
+            ? 'rgba(255, 255, 255, 0.75)'
+            : 'rgba(255, 255, 255, 0.4)',
+          backdropFilter: 'blur(20px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
           borderBottom: scrolled || menuOpen
-            ? `1px solid ${theme === 'dark' ? 'rgba(242,239,231,0.08)' : 'rgba(22,20,15,0.08)'}`
-            : '1px solid transparent',
-          color: theme === 'dark' ? '#F2EFE7' : '#16140F',
-          transition: 'background 0.35s ease, border-color 0.35s ease, color 0.35s ease, backdrop-filter 0.35s ease',
+            ? '1px solid rgba(14, 34, 48, 0.08)'
+            : '1px solid rgba(14, 34, 48, 0.04)',
+          boxShadow: scrolled || menuOpen ? '0 4px 24px rgba(14, 34, 48, 0.06)' : 'none',
+          color: '#0e2230',
+          transition: 'background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease',
         }}
       >
         <Link href="/" className="logo"><em>S</em>aniyaj <em>M</em>allik</Link>
@@ -195,7 +191,6 @@ export function SiteHeader({ theme, setTheme }: SiteHeaderProps) {
         </nav>
 
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <ThemeToggle theme={theme} setTheme={setTheme} />
           <a className="header-cta hcta-desktop" href="/#contact">
             <span className="status-dot" /> Let&apos;s Talk
           </a>
@@ -209,7 +204,7 @@ export function SiteHeader({ theme, setTheme }: SiteHeaderProps) {
               display: 'none',
               width: 38, height: 38,
               borderRadius: 100,
-              border: `1px solid ${theme === 'dark' ? 'rgba(242,239,231,0.2)' : 'rgba(22,20,15,0.15)'}`,
+              border: '1px solid rgba(14,34,48,0.15)',
               background: 'transparent',
               cursor: 'pointer',
               alignItems: 'center',
@@ -234,9 +229,10 @@ export function SiteHeader({ theme, setTheme }: SiteHeaderProps) {
       <div
         style={{
           position: 'fixed', inset: 0, zIndex: 99,
-          background: theme === 'dark' ? 'rgba(14,13,10,0.97)' : 'rgba(242,239,231,0.97)',
-          backdropFilter: 'blur(16px)',
-          color: theme === 'dark' ? '#F2EFE7' : '#16140F',
+          background: 'rgba(251, 253, 255, 0.94)',
+          backdropFilter: 'blur(24px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+          color: '#0e2230',
           display: 'flex', flexDirection: 'column',
           overflowY: 'auto',
           opacity: menuOpen ? 1 : 0,
@@ -293,9 +289,9 @@ export function SiteHeader({ theme, setTheme }: SiteHeaderProps) {
                   <div style={{
                     fontFamily: 'var(--font-mono)', fontSize: 10,
                     letterSpacing: '0.12em', textTransform: 'uppercase',
-                    color: theme === 'dark' ? 'rgba(242,239,231,0.4)' : 'rgba(22,20,15,0.4)',
+                    color: 'rgba(22,20,15,0.4)',
                     padding: '10px 0 6px',
-                    borderTop: `1px solid ${theme === 'dark' ? 'rgba(242,239,231,0.1)' : 'rgba(22,20,15,0.1)'}`,
+                    borderTop: '1px solid rgba(22,20,15,0.1)',
                     textAlign: 'left',
                   }}>{g.title}</div>
                   {g.items.map((it, idx) => (
@@ -306,7 +302,7 @@ export function SiteHeader({ theme, setTheme }: SiteHeaderProps) {
                       style={{
                         display: 'block', textDecoration: 'none', color: 'inherit',
                         padding: '10px 0',
-                        borderBottom: `1px solid ${theme === 'dark' ? 'rgba(242,239,231,0.06)' : 'rgba(22,20,15,0.06)'}`,
+                        borderBottom: '1px solid rgba(22,20,15,0.06)',
                         textAlign: 'left',
                         fontFamily: 'var(--font-display)',
                         fontSize: 17,

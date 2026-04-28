@@ -1,0 +1,590 @@
+<!DOCTYPE html><html lang="en"><head>
+
+
+<meta charset="utf-8">
+<title>Build, Launch &amp; Scale — Hero Vector</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wp-blue: #21759b;
+    --wp-blue-deep: #135e7c;
+    --wp-blue-darker: #0c4a63;
+    --wp-blue-light: #4a9bc4;
+    --wp-blue-soft: #d6ecf6;
+    --ink: #0e2230;
+    --ink-soft: #1c3a4f;
+    --accent-coral: #ff6b5b;
+    --accent-amber: #ffb74a;
+    --accent-mint: #4fd1a8;
+    --accent-violet: #7c6cf2;
+    --accent-pink: #ef6ea8;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background:
+      radial-gradient(1200px 600px at 80% 20%, #eef7fc 0%, transparent 60%),
+      radial-gradient(900px 500px at 10% 90%, #f0e9ff 0%, transparent 60%),
+      #fbfdff;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  .hero {
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 56px 48px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 48px;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .hero-copy .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wp-blue);
+    background: var(--wp-blue-soft);
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+  .hero-copy .eyebrow::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-mint);
+    box-shadow: 0 0 0 4px rgba(79, 209, 168, 0.2);
+  }
+  .hero-copy h1 {
+    font-size: clamp(40px, 5vw, 68px);
+    line-height: 1.02;
+    letter-spacing: -0.028em;
+    font-weight: 800;
+    margin: 18px 0 18px;
+    text-wrap: pretty;
+  }
+  .hero-copy h1 .grad {
+    background: linear-gradient(120deg, var(--wp-blue) 0%, var(--accent-violet) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-copy p {
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 52ch;
+    margin: 0 0 28px;
+  }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    font: inherit; font-weight: 600; font-size: 15px;
+    padding: 14px 22px; border-radius: 12px;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary {
+    background: var(--wp-blue); color: white;
+    box-shadow: 0 8px 20px -8px rgba(33,117,155,0.7);
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(33,117,155,0.7); }
+  .btn-ghost { background: white; color: var(--ink); border-color: #d9e3ea; }
+  .btn-ghost:hover { border-color: var(--wp-blue); color: var(--wp-blue); }
+
+  /* Stage occupies the full right column with its own internal centering */
+  .stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-height: 640px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .stage svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+  }
+
+  /* Animations — polished: smoother easing, longer cycles, GPU hints */
+  @keyframes float-a {
+    0%   { transform: translate3d(0, 0, 0); }
+    50%  { transform: translate3d(0, -10px, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+  @keyframes float-b {
+    0%   { transform: translate3d(0, 0, 0); }
+    50%  { transform: translate3d(0, -14px, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+  @keyframes float-c {
+    0%   { transform: translate3d(0, 0, 0); }
+    50%  { transform: translate3d(0, -8px, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+  @keyframes ring-pulse {
+    0%   { transform: scale(0.85); opacity: 0.55; }
+    80%  { opacity: 0.05; }
+    100% { transform: scale(1.55); opacity: 0; }
+  }
+  @keyframes spin-slow { to { transform: rotate(360deg); } }
+  @keyframes orbit { to { transform: rotate(360deg); } }
+  @keyframes orbit-rev { to { transform: rotate(-360deg); } }
+  @keyframes bar-grow {
+    0%   { transform: scaleY(0.2); }
+    100% { transform: scaleY(1); }
+  }
+  @keyframes line-draw { to { stroke-dashoffset: 0; } }
+  @keyframes dash-flow { to { stroke-dashoffset: -48; } }
+  @keyframes pop-dot {
+    0%, 100% { opacity: 0.35; transform: scale(0.9); }
+    50%      { opacity: 1;    transform: scale(1.05); }
+  }
+  @keyframes shimmer-x {
+    0%   { transform: translateX(-80px); }
+    100% { transform: translateX(260px); }
+  }
+
+  /* GPU hint so transforms composite on their own layer */
+  .anim-float-a, .anim-float-b, .anim-float-c,
+  .anim-ring, .anim-spin, .anim-orbit, .anim-orbit-rev,
+  .anim-bar, .anim-line, .anim-dash, .anim-dot {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  /* Stop SVG text from snapping to integer pixels while a parent group
+     is being transformed — kills the "ghosting / pixel jump" on labels. */
+  .stage svg,
+  .stage svg text {
+    text-rendering: geometricPrecision;
+    shape-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .stage svg text {
+    paint-order: stroke;
+    will-change: transform;
+  }
+
+  /* Sine-like easing on floats removes the apex hitch */
+  .anim-float-a { animation: float-a 7s   cubic-bezier(.45,.05,.55,.95) infinite; transform-origin: center; transform-box: fill-box; }
+  .anim-float-b { animation: float-b 8s   cubic-bezier(.45,.05,.55,.95) infinite; transform-origin: center; transform-box: fill-box; }
+  .anim-float-c { animation: float-c 6.5s cubic-bezier(.45,.05,.55,.95) infinite; transform-origin: center; transform-box: fill-box; }
+  .anim-ring    { animation: ring-pulse 3.2s cubic-bezier(.25,.6,.35,1) infinite; transform-origin: center; transform-box: fill-box; }
+  .anim-spin    { animation: spin-slow 24s linear infinite; transform-origin: center; transform-box: fill-box; }
+  .anim-orbit   { animation: orbit 32s linear infinite; transform-origin: 280px 280px; }
+  .anim-orbit-rev { animation: orbit-rev 38s linear infinite; transform-origin: 280px 280px; }
+  .anim-bar     { transform-origin: bottom center; transform-box: fill-box; animation: bar-grow 3.4s cubic-bezier(.34,.01,.21,1) infinite alternate; }
+  .anim-line    { stroke-dasharray: 280; stroke-dashoffset: 280; animation: line-draw 4s cubic-bezier(.34,.01,.21,1) infinite alternate; }
+  .anim-dash    { stroke-dasharray: 6 6; animation: dash-flow 2.2s linear infinite; }
+  .anim-dot     { animation: pop-dot 3s cubic-bezier(.45,.05,.55,.95) infinite; transform-origin: center; transform-box: fill-box; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim-float-a,.anim-float-b,.anim-float-c,.anim-ring,.anim-spin,.anim-orbit,.anim-orbit-rev,.anim-bar,.anim-line,.anim-dash,.anim-dot { animation: none; }
+    .anim-line { stroke-dashoffset: 0; }
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 32px 20px 60px; }
+    .hero-copy { order: 2; }
+    .stage { order: 1; max-height: 520px; }
+  }
+</style>
+</head>
+<body data-cc-id="cc-1" style="cursor: crosshair;">
+
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">WordPress · LMS · Web Apps</span>
+    <h1>Build, launch &amp;<br><span class="grad">scale</span> your business online.</h1>
+    <p>High‑performing WordPress, LMS &amp; web app builds for education and ecommerce — engineered with senior‑level craft, without the agency price tag.</p>
+    <div class="hero-cta">
+      <button class="btn btn-primary">Start your build</button>
+      <button class="btn btn-ghost">See our work</button>
+    </div>
+  </div>
+
+  <div class="stage" aria-label="Central dashboard with growth chart, orbited by build, launch, and scale modules">
+    <!-- Centered, square viewBox. Everything composes around (280, 280). -->
+    <svg viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg" role="img">
+      <defs>
+        <!-- Center hub -->
+        <linearGradient id="hubBg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ffffff"></stop>
+          <stop offset="100%" stop-color="#f3f8fb"></stop>
+        </linearGradient>
+        <linearGradient id="hubHeader" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#21759b"></stop>
+          <stop offset="100%" stop-color="#7c6cf2"></stop>
+        </linearGradient>
+
+        <!-- Bars + chart -->
+        <linearGradient id="barBlue" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#4a9bc4"></stop>
+          <stop offset="100%" stop-color="#21759b"></stop>
+        </linearGradient>
+        <linearGradient id="barViolet" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#9d8ff8"></stop>
+          <stop offset="100%" stop-color="#6a58e6"></stop>
+        </linearGradient>
+        <linearGradient id="barMint" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#7ee0bf"></stop>
+          <stop offset="100%" stop-color="#3fb98d"></stop>
+        </linearGradient>
+        <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#7c6cf2" stop-opacity="0.45"></stop>
+          <stop offset="100%" stop-color="#7c6cf2" stop-opacity="0"></stop>
+        </linearGradient>
+
+        <!-- Module card (hex) -->
+        <linearGradient id="modBuild" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#4a9bc4"></stop>
+          <stop offset="100%" stop-color="#21759b"></stop>
+        </linearGradient>
+        <linearGradient id="modLaunch" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ff8a7d"></stop>
+          <stop offset="100%" stop-color="#ff6b5b"></stop>
+        </linearGradient>
+        <linearGradient id="modScale" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#9d8ff8"></stop>
+          <stop offset="100%" stop-color="#7c6cf2"></stop>
+        </linearGradient>
+        <linearGradient id="modLms" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#7ee0bf"></stop>
+          <stop offset="100%" stop-color="#3fb98d"></stop>
+        </linearGradient>
+        <linearGradient id="modShop" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ffd06b"></stop>
+          <stop offset="100%" stop-color="#f5a623"></stop>
+        </linearGradient>
+
+        <!-- Center mark backdrop -->
+        <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#7c6cf2" stop-opacity="0.18"></stop>
+          <stop offset="100%" stop-color="#7c6cf2" stop-opacity="0"></stop>
+        </radialGradient>
+
+        <linearGradient id="shimmerGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="white" stop-opacity="0"></stop>
+          <stop offset="50%" stop-color="white" stop-opacity="0.5"></stop>
+          <stop offset="100%" stop-color="white" stop-opacity="0"></stop>
+        </linearGradient>
+        <clipPath id="hubClip">
+          <rect x="170" y="170" width="220" height="220" rx="18"></rect>
+        </clipPath>
+      </defs>
+
+      <!-- =====================================================
+           BACKDROP — soft circle and orbit guides
+           ===================================================== -->
+      <circle cx="280" cy="280" r="240" fill="url(#centerGlow)"></circle>
+
+      <!-- Orbit rings -->
+      <circle cx="280" cy="280" r="200" fill="none" stroke="#cfdde5" stroke-width="1" stroke-dasharray="2 6" opacity="0.7"></circle>
+      <circle cx="280" cy="280" r="248" fill="none" stroke="#cfdde5" stroke-width="1" stroke-dasharray="2 6" opacity="0.5"></circle>
+
+      <!-- Orbiting micro-dots (slow rotation) -->
+      <g class="anim-orbit">
+        <circle cx="480" cy="280" r="3" fill="#21759b"></circle>
+        <circle cx="80" cy="280" r="3" fill="#7c6cf2"></circle>
+        <circle cx="280" cy="80" r="2.4" fill="#3fb98d"></circle>
+      </g>
+      <g class="anim-orbit-rev">
+        <circle cx="280" cy="528" r="2.4" fill="#ffb74a"></circle>
+        <circle cx="421" cy="421" r="2" fill="#ef6ea8"></circle>
+        <circle cx="139" cy="139" r="2" fill="#21759b" opacity="0.7"></circle>
+      </g>
+
+      <!-- Pulse rings under center -->
+      <g transform="translate(280 280)">
+        <circle class="anim-ring" r="120" fill="none" stroke="#7c6cf2" stroke-width="1.6" opacity="0.5"></circle>
+        <circle class="anim-ring" style="animation-delay:1.3s" r="120" fill="none" stroke="#21759b" stroke-width="1.6" opacity="0.5"></circle>
+      </g>
+
+      <!-- =====================================================
+           CENTER HUB — the dashboard / growth chart
+           Replaces WP "W" logo with a clean dashboard card
+           ===================================================== -->
+      <g>
+        <g>
+          <animateTransform attributeName="transform" type="translate" values="0 0; 0 -8; 0 0" dur="8s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0.05 0.55 0.95; 0.45 0.05 0.55 0.95"></animateTransform>
+          <!-- Soft drop shadow -->
+          <rect x="174" y="178" width="220" height="220" rx="18" fill="#0c4a63" opacity="0.10"></rect>
+          <!-- Card -->
+          <rect x="170" y="170" width="220" height="220" rx="18" fill="url(#hubBg)" stroke="#cfdde5"></rect>
+
+          <!-- Top header bar -->
+          <rect x="170" y="170" width="220" height="40" rx="18" fill="url(#hubHeader)"></rect>
+          <rect x="170" y="192" width="220" height="18" fill="url(#hubHeader)"></rect>
+          <!-- Bottom corner mask for header -->
+          <rect x="170" y="200" width="220" height="10" fill="url(#hubHeader)"></rect>
+
+          <!-- Window dots -->
+          <circle cx="186" cy="190" r="3.4" fill="#ffffff" opacity="0.85"></circle>
+          <circle cx="198" cy="190" r="3.4" fill="#ffffff" opacity="0.6"></circle>
+          <circle cx="210" cy="190" r="3.4" fill="#ffffff" opacity="0.4"></circle>
+          <!-- Header bars (placeholder for title) -->
+          <rect x="230" y="187" width="70" height="6" rx="3" fill="#ffffff" opacity="0.85"></rect>
+          <rect x="230" y="196" width="44" height="4" rx="2" fill="#ffffff" opacity="0.5"></rect>
+          <!-- Live dot -->
+          <circle cx="372" cy="190" r="4" fill="#4fd1a8"></circle>
+          <circle cx="372" cy="190" r="4" fill="#4fd1a8" opacity="0.4">
+            <animate attributeName="r" values="4;9;4" dur="2s" repeatCount="indefinite"></animate>
+            <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"></animate>
+          </circle>
+
+          <!-- Stat row -->
+          <g transform="translate(186 226)">
+            <!-- Label bar -->
+            <rect x="0" y="0" width="58" height="5" rx="2.5" fill="#cfdde5"></rect>
+            <!-- Big number bars -->
+            <rect x="0" y="10" width="22" height="18" rx="3" fill="#0e2230" data-cc-id="cc-3" style="fill: rgb(12, 152, 250);"></rect>
+            <rect x="26" y="10" width="14" height="18" rx="3" fill="#0e2230"></rect>
+            <rect x="44" y="10" width="30" height="18" rx="3" fill="#0e2230" data-cc-id="cc-2" style="fill: rgb(32, 163, 255);"></rect>
+            <!-- +38% pill -->
+            <g transform="translate(120 8)">
+              <rect width="56" height="20" rx="10" fill="#e8f8f0"></rect>
+              <path d="M 9 13 L 14 7 L 18 11 L 25 4" stroke="#3fb98d" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+              <!-- mini bars representing percent -->
+              <rect x="30" y="7" width="4" height="6" rx="1" fill="#3fb98d"></rect>
+              <rect x="36" y="5" width="4" height="8" rx="1" fill="#3fb98d"></rect>
+              <rect x="42" y="3" width="4" height="10" rx="1" fill="#3fb98d"></rect>
+            </g>
+          </g>
+
+          <!-- Chart area -->
+          <g transform="translate(186 280)">
+            <!-- Gridlines -->
+            <g stroke="#eef3f6" stroke-width="1">
+              <line x1="0" y1="0" x2="188" y2="0"></line>
+              <line x1="0" y1="22" x2="188" y2="22"></line>
+              <line x1="0" y1="44" x2="188" y2="44"></line>
+              <line x1="0" y1="66" x2="188" y2="66"></line>
+              <line x1="0" y1="88" x2="188" y2="88"></line>
+            </g>
+            <!-- Bars -->
+            <g>
+              <rect class="anim-bar" x="0" y="56" width="20" height="32" rx="3" fill="url(#barBlue)"></rect>
+              <rect class="anim-bar" style="animation-delay:.12s" x="28" y="48" width="20" height="40" rx="3" fill="url(#barBlue)"></rect>
+              <rect class="anim-bar" style="animation-delay:.24s" x="56" y="52" width="20" height="36" rx="3" fill="url(#barViolet)"></rect>
+              <rect class="anim-bar" style="animation-delay:.36s" x="84" y="36" width="20" height="52" rx="3" fill="url(#barViolet)"></rect>
+              <rect class="anim-bar" style="animation-delay:.48s" x="112" y="26" width="20" height="62" rx="3" fill="url(#barMint)"></rect>
+              <rect class="anim-bar" style="animation-delay:.60s" x="140" y="16" width="20" height="72" rx="3" fill="url(#barMint)"></rect>
+              <rect class="anim-bar" style="animation-delay:.72s" x="168" y="6" width="20" height="82" rx="3" fill="url(#barMint)"></rect>
+            </g>
+            <!-- Trend area + line -->
+            <path d="M 10 60 L 38 50 L 66 54 L 94 36 L 122 26 L 150 16 L 178 8 L 178 88 L 10 88 Z" fill="url(#chartFill)" opacity="0.7"></path>
+            <path class="anim-line" d="M 10 60 L 38 50 L 66 54 L 94 36 L 122 26 L 150 16 L 178 8" fill="none" stroke="#7c6cf2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="178" cy="8" r="4.5" fill="#ffffff" stroke="#7c6cf2" stroke-width="2.4"></circle>
+          </g>
+
+          <!-- Shimmer sweep across hub -->
+          <g clip-path="url(#hubClip)">
+            <rect y="170" width="60" height="220" fill="url(#shimmerGrad)" opacity="0.55" style="animation: shimmer-x 4s ease-in-out infinite;"></rect>
+          </g>
+        </g>
+      </g>
+
+      <!-- =====================================================
+           ORBITING MODULE TILES — hex tiles aligned around hub
+           Three primary stages (top arc) + two domain tiles (bottom arc)
+           ===================================================== -->
+
+      <!-- Connector lines from hub to each tile (animated dash) -->
+      <!-- Endpoints land on the hex bodies, not the labels below them. -->
+      <g fill="none" stroke-linecap="round">
+        <path d="M 220 196 Q 165 155 128 118" stroke="#21759b" stroke-width="1.6" opacity="0.3"></path>
+        <path d="M 220 196 Q 165 155 128 118" class="anim-dash" stroke="#21759b" stroke-width="1.8"></path>
+
+        <path d="M 280 170 L 280 102" stroke="#ff6b5b" stroke-width="1.6" opacity="0.3"></path>
+        <path d="M 280 170 L 280 102" class="anim-dash" style="animation-delay:.3s" stroke="#ff6b5b" stroke-width="1.8"></path>
+
+        <path d="M 340 196 Q 395 155 432 118" stroke="#7c6cf2" stroke-width="1.6" opacity="0.3"></path>
+        <path d="M 340 196 Q 395 155 432 118" class="anim-dash" style="animation-delay:.6s" stroke="#7c6cf2" stroke-width="1.8"></path>
+
+        <path d="M 220 364 Q 170 410 138 452" stroke="#3fb98d" stroke-width="1.6" opacity="0.3"></path>
+        <path d="M 220 364 Q 170 410 138 452" class="anim-dash" style="animation-delay:.9s" stroke="#3fb98d" stroke-width="1.8"></path>
+
+        <path d="M 340 364 Q 390 410 422 452" stroke="#f5a623" stroke-width="1.6" opacity="0.3"></path>
+        <path d="M 340 364 Q 390 410 422 452" class="anim-dash" style="animation-delay:1.2s" stroke="#f5a623" stroke-width="1.8"></path>
+      </g>
+
+      <!-- Helper: hex tile path centered at (0,0) — flat-top, radius 38 -->
+      <!-- BUILD tile (top-left) — label sits BELOW the hex -->
+      <g>
+        <g transform="translate(110 100)">
+          <animateTransform attributeName="transform" type="translate" values="110 100; 110 90; 110 100" dur="7s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0.05 0.55 0.95; 0.45 0.05 0.55 0.95"></animateTransform>
+          <path d="M -32 -18 L 0 -36 L 32 -18 L 32 18 L 0 36 L -32 18 Z" fill="url(#modBuild)" stroke="#0c4a63" stroke-width="1" data-cc-id="cc-4" style="fill: rgb(13, 135, 187)"></path>
+          <path d="M -28 -16 L 0 -32 L 28 -16" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.3"></path>
+          <!-- Build icon: layered stack, centered -->
+          <g transform="translate(0 -8)" fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M -12 -2 L 0 -8 L 12 -2 L 0 4 Z"></path>
+            <path d="M -12 4 L 0 10 L 12 4"></path>
+            <path d="M -12 10 L 0 16 L 12 10"></path>
+          </g>
+          <!-- Indicator dots below hex -->
+          <g transform="translate(0 50)">
+            <circle cx="-8" cy="0" r="2" fill="#21759b" opacity="0.9"></circle>
+            <circle cx="0" cy="0" r="2" fill="#21759b" opacity="0.5"></circle>
+            <circle cx="8" cy="0" r="2" fill="#21759b" opacity="0.25"></circle>
+          </g>
+        </g>
+      </g>
+
+      <!-- LAUNCH tile (top-center) — label below hex -->
+      <g>
+        <g transform="translate(280 70)">
+          <animateTransform attributeName="transform" type="translate" values="280 70; 280 56; 280 70" dur="8s" begin="-0.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0.05 0.55 0.95; 0.45 0.05 0.55 0.95"></animateTransform>
+          <path d="M -34 -19 L 0 -38 L 34 -19 L 34 19 L 0 38 L -34 19 Z" fill="url(#modLaunch)" stroke="#c0382e" stroke-width="1" data-cc-id="cc-6" style="fill: rgb(255, 61, 94); stroke: rgb(255, 255, 255)"></path>
+          <!-- Rocket icon, centered -->
+          <g transform="translate(0 -8)" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M 0 -14 Q 6 -8 6 0 L 6 8 L -6 8 L -6 0 Q -6 -8 0 -14 Z" fill="#ffffff" stroke="none" opacity="0.95"></path>
+            <circle cx="0" cy="-2" r="2" fill="#ff6b5b" stroke="none"></circle>
+            <path d="M -6 4 L -10 12 L -6 12" fill="#ffffff" stroke="none"></path>
+            <path d="M 6 4 L 10 12 L 6 12" fill="#ffffff" stroke="none" data-cc-id="cc-5"></path>
+            <path d="M -2 12 L 0 18 L 2 12" fill="#ffd06b" stroke="none"></path>
+          </g>
+          <!-- Indicator dots below hex -->
+          <g transform="translate(0 52)">
+            <circle cx="-8" cy="0" r="2.2" fill="#ff6b5b" opacity="0.9"></circle>
+            <circle cx="0" cy="0" r="2.2" fill="#ff6b5b" opacity="0.5"></circle>
+            <circle cx="8" cy="0" r="2.2" fill="#ff6b5b" opacity="0.25"></circle>
+          </g>
+        </g>
+      </g>
+
+      <!-- SCALE tile (top-right) — label below hex -->
+      <g>
+        <g transform="translate(450 100)">
+          <animateTransform attributeName="transform" type="translate" values="450 100; 450 92; 450 100" dur="6.5s" begin="-0.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0.05 0.55 0.95; 0.45 0.05 0.55 0.95"></animateTransform>
+          <path d="M -32 -18 L 0 -36 L 32 -18 L 32 18 L 0 36 L -32 18 Z" fill="url(#modScale)" stroke="#5847d4" stroke-width="1" data-cc-id="cc-7"></path>
+          <!-- Bars + arrow icon, centered -->
+          <g transform="translate(0 -4)">
+            <rect x="-12" y="2" width="5" height="10" rx="1" fill="#ffffff" opacity="0.95"></rect>
+            <rect x="-3" y="-2" width="5" height="14" rx="1" fill="#ffffff" opacity="0.95"></rect>
+            <rect x="6" y="-8" width="5" height="20" rx="1" fill="#ffffff" opacity="0.95"></rect>
+            <path d="M 10 -12 L 14 -8 L 10 -4" stroke="#ffffff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+          </g>
+          <!-- Indicator dots below hex -->
+          <g transform="translate(0 50)">
+            <circle cx="-8" cy="0" r="2" fill="#7c6cf2" opacity="0.9"></circle>
+            <circle cx="0" cy="0" r="2" fill="#7c6cf2" opacity="0.5"></circle>
+            <circle cx="8" cy="0" r="2" fill="#7c6cf2" opacity="0.25"></circle>
+          </g>
+        </g>
+      </g>
+
+      <!-- LMS tile (bottom-left) — label below hex -->
+      <g>
+        <g transform="translate(120 470)">
+          <animateTransform attributeName="transform" type="translate" values="120 470; 120 462; 120 470" dur="6.5s" begin="-0.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0.05 0.55 0.95; 0.45 0.05 0.55 0.95"></animateTransform>
+          <path d="M -32 -18 L 0 -36 L 32 -18 L 32 18 L 0 36 L -32 18 Z" fill="url(#modLms)" stroke="#2ea077" stroke-width="1" data-cc-id="cc-8" style="stroke: rgb(44, 159, 69); fill: rgb(72, 130, 84)"></path>
+          <!-- Graduation cap icon, centered -->
+          <g transform="translate(0 -2)" fill="#ffffff" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round">
+            <path d="M -14 -2 L 0 -10 L 14 -2 L 0 6 Z"></path>
+            <path d="M -8 2 L -8 8 a 8 4 0 0 0 16 0 L 8 2" fill="none"></path>
+            <circle cx="12" cy="0" r="1.4"></circle>
+            <path d="M 12 0 L 12 8" stroke-width="1.2"></path>
+          </g>
+          <!-- Indicator dots below hex -->
+          <g transform="translate(0 50)">
+            <circle cx="-8" cy="0" r="2" fill="#3fb98d" opacity="0.9"></circle>
+            <circle cx="0" cy="0" r="2" fill="#3fb98d" opacity="0.5"></circle>
+            <circle cx="8" cy="0" r="2" fill="#3fb98d" opacity="0.25"></circle>
+          </g>
+        </g>
+      </g>
+
+      <!-- ECOMMERCE tile (bottom-right) — label below hex -->
+      <g>
+        <g transform="translate(440 470)">
+          <animateTransform attributeName="transform" type="translate" values="440 470; 440 460; 440 470" dur="7s" begin="-1s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0.05 0.55 0.95; 0.45 0.05 0.55 0.95"></animateTransform>
+          <path d="M -32 -18 L 0 -36 L 32 -18 L 32 18 L 0 36 L -32 18 Z" fill="url(#modShop)" stroke="#d68812" stroke-width="1"></path>
+          <!-- Cart icon, centered -->
+          <g transform="translate(0 -4)" stroke="#ffffff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M -12 -8 L -8 -8 L -4 8 L 10 8 L 12 -2 L -6 -2"></path>
+            <circle cx="-3" cy="13" r="1.8" fill="#ffffff"></circle>
+            <circle cx="8" cy="13" r="1.8" fill="#ffffff"></circle>
+          </g>
+          <!-- Indicator dots below hex -->
+          <g transform="translate(0 50)">
+            <circle cx="-8" cy="0" r="2" fill="#f5a623" opacity="0.9"></circle>
+            <circle cx="0" cy="0" r="2" fill="#f5a623" opacity="0.5"></circle>
+            <circle cx="8" cy="0" r="2" fill="#f5a623" opacity="0.25"></circle>
+          </g>
+        </g>
+      </g>
+
+      <!-- =====================================================
+           CORNER ATMOSPHERE
+           ===================================================== -->
+      <!-- Code chip top-left -->
+      <g>
+        <g transform="translate(40 240)">
+          <animateTransform attributeName="transform" type="translate" values="40 240; 40 232; 40 240" dur="6.5s" begin="-0.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0.05 0.55 0.95; 0.45 0.05 0.55 0.95"></animateTransform>
+          <rect width="86" height="28" rx="14" fill="#ffffff" stroke="#cfdde5"></rect>
+          <g transform="translate(15 14)" stroke="#21759b" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M -5 -4 L -9 0 L -5 4"></path>
+            <path d="M 5 -4 L 9 0 L 5 4"></path>
+            <path d="M -1 5 L 2 -5"></path>
+          </g>
+          <!-- Code line bars -->
+          <rect x="34" y="10" width="40" height="4" rx="2" fill="#21759b" opacity="0.85"></rect>
+          <rect x="34" y="17" width="28" height="4" rx="2" fill="#cfdde5"></rect>
+        </g>
+      </g>
+
+      <!-- Spinning gear top-right -->
+      <g transform="translate(490 250)">
+        <g class="anim-spin">
+          <g>
+            <circle r="22" fill="#ffffff" stroke="#cfdde5" stroke-width="1.4"></circle>
+            <circle r="9" fill="#21759b"></circle>
+            <circle r="4" fill="#0c4a63" data-cc-id="cc-9" style="fill: rgb(14, 15, 14);"></circle>
+            <g fill="#21759b">
+              <rect x="-2.5" y="-26" width="5" height="7" rx="1.5"></rect>
+              <rect x="-2.5" y="19" width="5" height="7" rx="1.5"></rect>
+              <rect x="-26" y="-2.5" width="7" height="5" rx="1.5"></rect>
+              <rect x="19" y="-2.5" width="7" height="5" rx="1.5"></rect>
+              <rect x="-21" y="-21" width="7" height="5" rx="1.5" transform="rotate(45)"></rect>
+              <rect x="14" y="-21" width="7" height="5" rx="1.5" transform="rotate(45)"></rect>
+              <rect x="-21" y="16" width="7" height="5" rx="1.5" transform="rotate(45)"></rect>
+              <rect x="14" y="16" width="7" height="5" rx="1.5" transform="rotate(45)"></rect>
+            </g>
+          </g>
+        </g>
+      </g>
+
+      <!-- Connecting accent dots -->
+      <g>
+        <circle class="anim-dot" cx="280" cy="40" r="3" fill="#ff6b5b"></circle>
+        <circle class="anim-dot" style="animation-delay:.4s" cx="40" cy="370" r="2.5" fill="#21759b"></circle>
+        <circle class="anim-dot" style="animation-delay:.8s" cx="520" cy="370" r="2.5" fill="#7c6cf2"></circle>
+        <circle class="anim-dot" style="animation-delay:1.2s" cx="280" cy="525" r="3" fill="#3fb98d"></circle>
+      </g>
+
+    </svg>
+  </div>
+</section>
+
+
+
+</body></html>

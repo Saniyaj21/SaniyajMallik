@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { CustomCursor } from './components/primitives';
 import { SiteHeader } from './components/SiteHeader';
 import { HeroEditorial } from './components/Hero';
@@ -15,16 +14,10 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 
 export default function Home() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
   return (
     <>
       <CustomCursor />
-      <SiteHeader theme={theme} setTheme={setTheme} />
+      <SiteHeader />
       <main>
         <HeroEditorial />
         <ProblemSolution />

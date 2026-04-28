@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="dark"
+      data-theme="light"
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${newsreader.variable}`}
       suppressHydrationWarning
     >
