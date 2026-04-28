@@ -1,10 +1,26 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 import { Magnetic } from './primitives';
 
 export function BuildLaunchScaleHero() {
+  const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.timeline({ defaults: { ease: 'power3.out' } })
+        .from('.bls-eyebrow', { y: 20, opacity: 0, duration: 0.5 })
+        .from('h1',           { y: 32, opacity: 0, duration: 0.65 }, '-=0.25')
+        .from('p',            { y: 20, opacity: 0, duration: 0.55 }, '-=0.35')
+        .from('.bls-cta',     { y: 16, opacity: 0, duration: 0.5  }, '-=0.35')
+        .from('.bls-stage',   { x: 40, opacity: 0, duration: 0.75 }, '-=0.8');
+    }, heroRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="bls-hero">
+    <section id="bls-hero" ref={heroRef}>
       <style>{`
         #bls-hero {
           padding-top: 140px; padding-bottom: 80px;
