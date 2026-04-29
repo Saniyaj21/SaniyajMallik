@@ -102,7 +102,7 @@ function ServicesMega({ open, onClose }: { open: boolean; onClose: () => void })
               Tell me about it →
             </Link>
           </span>
-          <span>12 services across 3 pillars</span>
+          <span>8 services across 3 pillars</span>
         </div>
       </div>
 
@@ -178,12 +178,9 @@ export function SiteHeader() {
             }}
           >
             Services{' '}
-            <span style={{
-              fontSize: 9,
-              transform: megaOpen ? 'rotate(180deg)' : 'rotate(0)',
-              transition: 'transform 0.3s',
-              display: 'inline-block',
-            }}>▼</span>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ width: 14, height: 14, display: 'inline-block', flexShrink: 0, transform: megaOpen ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.35s cubic-bezier(.45,.05,.55,.95)', willChange: 'transform' }}>
+              <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </button>
           {navLinks.map(l => (
             <a key={l.href} href={l.href} onMouseEnter={() => setMegaOpen(false)}>{l.label}</a>
@@ -269,11 +266,9 @@ export function SiteHeader() {
             }}
           >
             Services
-            <span style={{
-              fontSize: '0.45em', display: 'inline-block',
-              transform: servicesOpen ? 'rotate(180deg)' : 'rotate(0)',
-              transition: 'transform 0.3s',
-            }}>▼</span>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ width: '0.45em', height: '0.45em', display: 'inline-block', flexShrink: 0, transform: servicesOpen ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.35s cubic-bezier(.45,.05,.55,.95)', willChange: 'transform' }}>
+              <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </button>
 
           {/* Services sub-list */}

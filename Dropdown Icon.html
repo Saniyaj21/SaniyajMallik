@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dropdown Icon</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --ink: #0e2230;
+    --wp-blue: #21759b;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: #ffffff;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    gap: 64px;
+    flex-wrap: wrap;
+  }
+
+  .demo {
+    display: flex; flex-direction: column; align-items: center; gap: 18px;
+  }
+  .demo small {
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: #8aa3b3; font-weight: 700;
+  }
+
+  /* The trigger button is what controls the open/closed state */
+  .trigger {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 1px solid #d9e3ea;
+    background: #ffffff;
+    color: var(--ink);
+    font: inherit; font-size: 15px; font-weight: 600;
+    cursor: pointer;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .trigger:hover { border-color: var(--wp-blue); }
+  .trigger[aria-expanded="true"] {
+    border-color: var(--wp-blue);
+    box-shadow: 0 0 0 4px rgba(33,117,155,.12);
+  }
+
+  /* ============ THE ICON ============
+     A single chevron path. We rotate it 180° when [data-open="true"].
+     stroke-linecap/linejoin: round + transition on transform = silky animation.
+  */
+  .dropdown-icon {
+    width: 18px; height: 18px;
+    display: inline-block;
+    color: currentColor;
+    transition: transform .35s cubic-bezier(.45,.05,.55,.95);
+    transform-origin: center;
+    will-change: transform;
+  }
+  .trigger[aria-expanded="true"] .dropdown-icon {
+    transform: rotate(180deg);
+  }
+
+  /* Standalone large preview */
+  .preview {
+    width: 96px; height: 96px;
+    border-radius: 24px;
+    background: #f3f8fb;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: background .2s ease;
+  }
+  .preview:hover { background: #e6f0f7; }
+  .preview svg {
+    width: 44px; height: 44px;
+    color: var(--wp-blue);
+    transition: transform .35s cubic-bezier(.45,.05,.55,.95);
+  }
+  .preview[data-open="true"] svg { transform: rotate(180deg); }
+
+  /* Auto demo loop */
+  @keyframes auto-rotate {
+    0%, 40%   { transform: rotate(0deg); }
+    50%, 90%  { transform: rotate(180deg); }
+    100%      { transform: rotate(0deg); }
+  }
+  .auto svg {
+    width: 44px; height: 44px;
+    color: var(--wp-blue);
+    animation: auto-rotate 3.6s cubic-bezier(.45,.05,.55,.95) infinite;
+    transform-origin: center;
+  }
+</style>
+</head>
+<body>
+
+  <div class="demo">
+    <small>Auto loop</small>
+    <div class="preview auto">
+      <!-- Single dropdown chevron icon -->
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M6 9l6 6 6-6"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="demo">
+    <small>Click to toggle</small>
+    <div class="preview" data-open="false" onclick="this.dataset.open = this.dataset.open === 'true' ? 'false' : 'true'">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M6 9l6 6 6-6"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="demo">
+    <small>In a button</small>
+    <button class="trigger" aria-expanded="false"
+            onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')">
+      Select option
+      <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M6 9l6 6 6-6"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+</body>
+</html>
