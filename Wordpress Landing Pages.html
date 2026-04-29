@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Landing Pages — Hero Vector</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wp-blue: #21759b;
+    --wp-blue-deep: #135e7c;
+    --wp-blue-darker: #0c4a63;
+    --wp-blue-light: #4a9bc4;
+    --wp-blue-soft: #d6ecf6;
+    --ink: #0e2230;
+    --ink-soft: #1c3a4f;
+    --accent-coral: #ff6b5b;
+    --accent-amber: #ffb74a;
+    --accent-mint: #4fd1a8;
+    --accent-violet: #7c6cf2;
+    --accent-pink: #ef6ea8;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0; padding: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background:
+      radial-gradient(1200px 600px at 80% 20%, #eef7fc 0%, transparent 60%),
+      radial-gradient(900px 500px at 10% 90%, #f0e9ff 0%, transparent 60%),
+      #fbfdff;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  .hero {
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 56px 48px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 48px;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .hero-copy .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--wp-blue);
+    background: var(--wp-blue-soft);
+    padding: 6px 12px; border-radius: 999px;
+  }
+  .hero-copy .eyebrow::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent-mint);
+    box-shadow: 0 0 0 4px rgba(79, 209, 168, 0.2);
+  }
+  .hero-copy h1 {
+    font-size: clamp(40px, 5vw, 68px);
+    line-height: 1.02;
+    letter-spacing: -0.028em;
+    font-weight: 800;
+    margin: 18px 0 18px;
+    text-wrap: pretty;
+  }
+  .hero-copy h1 .grad {
+    background: linear-gradient(120deg, var(--wp-blue) 0%, var(--accent-violet) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero-copy p {
+    font-size: 18px; line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 52ch; margin: 0 0 28px;
+  }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    font: inherit; font-weight: 600; font-size: 15px;
+    padding: 14px 22px; border-radius: 12px;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary {
+    background: var(--wp-blue); color: white;
+    box-shadow: 0 8px 20px -8px rgba(33,117,155,0.7);
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(33,117,155,0.7); }
+  .btn-ghost { background: white; color: var(--ink); border-color: #d9e3ea; }
+  .btn-ghost:hover { border-color: var(--wp-blue); color: var(--wp-blue); }
+
+  .stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-height: 640px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .stage svg {
+    width: 100%; height: 100%; display: block; overflow: visible;
+  }
+
+  /* Animations — same vocabulary as the rest of the series */
+  @keyframes float-a { 0%{transform:translate3d(0,0,0)} 50%{transform:translate3d(0,-10px,0)} 100%{transform:translate3d(0,0,0)} }
+  @keyframes float-b { 0%{transform:translate3d(0,0,0)} 50%{transform:translate3d(0,-14px,0)} 100%{transform:translate3d(0,0,0)} }
+  @keyframes float-c { 0%{transform:translate3d(0,0,0)} 50%{transform:translate3d(0,-8px,0)} 100%{transform:translate3d(0,0,0)} }
+  @keyframes ring-pulse {
+    0%   { transform: scale(0.85); opacity: 0.55; }
+    80%  { opacity: 0.05; }
+    100% { transform: scale(1.55); opacity: 0; }
+  }
+  @keyframes spin-slow { to { transform: rotate(360deg); } }
+  @keyframes orbit { to { transform: rotate(360deg); } }
+  @keyframes orbit-rev { to { transform: rotate(-360deg); } }
+  @keyframes bar-grow { 0% { transform: scaleY(0.2); } 100% { transform: scaleY(1); } }
+  @keyframes line-draw { to { stroke-dashoffset: 0; } }
+  @keyframes dash-flow { to { stroke-dashoffset: -48; } }
+  @keyframes pop-dot {
+    0%, 100% { opacity: 0.35; transform: scale(0.9); }
+    50%      { opacity: 1;    transform: scale(1.05); }
+  }
+  @keyframes shimmer-x { 0% { transform: translateX(-80px); } 100% { transform: translateX(260px); } }
+
+  /* Landing-specific motions */
+  @keyframes cursor-tap {
+    0%, 60% { transform: translate3d(0, 0, 0); }
+    72%     { transform: translate3d(-2px, -2px, 0) scale(0.92); }
+    78%     { transform: translate3d(0, 0, 0)       scale(1); }
+    100%    { transform: translate3d(0, 0, 0); }
+  }
+  @keyframes cta-pulse {
+    0%, 100% { transform: scale(1); }
+    72%      { transform: scale(0.97); }
+    80%      { transform: scale(1.02); }
+  }
+  @keyframes ripple {
+    0%   { r: 0;  opacity: 0.5; }
+    100% { r: 26; opacity: 0;   }
+  }
+  @keyframes meter-needle {
+    0%   { transform: rotate(-70deg); }
+    50%  { transform: rotate(50deg); }
+    100% { transform: rotate(70deg); }
+  }
+  @keyframes scroll-stop {
+    0%, 18%   { transform: translate3d(0, 0, 0); }
+    34%       { transform: translate3d(0, -64px, 0); }
+    44%, 78%  { transform: translate3d(0, -64px, 0); }   /* "stop" — held */
+    92%, 100% { transform: translate3d(0, 0, 0); }
+  }
+  @keyframes attn-bounce {
+    0%, 60%, 100% { transform: translate3d(0, 0, 0); opacity: 0.85; }
+    72%           { transform: translate3d(0, -6px, 0); opacity: 1; }
+    84%           { transform: translate3d(0, 0, 0); opacity: 0.85; }
+  }
+  @keyframes count-blink {
+    0%, 45%, 100% { opacity: 1; }
+    50%, 95%      { opacity: 0.5; }
+  }
+
+  .anim-float-a, .anim-float-b, .anim-float-c,
+  .anim-ring, .anim-spin, .anim-orbit, .anim-orbit-rev,
+  .anim-bar, .anim-line, .anim-dash, .anim-dot,
+  .anim-cursor, .anim-cta, .anim-meter, .anim-scroll, .anim-attn {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  .anim-float-a { animation: float-a 7s   cubic-bezier(.45,.05,.55,.95) infinite; transform-origin: center; transform-box: fill-box; }
+  .anim-float-b { animation: float-b 8s   cubic-bezier(.45,.05,.55,.95) infinite; transform-origin: center; transform-box: fill-box; }
+  .anim-float-c { animation: float-c 6.5s cubic-bezier(.45,.05,.55,.95) infinite; transform-origin: center; transform-box: fill-box; }
+  .anim-ring    { animation: ring-pulse 3.2s cubic-bezier(.25,.6,.35,1) infinite; transform-origin: center; transform-box: fill-box; }
+  .anim-spin    { animation: spin-slow 24s linear infinite; transform-origin: center; transform-box: fill-box; }
+  .anim-orbit     { animation: orbit 32s linear infinite; transform-origin: 280px 280px; }
+  .anim-orbit-rev { animation: orbit-rev 38s linear infinite; transform-origin: 280px 280px; }
+  .anim-bar     { transform-origin: bottom center; transform-box: fill-box; animation: bar-grow 3.4s cubic-bezier(.34,.01,.21,1) infinite alternate; }
+  .anim-line    { stroke-dasharray: 280; stroke-dashoffset: 280; animation: line-draw 4s cubic-bezier(.34,.01,.21,1) infinite alternate; }
+  .anim-dash    { stroke-dasharray: 6 6; animation: dash-flow 2.2s linear infinite; }
+  .anim-dot     { animation: pop-dot 3s cubic-bezier(.45,.05,.55,.95) infinite; transform-origin: center; transform-box: fill-box; }
+
+  .anim-cursor { animation: cursor-tap 4.5s cubic-bezier(.34,.01,.21,1) infinite; transform-origin: 0 0; transform-box: fill-box; }
+  .anim-cta    { animation: cta-pulse  4.5s cubic-bezier(.34,.01,.21,1) infinite; transform-origin: center; transform-box: fill-box; }
+  .anim-ripple { animation: ripple 2.4s ease-out infinite; transform-origin: center; transform-box: fill-box; }
+  .anim-meter  { animation: meter-needle 5s cubic-bezier(.45,.05,.55,.95) infinite alternate; transform-origin: 0 0; transform-box: fill-box; }
+  .anim-scroll { animation: scroll-stop 6s cubic-bezier(.45,.05,.55,.95) infinite; }
+  .anim-attn   { animation: attn-bounce 3s cubic-bezier(.45,.05,.55,.95) infinite; transform-origin: center; transform-box: fill-box; }
+  .anim-shimmer{ animation: shimmer-x 4s ease-in-out infinite; }
+  .anim-blink  { animation: count-blink 4s ease-in-out infinite; }
+
+  .stage svg, .stage svg text {
+    text-rendering: geometricPrecision;
+    shape-rendering: geometricPrecision;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim-float-a,.anim-float-b,.anim-float-c,.anim-ring,.anim-spin,.anim-orbit,.anim-orbit-rev,
+    .anim-bar,.anim-line,.anim-dash,.anim-dot,.anim-cursor,.anim-cta,.anim-ripple,.anim-meter,
+    .anim-scroll,.anim-attn,.anim-shimmer,.anim-blink { animation: none; }
+    .anim-line { stroke-dashoffset: 0; }
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 32px 20px 60px; }
+    .hero-copy { order: 2; }
+    .stage { order: 1; max-height: 520px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">WordPress · Landing Pages</span>
+    <h1>Landing<br><span class="grad">Pages</span></h1>
+    <p>High‑converting pages with animations that stop the scroll. Engineered to load fast, persuade clearly, and turn cold traffic into qualified leads.</p>
+    <div class="hero-cta">
+      <button class="btn btn-primary">Plan a page</button>
+      <button class="btn btn-ghost">See conversions</button>
+    </div>
+  </div>
+
+  <div class="stage" aria-label="A scrolling landing page card with hero, CTA, conversion meter, and floating proof badges">
+    <svg viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg" role="img">
+      <defs>
+        <!-- Card gradients -->
+        <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="#ffffff"/>
+          <stop offset="100%" stop-color="#f3f8fb"/>
+        </linearGradient>
+        <linearGradient id="dstHeader" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"  stop-color="#21759b"/>
+          <stop offset="100%" stop-color="#7c6cf2"/>
+        </linearGradient>
+
+        <!-- Hero block gradients -->
+        <linearGradient id="heroBlock" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%"  stop-color="#4a9bc4"/>
+          <stop offset="100%" stop-color="#7c6cf2"/>
+        </linearGradient>
+        <linearGradient id="ctaBtn" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="#ff8a7d"/>
+          <stop offset="100%" stop-color="#ff6b5b"/>
+        </linearGradient>
+
+        <!-- Hex badges -->
+        <linearGradient id="bConv"  x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7ee0bf"/><stop offset="100%" stop-color="#3fb98d"/></linearGradient>
+        <linearGradient id="bAB"    x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9d8ff8"/><stop offset="100%" stop-color="#7c6cf2"/></linearGradient>
+        <linearGradient id="bSpeed" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffd06b"/><stop offset="100%" stop-color="#f5a623"/></linearGradient>
+        <linearGradient id="bForm"  x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4a9bc4"/><stop offset="100%" stop-color="#21759b"/></linearGradient>
+
+        <!-- Meter arc fills -->
+        <linearGradient id="meterGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"  stop-color="#ff6b5b"/>
+          <stop offset="50%" stop-color="#ffb74a"/>
+          <stop offset="100%" stop-color="#3fb98d"/>
+        </linearGradient>
+
+        <!-- Soft glow -->
+        <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"  stop-color="#7c6cf2" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#7c6cf2" stop-opacity="0"/>
+        </radialGradient>
+
+        <!-- Shimmer -->
+        <linearGradient id="shimmerGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"  stop-color="white" stop-opacity="0"/>
+          <stop offset="50%" stop-color="white" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="white" stop-opacity="0"/>
+        </linearGradient>
+
+        <!-- Clip for landing-page viewport (fixed window) and inner long page (scrolls) -->
+        <clipPath id="pageClip"><rect x="170" y="170" width="220" height="260" rx="14"/></clipPath>
+      </defs>
+
+      <!-- =====================================================
+           BACKDROP — soft glow + orbit guides
+           ===================================================== -->
+      <circle cx="280" cy="280" r="240" fill="url(#centerGlow)"/>
+      <circle cx="280" cy="280" r="200" fill="none" stroke="#cfdde5" stroke-width="1" stroke-dasharray="2 6" opacity="0.7"/>
+      <circle cx="280" cy="280" r="248" fill="none" stroke="#cfdde5" stroke-width="1" stroke-dasharray="2 6" opacity="0.5"/>
+
+      <g class="anim-orbit">
+        <circle cx="480" cy="280" r="3"   fill="#21759b"/>
+        <circle cx="80"  cy="280" r="3"   fill="#7c6cf2"/>
+        <circle cx="280" cy="80"  r="2.4" fill="#3fb98d"/>
+      </g>
+      <g class="anim-orbit-rev">
+        <circle cx="280" cy="528" r="2.4" fill="#ffb74a"/>
+        <circle cx="421" cy="421" r="2"   fill="#ef6ea8"/>
+        <circle cx="139" cy="139" r="2"   fill="#21759b" opacity="0.7"/>
+      </g>
+
+      <!-- Pulse rings beneath the page -->
+      <g transform="translate(280 300)">
+        <circle class="anim-ring" r="120" fill="none" stroke="#7c6cf2" stroke-width="1.6" opacity="0.5"/>
+        <circle class="anim-ring" style="animation-delay:1.3s" r="120" fill="none" stroke="#21759b" stroke-width="1.6" opacity="0.5"/>
+      </g>
+
+      <!-- =====================================================
+           CENTER — Landing-page card (browser viewport)
+           ===================================================== -->
+      <g class="anim-float-b">
+        <g>
+          <!-- Drop shadow -->
+          <rect x="174" y="178" width="220" height="260" rx="14" fill="#0c4a63" opacity="0.12"/>
+          <!-- Card frame -->
+          <rect x="170" y="170" width="220" height="260" rx="14" fill="url(#cardBg)" stroke="#cfdde5"/>
+          <!-- Browser header -->
+          <rect x="170" y="170" width="220" height="32" rx="14" fill="url(#dstHeader)"/>
+          <rect x="170" y="186" width="220" height="16" fill="url(#dstHeader)"/>
+          <!-- Window dots -->
+          <circle cx="184" cy="186" r="3" fill="#ffffff" opacity="0.9"/>
+          <circle cx="196" cy="186" r="3" fill="#ffffff" opacity="0.6"/>
+          <circle cx="208" cy="186" r="3" fill="#ffffff" opacity="0.4"/>
+          <!-- URL pill -->
+          <rect x="222" y="180" width="124" height="12" rx="6" fill="#ffffff" opacity="0.85"/>
+          <rect x="228" y="184" width="6"   height="4"  rx="1" fill="#21759b" opacity="0.7"/>
+          <rect x="240" y="184" width="40"  height="4"  rx="1" fill="#21759b" opacity="0.5"/>
+          <!-- Live dot -->
+          <g transform="translate(376 186)">
+            <circle r="3.6" fill="#4fd1a8"/>
+            <circle r="3.6" fill="#4fd1a8" opacity="0.4">
+              <animate attributeName="r" values="3.6;8;3.6" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+
+          <!-- Page viewport (clipped) — inner long page slides up to "stop" -->
+          <g clip-path="url(#pageClip)">
+            <g class="anim-scroll">
+              <!-- Mini topnav -->
+              <rect x="180" y="212" width="40" height="6" rx="3" fill="#0e2230"/>
+              <rect x="320" y="212" width="60" height="14" rx="7" fill="#eef7fc" stroke="#cfdde5"/>
+              <rect x="328" y="217" width="44" height="4"  rx="2" fill="#21759b"/>
+
+              <!-- HERO BLOCK -->
+              <rect x="180" y="232" width="200" height="84" rx="10" fill="url(#heroBlock)"/>
+              <!-- Headline bars -->
+              <rect x="190" y="244" width="120" height="9" rx="4" fill="#ffffff" opacity="0.95"/>
+              <rect x="190" y="258" width="92"  height="9" rx="4" fill="#ffffff" opacity="0.95"/>
+              <!-- Sub bar -->
+              <rect x="190" y="274" width="150" height="5" rx="2.5" fill="#ffffff" opacity="0.55"/>
+              <rect x="190" y="282" width="120" height="5" rx="2.5" fill="#ffffff" opacity="0.4"/>
+              <!-- CTA button (with pulse + ripple) -->
+              <g transform="translate(220 304)">
+                <g class="anim-cta">
+                  <rect x="-30" y="-12" width="60" height="22" rx="11" fill="url(#ctaBtn)"/>
+                  <!-- play/arrow chevron -->
+                  <path d="M -8 -3 L -2 0 L -8 3 Z" fill="#ffffff"/>
+                  <rect x="2" y="-2.5" width="22" height="5" rx="2" fill="#ffffff" opacity="0.95"/>
+                </g>
+                <!-- Click ripple expands when cursor lands -->
+                <circle class="anim-ripple" cx="0" cy="0" r="0" fill="none" stroke="#ff6b5b" stroke-width="2"/>
+              </g>
+
+              <!-- Below-the-fold: 3 social proof tiles -->
+              <g transform="translate(180 326)">
+                <rect x="0"   y="0" width="62" height="42" rx="8" fill="#eef7fc" stroke="#cfdde5"/>
+                <rect x="8"   y="8" width="36" height="4" rx="2" fill="#21759b"/>
+                <rect x="8"   y="16" width="46" height="3" rx="1.5" fill="#cfdde5"/>
+                <rect x="8"   y="22" width="40" height="3" rx="1.5" fill="#cfdde5"/>
+                <g transform="translate(8 32)" fill="#ffb74a">
+                  <path d="M 0 4 L 1.2 1.2 L 4 1 L 1.8 -0.8 L 2.4 -3.6 L 0 -2 L -2.4 -3.6 L -1.8 -0.8 L -4 1 L -1.2 1.2 Z"/>
+                </g>
+                <g transform="translate(16 32)" fill="#ffb74a"><path d="M 0 4 L 1.2 1.2 L 4 1 L 1.8 -0.8 L 2.4 -3.6 L 0 -2 L -2.4 -3.6 L -1.8 -0.8 L -4 1 L -1.2 1.2 Z"/></g>
+                <g transform="translate(24 32)" fill="#ffb74a"><path d="M 0 4 L 1.2 1.2 L 4 1 L 1.8 -0.8 L 2.4 -3.6 L 0 -2 L -2.4 -3.6 L -1.8 -0.8 L -4 1 L -1.2 1.2 Z"/></g>
+
+                <rect x="69"  y="0" width="62" height="42" rx="8" fill="#f3eeff" stroke="#cfdde5"/>
+                <rect x="77"  y="8" width="36" height="4" rx="2" fill="#7c6cf2"/>
+                <rect x="77"  y="16" width="46" height="3" rx="1.5" fill="#cfdde5"/>
+                <rect x="77"  y="22" width="40" height="3" rx="1.5" fill="#cfdde5"/>
+                <!-- mini bars -->
+                <rect x="77"  y="32" width="4" height="6" rx="1" fill="#7c6cf2"/>
+                <rect x="83"  y="30" width="4" height="8" rx="1" fill="#7c6cf2"/>
+                <rect x="89"  y="27" width="4" height="11" rx="1" fill="#7c6cf2"/>
+
+                <rect x="138" y="0" width="62" height="42" rx="8" fill="#e8f8f0" stroke="#cfdde5"/>
+                <rect x="146" y="8" width="36" height="4" rx="2" fill="#3fb98d"/>
+                <rect x="146" y="16" width="46" height="3" rx="1.5" fill="#cfdde5"/>
+                <rect x="146" y="22" width="40" height="3" rx="1.5" fill="#cfdde5"/>
+                <!-- check pill -->
+                <g transform="translate(154 32)">
+                  <rect x="-6" y="-5" width="32" height="10" rx="5" fill="#3fb98d"/>
+                  <path d="M -3 0 L -1 2 L 4 -3" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+              </g>
+
+              <!-- Form section (visible only when fully scrolled) -->
+              <rect x="180" y="380" width="200" height="14" rx="3" fill="#0e2230"/>
+              <rect x="180" y="400" width="200" height="22" rx="6" fill="#ffffff" stroke="#cfdde5"/>
+              <rect x="186" y="408" width="80"  height="6"  rx="2" fill="#cfdde5"/>
+              <rect x="180" y="430" width="200" height="22" rx="6" fill="#ffffff" stroke="#cfdde5"/>
+            </g>
+          </g>
+
+          <!-- Static "stop the scroll" marker rendered above the clipped page (cursor + ripple) -->
+          <g transform="translate(338 252)">
+            <g class="anim-cursor">
+              <!-- Cursor -->
+              <path d="M 0 0 L 14 4 L 6 7 L 4 15 Z" fill="#0e2230" stroke="#ffffff" stroke-width="1.4" stroke-linejoin="round"/>
+            </g>
+          </g>
+
+          <!-- Shimmer sweep across page -->
+          <g clip-path="url(#pageClip)">
+            <rect class="anim-shimmer" x="100" y="170" width="60" height="260" fill="url(#shimmerGrad)" opacity="0.55"/>
+          </g>
+        </g>
+      </g>
+
+      <!-- =====================================================
+           Conversion meter — top-right, anchored to the card edge
+           ===================================================== -->
+      <g class="anim-float-c" style="animation-delay:-.4s">
+        <g transform="translate(454 196)">
+          <!-- Card -->
+          <rect x="-50" y="-36" width="100" height="72" rx="12" fill="#ffffff" stroke="#cfdde5"/>
+          <!-- Drop shadow under card -->
+          <rect x="-48" y="-32" width="100" height="72" rx="12" fill="#0c4a63" opacity="0.07"/>
+          <rect x="-50" y="-36" width="100" height="72" rx="12" fill="#ffffff" stroke="#cfdde5"/>
+
+          <!-- Half-circle gauge -->
+          <g transform="translate(0 4)">
+            <path d="M -34 0 A 34 34 0 0 1 34 0" fill="none" stroke="#eef3f6" stroke-width="6" stroke-linecap="round"/>
+            <path d="M -34 0 A 34 34 0 0 1 34 0" fill="none" stroke="url(#meterGrad)" stroke-width="6" stroke-linecap="round" stroke-dasharray="106 200"/>
+            <!-- Tick marks -->
+            <g stroke="#cfdde5" stroke-width="1.4" stroke-linecap="round">
+              <path d="M -34 0 L -30 0"/>
+              <path d="M -24 -24 L -20.6 -20.6"/>
+              <path d="M 0 -34 L 0 -30"/>
+              <path d="M 24 -24 L 20.6 -20.6"/>
+              <path d="M 34 0 L 30 0"/>
+            </g>
+            <!-- Needle -->
+            <g class="anim-meter">
+              <path d="M 0 0 L 0 -28" stroke="#0e2230" stroke-width="2.2" stroke-linecap="round"/>
+              <circle r="3.5" fill="#0e2230"/>
+              <circle r="1.4" fill="#ffffff"/>
+            </g>
+            <!-- Number bars below dial -->
+            <rect x="-22" y="14" width="14" height="6" rx="2"  fill="#0e2230"/>
+            <rect x="-6"  y="14" width="6"  height="6" rx="2"  fill="#0e2230"/>
+            <rect x="2"   y="14" width="20" height="6" rx="2"  fill="#3fb98d"/>
+          </g>
+        </g>
+      </g>
+
+      <!-- =====================================================
+           Live conversion counter — bottom-left, anchored to card
+           ===================================================== -->
+      <g class="anim-float-a" style="animation-delay:-.8s">
+        <g transform="translate(106 392)">
+          <rect x="-46" y="-26" width="92" height="52" rx="12" fill="#ffffff" stroke="#cfdde5"/>
+          <!-- Live dot -->
+          <g transform="translate(-32 -14)">
+            <circle r="3" fill="#4fd1a8"/>
+            <circle r="3" fill="#4fd1a8" opacity="0.4">
+              <animate attributeName="r" values="3;7;3" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+          <!-- Mini eyebrow bar -->
+          <rect x="-22" y="-17" width="48" height="4" rx="2" fill="#cfdde5"/>
+          <!-- Big number bars -->
+          <g class="anim-blink">
+            <rect x="-32" y="-6" width="14" height="14" rx="3" fill="#0e2230"/>
+            <rect x="-14" y="-6" width="6"  height="14" rx="3" fill="#0e2230"/>
+            <rect x="-4"  y="-6" width="20" height="14" rx="3" fill="#0e2230"/>
+            <rect x="20"  y="-6" width="14" height="14" rx="3" fill="#0e2230"/>
+          </g>
+          <!-- Up-arrow -->
+          <g transform="translate(0 16)" fill="#3fb98d">
+            <path d="M 0 -3 L 4 1 H 1.6 V 4 H -1.6 V 1 H -4 Z"/>
+          </g>
+          <rect x="6" y="13" width="22" height="5" rx="2" fill="#3fb98d"/>
+        </g>
+      </g>
+
+      <!-- =====================================================
+           Floating "Heads up!" attention bubble — top-left
+           ===================================================== -->
+      <g class="anim-attn">
+        <g transform="translate(118 162)">
+          <!-- Speech bubble -->
+          <path d="M -38 -16
+                   Q -38 -28 -26 -28
+                   L 26 -28
+                   Q 38 -28 38 -16
+                   L 38 4
+                   Q 38 16 26 16
+                   L -8 16
+                   L -16 24
+                   L -14 16
+                   L -26 16
+                   Q -38 16 -38 4 Z"
+                fill="#ffffff" stroke="#cfdde5"/>
+          <!-- Bell icon -->
+          <g transform="translate(-22 -6)" fill="none" stroke="#ff6b5b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M -6 2 L 6 2 L 4 -3 Q 4 -10 0 -10 Q -4 -10 -4 -3 Z" fill="#ff6b5b" stroke="none"/>
+            <circle cx="0" cy="5" r="1.6" fill="#ff6b5b" stroke="none"/>
+          </g>
+          <!-- Message bars -->
+          <rect x="-8" y="-12" width="40" height="5" rx="2.5" fill="#0e2230"/>
+          <rect x="-8" y="-3"  width="32" height="4" rx="2"   fill="#cfdde5"/>
+          <rect x="-8" y="5"   width="36" height="4" rx="2"   fill="#cfdde5"/>
+          <!-- ping ring at bell -->
+          <circle class="anim-ripple" cx="-22" cy="-6" r="0" fill="none" stroke="#ff6b5b" stroke-width="1.6"/>
+        </g>
+      </g>
+
+      <!-- =====================================================
+           Hex badges — Conv, A/B, Speed, Form
+           Two on top arc, two on bottom arc
+           Hex r=30 flat-top
+           ===================================================== -->
+
+      <!-- Connector lines from card to badges -->
+      <g fill="none" stroke-linecap="round">
+        <path d="M 220 196 Q 175 150 144 116" stroke="#3fb98d" stroke-width="1.6" opacity="0.28"/>
+        <path d="M 220 196 Q 175 150 144 116" class="anim-dash" stroke="#3fb98d" stroke-width="1.8"/>
+
+        <path d="M 340 196 Q 380 150 412 116" stroke="#7c6cf2" stroke-width="1.6" opacity="0.28"/>
+        <path d="M 340 196 Q 380 150 412 116" class="anim-dash" style="animation-delay:.3s" stroke="#7c6cf2" stroke-width="1.8"/>
+
+        <path d="M 220 408 Q 178 444 138 480" stroke="#f5a623" stroke-width="1.6" opacity="0.28"/>
+        <path d="M 220 408 Q 178 444 138 480" class="anim-dash" style="animation-delay:.6s" stroke="#f5a623" stroke-width="1.8"/>
+
+        <path d="M 340 408 Q 380 444 422 480" stroke="#21759b" stroke-width="1.6" opacity="0.28"/>
+        <path d="M 340 408 Q 380 444 422 480" class="anim-dash" style="animation-delay:.9s" stroke="#21759b" stroke-width="1.8"/>
+      </g>
+
+      <!-- CONVERSION badge (top-left) — green up-trend -->
+      <g class="anim-float-a" style="animation-delay:-.2s">
+        <g transform="translate(116 92)">
+          <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#bConv)" stroke="#2ea077" stroke-width="1"/>
+          <path d="M -22 -13 L 0 -26 L 22 -13" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
+          <!-- Up trend arrow icon -->
+          <g transform="translate(0 -2)" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M -12 6 L -4 -2 L 2 4 L 12 -8"/>
+            <path d="M 6 -8 H 12 V -2"/>
+          </g>
+          <!-- Indicator dots -->
+          <g transform="translate(0 44)">
+            <circle cx="-8" cy="0" r="2" fill="#3fb98d" opacity="0.9"/>
+            <circle cx="0"  cy="0" r="2" fill="#3fb98d" opacity="0.5"/>
+            <circle cx="8"  cy="0" r="2" fill="#3fb98d" opacity="0.25"/>
+          </g>
+        </g>
+      </g>
+
+      <!-- A/B TEST badge (top-right) — split arrows -->
+      <g class="anim-float-b" style="animation-delay:-.5s">
+        <g transform="translate(440 92)">
+          <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#bAB)" stroke="#5847d4" stroke-width="1"/>
+          <!-- A/B split icon -->
+          <g transform="translate(0 -2)" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- left letter "A" -->
+            <path d="M -10 6 L -6 -6 L -2 6 M -8.5 2 H -3.5"/>
+            <!-- divider -->
+            <path d="M 0 -8 L 0 8" opacity="0.55"/>
+            <!-- right letter "B" -->
+            <path d="M 4 -6 H 8 a 3 3 0 0 1 0 6 H 4 a 3 3 0 0 1 0 6 H 4 V -6"/>
+          </g>
+          <g transform="translate(0 44)">
+            <circle cx="-8" cy="0" r="2" fill="#7c6cf2" opacity="0.9"/>
+            <circle cx="0"  cy="0" r="2" fill="#7c6cf2" opacity="0.5"/>
+            <circle cx="8"  cy="0" r="2" fill="#7c6cf2" opacity="0.25"/>
+          </g>
+        </g>
+      </g>
+
+      <!-- SPEED badge (bottom-left) — lightning bolt -->
+      <g class="anim-float-c" style="animation-delay:-.8s">
+        <g transform="translate(120 500)">
+          <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#bSpeed)" stroke="#d68812" stroke-width="1"/>
+          <!-- Lightning bolt -->
+          <g transform="translate(0 0)" fill="#ffffff" stroke="#ffffff" stroke-linejoin="round" stroke-width="1">
+            <path d="M 2 -12 L -8 4 L -1 4 L -4 12 L 8 -4 L 1 -4 Z"/>
+          </g>
+          <g transform="translate(0 -44)">
+            <circle cx="-8" cy="0" r="2" fill="#f5a623" opacity="0.9"/>
+            <circle cx="0"  cy="0" r="2" fill="#f5a623" opacity="0.5"/>
+            <circle cx="8"  cy="0" r="2" fill="#f5a623" opacity="0.25"/>
+          </g>
+        </g>
+      </g>
+
+      <!-- FORM badge (bottom-right) — form fields -->
+      <g class="anim-float-a" style="animation-delay:-1.0s">
+        <g transform="translate(440 500)">
+          <path d="M -26 -15 L 0 -30 L 26 -15 L 26 15 L 0 30 L -26 15 Z" fill="url(#bForm)" stroke="#0c4a63" stroke-width="1"/>
+          <!-- Form icon -->
+          <g transform="translate(0 -1)" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="-11" y="-9" width="22" height="6" rx="2"/>
+            <rect x="-11" y="1"  width="22" height="6" rx="2"/>
+            <rect x="-3"  y="9"  width="14" height="4" rx="2" fill="#ffffff" stroke="none"/>
+          </g>
+          <g transform="translate(0 -44)">
+            <circle cx="-8" cy="0" r="2" fill="#21759b" opacity="0.9"/>
+            <circle cx="0"  cy="0" r="2" fill="#21759b" opacity="0.5"/>
+            <circle cx="8"  cy="0" r="2" fill="#21759b" opacity="0.25"/>
+          </g>
+        </g>
+      </g>
+
+      <!-- Spinning gear top-right atmosphere -->
+      <g transform="translate(508 372)">
+        <g class="anim-spin">
+          <circle r="18" fill="#ffffff" stroke="#cfdde5" stroke-width="1.4"/>
+          <circle r="7" fill="#21759b"/>
+          <circle r="3" fill="#0c4a63"/>
+          <g fill="#21759b">
+            <rect x="-2" y="-22" width="4" height="6" rx="1.5"/>
+            <rect x="-2" y="16"  width="4" height="6" rx="1.5"/>
+            <rect x="-22" y="-2" width="6" height="4" rx="1.5"/>
+            <rect x="16"  y="-2" width="6" height="4" rx="1.5"/>
+            <rect x="-18" y="-18" width="6" height="4" rx="1.5" transform="rotate(45)"/>
+            <rect x="12"  y="-18" width="6" height="4" rx="1.5" transform="rotate(45)"/>
+            <rect x="-18" y="14"  width="6" height="4" rx="1.5" transform="rotate(45)"/>
+            <rect x="12"  y="14"  width="6" height="4" rx="1.5" transform="rotate(45)"/>
+          </g>
+        </g>
+      </g>
+
+      <!-- Connecting accent dots -->
+      <g>
+        <circle class="anim-dot" cx="280" cy="40"  r="3" fill="#7c6cf2"/>
+        <circle class="anim-dot" style="animation-delay:.4s" cx="40"  cy="370" r="2.5" fill="#21759b"/>
+        <circle class="anim-dot" style="animation-delay:.8s" cx="520" cy="160" r="2.5" fill="#3fb98d"/>
+        <circle class="anim-dot" style="animation-delay:1.2s" cx="280" cy="540" r="3" fill="#ff6b5b"/>
+      </g>
+
+    </svg>
+  </div>
+</section>
+
+</body>
+</html>

@@ -9,7 +9,7 @@ const SERVICE_GROUPS = [
     n: '01',
     items: [
       { l: 'WordPress Development', s: 'Custom builds from scratch', href: '/services/wordpress-development' },
-      { l: 'Migrations', s: 'WordPress → Kajabi & more', href: '/services/wordpress-migrations' },
+      { l: 'WordPress Migration', s: 'WordPress → Kajabi & more', href: '/services/wordpress-migrations' },
       { l: 'Maintenance & Care Plans', s: 'Updates, backups, monitoring', href: '/services/wordpress-maintenance' },
       { l: 'Custom Plugin Development', s: 'When off-the-shelf falls short', href: '/services/wordpress-plugins' },
     ],

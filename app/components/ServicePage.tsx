@@ -9,6 +9,10 @@ import { WordPressHero } from './WordPressHero';
 import { WordPressPluginHero } from './WordPressPluginHero';
 import { WordPressMigrationsHero } from './WordPressMigrationsHero';
 import { WordPressMaintenanceHero } from './WordPressMaintenanceHero';
+import { LandingPagesHero } from './LandingPagesHero';
+import { LocalBusinessSitesHero } from './LocalBusinessSitesHero';
+import { WebApplicationsHero } from './WebApplicationsHero';
+import { MobileAppsHero } from './MobileAppsHero';
 
 const STEPS = [
   { n: '01', h: 'Discover', d: 'Strategy call, scope alignment, success criteria.' },
@@ -80,6 +84,14 @@ export function ServicePage({ slug, pillar, pillarN, name, tagline, image, deliv
         <WordPressMigrationsHero />
       ) : slug === 'wordpress-maintenance' ? (
         <WordPressMaintenanceHero />
+      ) : slug === 'landing-pages' ? (
+        <LandingPagesHero />
+      ) : slug === 'business-websites' ? (
+        <LocalBusinessSitesHero />
+      ) : slug === 'web-applications' ? (
+        <WebApplicationsHero />
+      ) : slug === 'mobile-apps' ? (
+        <MobileAppsHero />
       ) : (
         <section style={{ minHeight: '45vh', position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflow: 'hidden', paddingTop: 140, paddingBottom: 60 }}>
           {image && (
