@@ -17,15 +17,11 @@ export function Process() {
     <section id="process" style={{ borderTop: '1px solid var(--rule)' }}>
       <div className="container">
         <Reveal>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'var(--gap-md)', marginBottom: 'clamp(48px, 6vw, 96px)' }} className="pr-head">
-            <div style={{ gridColumn: 'span 3' }} className="pr-label">
-              <div className="label">§ Methodology</div>
-            </div>
-            <div style={{ gridColumn: 'span 9' }} className="pr-headline">
-              <h2 style={{ fontSize: 'clamp(40px, 5.5vw, 88px)' }}>
-                From idea<br />to <span className="serif-i" style={{ color: 'var(--accent)' }}>launch.</span>
-              </h2>
-            </div>
+          <div style={{ textAlign: 'center', marginBottom: 'clamp(48px, 6vw, 96px)' }}>
+            <div className="label" style={{ marginBottom: 16 }}>§ Methodology</div>
+            <h2 style={{ fontSize: 'clamp(40px, 5.5vw, 88px)' }}>
+              From idea<br />to <span className="serif-i" style={{ color: 'var(--accent)' }}>launch.</span>
+            </h2>
           </div>
         </Reveal>
 

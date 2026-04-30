@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Magnetic } from './primitives';
 
 export function BuildLaunchScaleHero() {
@@ -9,7 +10,7 @@ export function BuildLaunchScaleHero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero text reveal
+      // Hero text reveal on load
       gsap.timeline({ defaults: { ease: 'power3.out' } })
         .from('.bls-eyebrow', { y: 20, opacity: 0, duration: 0.5 })
         .from('h1',           { y: 32, opacity: 0, duration: 0.65 }, '-=0.25')
@@ -30,6 +31,28 @@ export function BuildLaunchScaleHero() {
         .from('#bls-chip',         { x: -40,         opacity: 0, duration: 0.45 }, '-=0.3')
         .from('#bls-gear',         { scale: 0, opacity: 0, transformOrigin: '490px 250px', duration: 0.5 }, '-=0.3')
         .from('#bls-dots',         { opacity: 0, duration: 0.35, ease: 'power2.out' }, '-=0.2');
+
+      // Scroll exit parallax — copy exits faster, stage drifts slower (depth illusion)
+      gsap.to('.bls-copy', {
+        y: -90,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#bls-hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+      gsap.to('.bls-stage', {
+        y: -45,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#bls-hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
     }, heroRef);
     return () => ctx.revert();
   }, []);

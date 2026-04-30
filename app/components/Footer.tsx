@@ -1,5 +1,3 @@
-'use client';
-
 import { Reveal } from './primitives';
 
 const iconStyle = { display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 };
@@ -53,7 +51,7 @@ const linkStyle = {
   display: 'inline-flex',
   alignItems: 'center',
   gap: 8,
-  opacity: 0.85,
+  opacity: 1,
   transition: 'opacity 0.2s',
 };
 
@@ -89,7 +87,7 @@ export function Footer() {
           </div>
           <div>
             <div className="label" style={{ marginBottom: 14, color: 'rgba(242,239,231,0.5)' }}>Contact</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, fontSize: 14 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, fontSize: 14, opacity: 0.9 }}>
               <a href="mailto:saniyajmallik12@gmail.com" style={linkStyle}>
                 <IconMail /> saniyajmallik12@gmail.com
               </a>
@@ -100,7 +98,7 @@ export function Footer() {
           </div>
           <div>
             <div className="label" style={{ marginBottom: 14, color: 'rgba(242,239,231,0.5)' }}>Elsewhere</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, fontSize: 14 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, fontSize: 14, opacity: 0.9 }}>
               <a href="#" style={linkStyle}>
                 <IconLinkedIn /> LinkedIn
               </a>

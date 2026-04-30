@@ -1,0 +1,547 @@
+- generic [active] [ref=e1]:
+  - banner:
+    - link "Saniyaj Mallik — Home" [ref=e2] [cursor=pointer]:
+      - /url: /
+      - img [ref=e3]
+    - navigation [ref=e12]:
+      - button "Services" [ref=e13]:
+        - text: Services
+        - img [ref=e14]
+      - link "Work" [ref=e16]:
+        - /url: /#work
+      - link "Process" [ref=e17]:
+        - /url: /#process
+      - link "About" [ref=e18]:
+        - /url: /#about
+    - link "Let's Talk" [ref=e20]:
+      - /url: /#contact
+      - text: Let's Talk
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic: "01"
+            - generic: WordPress
+          - generic:
+            - link "WordPress Development Custom builds from scratch →":
+              - /url: /services/wordpress-development
+              - generic:
+                - generic:
+                  - generic: WordPress Development
+                  - generic: Custom builds from scratch
+                - generic: →
+            - link "WordPress Migration WordPress → Kajabi & more →":
+              - /url: /services/wordpress-migrations
+              - generic:
+                - generic:
+                  - generic: WordPress Migration
+                  - generic: WordPress → Kajabi & more
+                - generic: →
+            - link "Maintenance & Care Plans Updates, backups, monitoring →":
+              - /url: /services/wordpress-maintenance
+              - generic:
+                - generic:
+                  - generic: Maintenance & Care Plans
+                  - generic: Updates, backups, monitoring
+                - generic: →
+            - link "Custom Plugin Development When off-the-shelf falls short →":
+              - /url: /services/wordpress-plugins
+              - generic:
+                - generic:
+                  - generic: Custom Plugin Development
+                  - generic: When off-the-shelf falls short
+                - generic: →
+        - generic:
+          - generic:
+            - generic: "02"
+            - generic: Custom Websites
+          - generic:
+            - link "Landing Pages Conversion-focused single pages →":
+              - /url: /services/landing-pages
+              - generic:
+                - generic:
+                  - generic: Landing Pages
+                  - generic: Conversion-focused single pages
+                - generic: →
+            - link "Restaurant & Local Business Multi-page presence →":
+              - /url: /services/business-websites
+              - generic:
+                - generic:
+                  - generic: Restaurant & Local Business
+                  - generic: Multi-page presence
+                - generic: →
+            - link "Web Applications & Dashboards MERN & Next.js builds →":
+              - /url: /services/web-applications
+              - generic:
+                - generic:
+                  - generic: Web Applications & Dashboards
+                  - generic: MERN & Next.js builds
+                - generic: →
+        - generic:
+          - generic:
+            - generic: "03"
+            - generic: Mobile Apps
+          - generic:
+            - link "Business Mobile Apps Native apps for your business →":
+              - /url: /services/mobile-apps
+              - generic:
+                - generic:
+                  - generic: Business Mobile Apps
+                  - generic: Native apps for your business
+                - generic: →
+      - generic:
+        - generic:
+          - text: Don't see what you need?
+          - link "Tell me about it →":
+            - /url: /#contact
+        - generic: 8 services across 3 pillars
+  - generic:
+    - generic:
+      - generic:
+        - button "Services":
+          - text: Services
+          - img
+        - generic:
+          - generic:
+            - generic:
+              - generic: WordPress
+              - link "WordPress Development":
+                - /url: /services/wordpress-development
+              - link "WordPress Migration":
+                - /url: /services/wordpress-migrations
+              - link "Maintenance & Care Plans":
+                - /url: /services/wordpress-maintenance
+              - link "Custom Plugin Development":
+                - /url: /services/wordpress-plugins
+            - generic:
+              - generic: Custom Websites
+              - link "Landing Pages":
+                - /url: /services/landing-pages
+              - link "Restaurant & Local Business":
+                - /url: /services/business-websites
+              - link "Web Applications & Dashboards":
+                - /url: /services/web-applications
+            - generic:
+              - generic: Mobile Apps
+              - link "Business Mobile Apps":
+                - /url: /services/mobile-apps
+      - link "Work":
+        - /url: /#work
+      - link "Process":
+        - /url: /#process
+      - link "About":
+        - /url: /#about
+      - link "Let's Talk":
+        - /url: /#contact
+        - text: Let's Talk
+  - main [ref=e22]:
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e26]: WordPress · LMS · Web Apps
+        - heading "Build, launch & scale your business online." [level=1] [ref=e27]:
+          - text: Build, launch &
+          - text: scale your business online.
+        - paragraph [ref=e28]: High-performing WordPress, LMS & web app builds for education and ecommerce — engineered with senior-level craft, without the agency price tag.
+        - generic [ref=e29]:
+          - link "Book a strategy call →" [ref=e31]:
+            - /url: "#contact"
+            - text: Book a strategy call
+            - generic [ref=e32]: →
+          - link "View my work" [ref=e34]:
+            - /url: "#work"
+      - generic "Central dashboard with growth chart, orbited by build, launch, and scale modules" [ref=e35]:
+        - img [ref=e36]
+    - generic [ref=e190]:
+      - generic [ref=e192]:
+        - generic [ref=e193]: § The Problem
+        - heading "The traditional approach is broken." [level=2] [ref=e194]:
+          - text: The traditional
+          - text: approach is broken.
+        - generic [ref=e195]:
+          - generic [ref=e196]:
+            - generic [ref=e197]: Agencies
+            - paragraph [ref=e198]: Overhead, account managers, endless meetings — you pay for the bureaucracy.
+          - generic [ref=e199]:
+            - generic [ref=e200]: Freelancers
+            - paragraph [ref=e201]: Unreliable communication, slipping timelines, messy code you'll inherit later.
+      - generic [ref=e204]:
+        - generic [ref=e205]: § The Solution
+        - heading "A dedicated tech partner." [level=2] [ref=e206]:
+          - text: A dedicated
+          - text: tech partner.
+        - paragraph [ref=e207]: Lean-agency execution with direct one-on-one access. Senior-level architecture, rapid development, full ownership — from sketch to shipping.
+    - generic [ref=e209]:
+      - generic [ref=e211]:
+        - generic [ref=e212]: § Core Capabilities
+        - heading "Everything your business needs to grow online." [level=2] [ref=e213]:
+          - text: Everything your
+          - text: business needs to grow online.
+      - generic [ref=e214]:
+        - generic [ref=e215]:
+          - generic [ref=e216]:
+            - generic [ref=e217]: "01"
+            - generic [ref=e218]: Ecommerce / Education
+          - heading "WordPress, built right." [level=3] [ref=e219]
+          - paragraph [ref=e220]: Online stores and course platforms — from scratch or from inherited mess. No cookie-cutter setups.
+          - list [ref=e222]:
+            - listitem [ref=e223]:
+              - generic [ref=e224]: "01"
+              - generic [ref=e225]: WooCommerce stores, memberships & subscriptions
+            - listitem [ref=e226]:
+              - generic [ref=e227]: "02"
+              - generic [ref=e228]: LearnDash LMS & full course platforms
+            - listitem [ref=e229]:
+              - generic [ref=e230]: "03"
+              - generic [ref=e231]: Custom plugin & feature development
+            - listitem [ref=e232]:
+              - generic [ref=e233]: "04"
+              - generic [ref=e234]: Zapier automations & third-party integrations
+            - listitem [ref=e235]:
+              - generic [ref=e236]: "05"
+              - generic [ref=e237]: Migrations & platform upgrades
+        - generic [ref=e238]:
+          - generic [ref=e239]:
+            - generic [ref=e240]: "02"
+            - generic [ref=e241]: Web / Custom Builds
+          - heading "Web apps that fit your business." [level=3] [ref=e242]
+          - paragraph [ref=e243]: A professional online presence or a custom platform shaped around how you actually operate.
+          - list [ref=e245]:
+            - listitem [ref=e246]:
+              - generic [ref=e247]: "01"
+              - generic [ref=e248]: Business websites that convert
+            - listitem [ref=e249]:
+              - generic [ref=e250]: "02"
+              - generic [ref=e251]: Custom apps with MERN or Next.js
+            - listitem [ref=e252]:
+              - generic [ref=e253]: "03"
+              - generic [ref=e254]: User portals, dashboards & booking systems
+            - listitem [ref=e255]:
+              - generic [ref=e256]: "04"
+              - generic [ref=e257]: API integrations & payment gateways
+        - generic [ref=e258]:
+          - generic [ref=e259]:
+            - generic [ref=e260]: "03"
+            - generic [ref=e261]: Mobile / iOS & Android
+          - heading "A mobile app for your business." [level=3] [ref=e262]
+          - paragraph [ref=e263]: A dedicated app for your store, courses or services — single codebase, both stores.
+          - list [ref=e265]:
+            - listitem [ref=e266]:
+              - generic [ref=e267]: "01"
+              - generic [ref=e268]: Ecommerce apps for WooCommerce stores
+            - listitem [ref=e269]:
+              - generic [ref=e270]: "02"
+              - generic [ref=e271]: Course & learning apps for educators
+            - listitem [ref=e272]:
+              - generic [ref=e273]: "03"
+              - generic [ref=e274]: Service booking & client-facing apps
+            - listitem [ref=e275]:
+              - generic [ref=e276]: "04"
+              - generic [ref=e277]: App Store & Play Store deployment
+    - generic [ref=e279]:
+      - generic [ref=e281]:
+        - generic [ref=e282]: § Proof of Execution
+        - heading "Built end-to-end, independently." [level=2] [ref=e283]:
+          - text: Built end-to-end,
+          - text: independently.
+        - paragraph [ref=e284]: Beyond personal projects, I've delivered full WooCommerce stores and LearnDash course platforms for real businesses — under client confidentiality. The same craft goes into every independent build.
+      - generic [ref=e285]:
+        - link "№ 01 · Mobile App · Education ↗ Case Study NextMCQ A full-featured MCQ learning platform. Students take timed tests, get instant scores, and track progress over time. Built and shipped end-to-end independently. iOS · Android Platforms 20+ Subjects Live Status React Native Firebase Node.js Read case study → NextMCQ" [ref=e287] [cursor=pointer]:
+          - /url: /case-nextmcq
+          - generic [ref=e288]:
+            - generic [ref=e289]:
+              - generic [ref=e290]:
+                - generic [ref=e291]: № 01 · Mobile App · Education
+                - generic [ref=e292]: ↗ Case Study
+              - heading "NextMCQ" [level=3] [ref=e293]
+              - paragraph [ref=e294]: A full-featured MCQ learning platform.
+              - paragraph [ref=e295]: Students take timed tests, get instant scores, and track progress over time. Built and shipped end-to-end independently.
+              - generic [ref=e296]:
+                - generic [ref=e297]:
+                  - generic [ref=e298]: iOS · Android
+                  - generic [ref=e299]: Platforms
+                - generic [ref=e300]:
+                  - generic [ref=e301]: 20+
+                  - generic [ref=e302]: Subjects
+                - generic [ref=e303]:
+                  - generic [ref=e304]: Live
+                  - generic [ref=e305]: Status
+              - generic [ref=e306]:
+                - generic [ref=e307]: React Native
+                - generic [ref=e308]: Firebase
+                - generic [ref=e309]: Node.js
+              - generic [ref=e310]:
+                - text: Read case study
+                - generic [ref=e311]: →
+            - generic [ref=e314]:
+              - generic:
+                - img "NextMCQ"
+        - link "№ 02 · Mobile App · Social ↗ Case Study WatchTogether Watch in sync. No accounts. Share a room link and the playback stays perfectly in sync — designed for zero-friction group viewing. No-auth Onboarding <200ms Sync drift Live Status React Native WebSockets Express Read case study → WatchTogether" [ref=e317] [cursor=pointer]:
+          - /url: /case-watchtogether
+          - generic [ref=e318]:
+            - generic [ref=e319]:
+              - generic [ref=e320]:
+                - generic [ref=e321]: № 02 · Mobile App · Social
+                - generic [ref=e322]: ↗ Case Study
+              - heading "WatchTogether" [level=3] [ref=e323]
+              - paragraph [ref=e324]: Watch in sync. No accounts.
+              - paragraph [ref=e325]: Share a room link and the playback stays perfectly in sync — designed for zero-friction group viewing.
+              - generic [ref=e326]:
+                - generic [ref=e327]:
+                  - generic [ref=e328]: No-auth
+                  - generic [ref=e329]: Onboarding
+                - generic [ref=e330]:
+                  - generic [ref=e331]: <200ms
+                  - generic [ref=e332]: Sync drift
+                - generic [ref=e333]:
+                  - generic [ref=e334]: Live
+                  - generic [ref=e335]: Status
+              - generic [ref=e336]:
+                - generic [ref=e337]: React Native
+                - generic [ref=e338]: WebSockets
+                - generic [ref=e339]: Express
+              - generic [ref=e340]:
+                - text: Read case study
+                - generic [ref=e341]: →
+            - generic [ref=e344]:
+              - generic:
+                - img "WatchTogether"
+    - generic [ref=e347]:
+      - generic [ref=e349]:
+        - generic [ref=e350]: § Client Feedback
+        - heading "The reviews are on their way." [level=2] [ref=e351]:
+          - text: The reviews are
+          - text: on their way.
+        - paragraph [ref=e352]: Actively taking on first independent clients. If you work with me, yours will be the first.
+      - generic [ref=e353]:
+        - generic [ref=e354]:
+          - generic [ref=e355]: № 01
+          - generic [ref=e356]: "\"Review pending — project in progress.\""
+          - generic [ref=e357]:
+            - generic [ref=e358]: First Client
+            - generic [ref=e359]: Reserved · pending project
+        - generic [ref=e360]:
+          - generic [ref=e361]: № 02
+          - generic [ref=e362]: "\"Review pending — project in progress.\""
+          - generic [ref=e363]:
+            - generic [ref=e364]: Second Client
+            - generic [ref=e365]: Reserved · pending project
+        - generic [ref=e366]:
+          - generic [ref=e367]: № 03
+          - generic [ref=e368]: "\"Want your name here?\""
+          - generic [ref=e369]:
+            - generic [ref=e370]: You?
+            - generic [ref=e371]: Available — work with me
+            - generic [ref=e372]: Let's work together →
+    - generic [ref=e374]:
+      - generic [ref=e376]:
+        - generic [ref=e377]: § Methodology
+        - heading "From idea to launch." [level=2] [ref=e378]:
+          - text: From idea
+          - text: to launch.
+      - generic [ref=e379]:
+        - generic [ref=e380]:
+          - button "01 Discovery & Architecture Week 1" [ref=e381]:
+            - generic [ref=e382]: "01"
+            - generic [ref=e383]: Discovery & Architecture
+            - generic [ref=e384]: Week 1
+          - button "02 Design & Prototype Week 2" [ref=e386]:
+            - generic [ref=e387]: "02"
+            - generic [ref=e388]: Design & Prototype
+            - generic [ref=e389]: Week 2
+          - button "03 Development & Build Weeks 3–6" [ref=e390]:
+            - generic [ref=e391]: "03"
+            - generic [ref=e392]: Development & Build
+            - generic [ref=e393]: Weeks 3–6
+          - button "04 Testing & Launch Week 7+" [ref=e394]:
+            - generic [ref=e395]: "04"
+            - generic [ref=e396]: Testing & Launch
+            - generic [ref=e397]: Week 7+
+        - generic [ref=e398]:
+          - generic [ref=e399]: Phase 01 — Week 1
+          - heading "Discovery & Architecture" [level=3] [ref=e400]
+          - paragraph [ref=e401]: Deep dive into your business logic. No code until the blueprint, user flow, and stack are aligned with your goals.
+          - generic [ref=e408]: 1 of 4
+    - generic [ref=e410]:
+      - generic [ref=e412]:
+        - generic [ref=e413]: § FAQ
+        - heading "Questions people usually ask." [level=2] [ref=e414]:
+          - text: Questions people
+          - text: usually ask.
+      - generic [ref=e415]:
+        - generic [ref=e416]:
+          - button "01 Do you only work with education and ecommerce businesses? +" [ref=e417]:
+            - generic [ref=e418]: "01"
+            - generic [ref=e419]: Do you only work with education and ecommerce businesses?
+            - generic [ref=e420]: +
+          - paragraph [ref=e423]: Those are my specialty — that's where my deepest stack experience and pattern library live, so I deliver fastest there. But if your project plays to my strengths (WordPress, web apps, mobile), I'm open. Send the brief and we'll talk.
+        - generic [ref=e424]:
+          - button "02 How is working with you different from a freelancer or agency? +" [ref=e425]:
+            - generic [ref=e426]: "02"
+            - generic [ref=e427]: How is working with you different from a freelancer or agency?
+            - generic [ref=e428]: +
+          - paragraph [ref=e430]: You get senior-level architecture and direct one-on-one access — no account managers, no junior handoffs. It's the execution capability of a lean agency with the speed and cost of working directly with the builder.
+        - generic [ref=e431]:
+          - button "03 How long does a typical project take? +" [ref=e432]:
+            - generic [ref=e433]: "03"
+            - generic [ref=e434]: How long does a typical project take?
+            - generic [ref=e435]: +
+          - paragraph [ref=e437]: A focused WordPress/WooCommerce build runs 4–6 weeks. A full custom web app or mobile app is typically 8–12 weeks. We'll scope it precisely after the discovery call.
+        - generic [ref=e438]:
+          - button "04 Do you offer ongoing support after the project is done? +" [ref=e439]:
+            - generic [ref=e440]: "04"
+            - generic [ref=e441]: Do you offer ongoing support after the project is done?
+            - generic [ref=e442]: +
+          - paragraph [ref=e444]: Yes. Most clients keep me on a lightweight monthly retainer for maintenance, performance, and iteration. Or take the codebase and run — your call, fully documented either way.
+        - generic [ref=e445]:
+          - button "05 What information do you need to get started? +" [ref=e446]:
+            - generic [ref=e447]: "05"
+            - generic [ref=e448]: What information do you need to get started?
+            - generic [ref=e449]: +
+          - paragraph [ref=e451]: A short brief on what you're building, who it's for, your timeline, and any constraints (existing stack, integrations, budget range). We'll cover the rest on the strategy call.
+    - generic [ref=e452]:
+      - generic [ref=e453]:
+        - generic [ref=e455]:
+          - generic [ref=e456]: § The Builder
+          - heading "Engineering with an ownership mindset." [level=2] [ref=e457]:
+            - text: Engineering
+            - text: with an ownership mindset.
+        - generic [ref=e459]:
+          - generic [ref=e460]:
+            - generic [ref=e461]: 2+
+            - generic [ref=e462]: Years at WisdmLabs
+          - generic [ref=e463]:
+            - generic [ref=e464]: 10+
+            - generic [ref=e465]: Projects delivered
+          - generic [ref=e466]:
+            - generic [ref=e467]: "3"
+            - generic [ref=e468]: Platforms — Web, WP, Mobile
+        - generic [ref=e469]:
+          - generic [ref=e470]:
+            - generic [ref=e471]: Who I Am
+            - paragraph [ref=e472]: I work as a Software Engineer at WisdmLabs — a product company building enterprise WordPress & LMS plugins used by thousands of businesses worldwide.
+            - paragraph [ref=e473]: That environment sharpened my standard for what production-grade WordPress actually looks like — performance budgets, edge cases, real-world load.
+            - paragraph [ref=e474]: On the side, I take on select clients. When you work with me, you're not managing a freelancer — you're getting a dedicated technical team member who treats your business like his own.
+          - generic [ref=e476]:
+            - generic [ref=e477]:
+              - generic [ref=e478]: Certificate №01
+              - generic [ref=e479]: Q4 · 2025
+            - img "Rising Star Award — Top Performer OND 2025, WisdmLabs" [ref=e481]
+            - generic [ref=e482]: Recognized for delivering exceptional results across multiple high-stakes plugin releases.
+      - generic [ref=e483]:
+        - generic [ref=e484]: Tech Stack · always learning
+        - generic [ref=e486]:
+          - generic [ref=e488]: WordPress
+          - generic [ref=e491]: WooCommerce
+          - generic [ref=e494]: LearnDash
+          - generic [ref=e497]: React
+          - generic [ref=e500]: Next.js
+          - generic [ref=e503]: Node.js
+          - generic [ref=e506]: React Native
+          - generic [ref=e509]: Zapier
+          - generic [ref=e512]: PHP
+          - generic [ref=e515]: MongoDB
+          - generic [ref=e518]: TypeScript
+          - generic [ref=e521]: Tailwind
+          - generic [ref=e524]: Express
+          - generic [ref=e527]: Firebase
+          - generic [ref=e530]: Figma
+          - generic [ref=e533]: WordPress
+          - generic [ref=e536]: WooCommerce
+          - generic [ref=e539]: LearnDash
+          - generic [ref=e542]: React
+          - generic [ref=e545]: Next.js
+          - generic [ref=e548]: Node.js
+          - generic [ref=e551]: React Native
+          - generic [ref=e554]: Zapier
+          - generic [ref=e557]: PHP
+          - generic [ref=e560]: MongoDB
+          - generic [ref=e563]: TypeScript
+          - generic [ref=e566]: Tailwind
+          - generic [ref=e569]: Express
+          - generic [ref=e572]: Firebase
+          - generic [ref=e575]: Figma
+    - generic [ref=e579]:
+      - generic [ref=e581]:
+        - generic [ref=e582]: § Get in Touch
+        - heading "Let's work together" [level=2] [ref=e583]
+        - paragraph [ref=e584]: Drop me a message and I'll get back to you within 24 hours.
+      - generic [ref=e586]:
+        - generic [ref=e587]:
+          - generic [ref=e588]:
+            - generic [ref=e589]: Name *
+            - textbox "Your name" [ref=e590]
+          - generic [ref=e591]:
+            - generic [ref=e592]: Email *
+            - textbox "you@example.com" [ref=e593]
+        - generic [ref=e594]:
+          - generic [ref=e595]: What are you building?
+          - generic [ref=e596]:
+            - combobox [ref=e597]:
+              - option "Custom business website" [selected]
+              - option "Landing page"
+              - option "Ecommerce store"
+              - option "Coaching or course platform"
+              - option "Something else"
+            - text: ↓
+        - generic [ref=e598]:
+          - generic [ref=e599]: Message *
+          - textbox "Tell me what you're building, who it's for, and your timeline…" [ref=e600]
+        - generic [ref=e601]:
+          - button "Send message →" [ref=e602]:
+            - text: Send message
+            - generic [ref=e603]: →
+          - paragraph [ref=e604]: I respond within 24 hours · Mon–Sat
+  - contentinfo [ref=e605]:
+    - generic [ref=e606]:
+      - generic [ref=e609]:
+        - emphasis [ref=e610]: S
+        - text: aniyaj
+        - emphasis [ref=e611]: M
+        - text: allik
+      - generic [ref=e612]:
+        - generic [ref=e613]:
+          - paragraph [ref=e614]: Software Engineer building high-performance WordPress, LMS & ecommerce platforms — independently, with craft.
+          - generic [ref=e615]: Available for new projects
+        - generic [ref=e617]:
+          - generic [ref=e618]: Navigation
+          - generic [ref=e619]:
+            - link "Services" [ref=e620] [cursor=pointer]:
+              - /url: /#expertise
+            - link "Featured Work" [ref=e621] [cursor=pointer]:
+              - /url: /#work
+            - link "Process" [ref=e622] [cursor=pointer]:
+              - /url: /#process
+            - link "About" [ref=e623] [cursor=pointer]:
+              - /url: /#about
+        - generic [ref=e624]:
+          - generic [ref=e625]: Contact
+          - generic [ref=e626]:
+            - link "saniyajmallik12@gmail.com" [ref=e627] [cursor=pointer]:
+              - /url: mailto:saniyajmallik12@gmail.com
+              - img [ref=e628]
+              - text: saniyajmallik12@gmail.com
+            - link "Strategy call" [ref=e631] [cursor=pointer]:
+              - /url: /#contact
+              - img [ref=e632]
+              - text: Strategy call
+        - generic [ref=e635]:
+          - generic [ref=e636]: Elsewhere
+          - generic [ref=e637]:
+            - link "LinkedIn" [ref=e638] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e639]
+              - text: LinkedIn
+            - link "GitHub" [ref=e642] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e643]
+              - text: GitHub
+            - link "Twitter" [ref=e645] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e646]
+              - text: Twitter
+      - generic [ref=e648]:
+        - generic [ref=e649]: © 2026 Saniyaj Mallik. All rights reserved.
+        - generic [ref=e650]: Independent work — not affiliated with WisdmLabs.
+  - button "Open Next.js Dev Tools" [ref=e656] [cursor=pointer]:
+    - img [ref=e657]

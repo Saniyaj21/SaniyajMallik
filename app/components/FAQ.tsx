@@ -24,7 +24,7 @@ function FAQItem({ q, a, num, isOpen, onClick }: { q: string; a: string; num: st
         }}
       >
         <span className="label" style={{ minWidth: 32 }}>{num}</span>
-        <span className="serif" style={{ fontSize: 'clamp(20px, 2.4vw, 32px)', fontStyle: isOpen ? 'italic' : 'normal', color: isOpen ? 'var(--accent)' : 'var(--ink)', transition: 'all 0.4s' }}>{q}</span>
+        <span className="serif" style={{ fontSize: 'clamp(20px, 2.4vw, 32px)', color: isOpen ? 'var(--accent)' : 'var(--ink)', transition: 'color 0.4s' }}>{q}</span>
         <span style={{ width: 28, height: 28, borderRadius: 100, border: '1px solid var(--rule)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, transition: 'transform 0.4s, background 0.3s', transform: isOpen ? 'rotate(45deg)' : 'rotate(0)', background: isOpen ? 'var(--accent)' : 'transparent', color: isOpen ? 'var(--accent-ink)' : 'var(--ink)', borderColor: isOpen ? 'var(--accent)' : 'var(--rule)' }}>+</span>
       </button>
       <div
@@ -50,19 +50,15 @@ export function FAQ() {
     <section id="faq" style={{ borderTop: '1px solid var(--rule)', background: 'var(--bg-soft)' }}>
       <div className="container">
         <Reveal>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'var(--gap-md)', marginBottom: 'clamp(48px, 6vw, 80px)' }} className="fq-head">
-            <div style={{ gridColumn: 'span 3' }} className="fq-label">
-              <div className="label">§ FAQ</div>
-            </div>
-            <div style={{ gridColumn: 'span 9' }} className="fq-headline">
-              <h2 style={{ fontSize: 'clamp(40px, 5.5vw, 88px)' }}>
-                Questions people<br /><span className="serif-i" style={{ color: 'var(--accent)' }}>usually ask.</span>
-              </h2>
-            </div>
+          <div style={{ textAlign: 'center', marginBottom: 'clamp(48px, 6vw, 80px)' }}>
+            <div className="label" style={{ marginBottom: 16 }}>§ FAQ</div>
+            <h2 style={{ fontSize: 'clamp(40px, 5.5vw, 88px)' }}>
+              Questions people<br /><span className="serif-i" style={{ color: 'var(--accent)' }}>usually ask.</span>
+            </h2>
           </div>
         </Reveal>
 
-        <div style={{ maxWidth: 980, marginLeft: 'auto' }}>
+        <div style={{ maxWidth: 980, margin: '0 auto' }}>
           {FAQS.map((f, i) => (
             <FAQItem
               key={i}
@@ -75,12 +71,6 @@ export function FAQ() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 768px) {
-          .fq-head { grid-template-columns: 1fr !important; }
-          .fq-label, .fq-headline { grid-column: 1 / -1 !important; }
-        }
-      `}</style>
     </section>
   );
 }

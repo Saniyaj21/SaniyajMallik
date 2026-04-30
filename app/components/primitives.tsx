@@ -1,8 +1,10 @@
 'use client';
 
-import React, { useRef, useEffect, useState, ElementType, ReactNode, HTMLAttributes } from 'react';
+import React, { useRef, useEffect, useState, ElementType, ReactNode, HTMLAttributes, CSSProperties } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // ── Custom Cursor ──────────────────────────────────
 export function CustomCursor() {
@@ -107,29 +109,34 @@ export function Reveal({ children, stagger = false, from = 'bottom', className =
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
     const el = ref.current;
     if (!el) return;
 
-    const fromVars = from === 'left' ? { x: -60, y: 0 } : from === 'right' ? { x: 60, y: 0 } : { y: 40, x: 0 };
+    const fromVars = from === 'left' ? { x: -50, y: 0 } : from === 'right' ? { x: 50, y: 0 } : { y: 36, x: 0 };
 
     const ctx = gsap.context(() => {
       if (stagger) {
         gsap.from(Array.from(el.children), {
           opacity: 0,
           ...fromVars,
-          stagger: 0.12,
-          duration: 0.9,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 88%' },
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            end: '+=260',
+            scrub: 1,
+          },
         });
       } else {
         gsap.from(el, {
           opacity: 0,
           ...fromVars,
-          duration: 0.9,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 88%' },
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            end: '+=160',
+            scrub: 1,
+          },
         });
       }
     }, el);
@@ -140,6 +147,50 @@ export function Reveal({ children, stagger = false, from = 'bottom', className =
   const El = As as React.ElementType;
   return (
     <El ref={ref} className={className} {...rest}>
+      {children}
+    </El>
+  );
+}
+
+// ── ScrollParallax ─────────────────────────────────
+interface ScrollParallaxProps extends HTMLAttributes<HTMLElement> {
+  children: ReactNode;
+  depth?: number;
+  as?: ElementType;
+  style?: CSSProperties;
+}
+
+export function ScrollParallax({ children, depth = -60, as: As = 'div', className = '', style, ...rest }: ScrollParallaxProps) {
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    gsap.set(el, { willChange: 'transform' });
+
+    const ctx = gsap.context(() => {
+      gsap.to(el, {
+        y: depth,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+    }, el);
+
+    return () => {
+      gsap.set(el, { willChange: 'auto' });
+      ctx.revert();
+    };
+  }, [depth]);
+
+  const El = As as React.ElementType;
+  return (
+    <El ref={ref} className={className} style={style} {...rest}>
       {children}
     </El>
   );

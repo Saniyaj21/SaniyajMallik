@@ -87,15 +87,11 @@ export function Capabilities() {
     <section id="expertise" style={{ borderTop: '1px solid var(--rule)', background: 'var(--bg-soft)' }}>
       <div className="container">
         <Reveal>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'var(--gap-md)', marginBottom: 'clamp(48px, 6vw, 96px)' }} className="cap-head">
-            <div style={{ gridColumn: 'span 3' }} className="cap-label">
-              <div className="label">§ Core Capabilities</div>
-            </div>
-            <div style={{ gridColumn: 'span 9' }} className="cap-headline">
-              <h2 style={{ fontSize: 'clamp(40px, 5.5vw, 88px)' }}>
-                Everything your<br />business needs to <span className="serif-i" style={{ color: 'var(--accent)' }}>grow online.</span>
-              </h2>
-            </div>
+          <div style={{ textAlign: 'center', marginBottom: 'clamp(48px, 6vw, 96px)' }}>
+            <div className="label" style={{ marginBottom: 16 }}>§ Core Capabilities</div>
+            <h2 style={{ fontSize: 'clamp(40px, 5.5vw, 88px)' }}>
+              Everything your<br />business needs to <span className="serif-i" style={{ color: 'var(--accent)' }}>grow online.</span>
+            </h2>
           </div>
         </Reveal>
 
@@ -107,8 +103,6 @@ export function Capabilities() {
       <style>{`
         @media (max-width: 980px) {
           .cap-grid { grid-template-columns: 1fr !important; }
-          .cap-head { grid-template-columns: 1fr !important; }
-          .cap-label, .cap-headline { grid-column: 1 / -1 !important; }
         }
       `}</style>
     </section>

@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 import { Reveal } from './primitives';
 
@@ -11,15 +9,11 @@ export function About() {
     <section id="about" style={{ borderTop: '1px solid var(--rule)' }}>
       <div className="container">
         <Reveal>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'var(--gap-md)', marginBottom: 'clamp(48px, 6vw, 96px)' }} className="ab-head">
-            <div style={{ gridColumn: 'span 3' }} className="ab-label">
-              <div className="label">§ The Builder</div>
-            </div>
-            <div style={{ gridColumn: 'span 9' }} className="ab-headline">
-              <h2 style={{ fontSize: 'clamp(40px, 5.5vw, 88px)' }}>
-                Engineering<br />with an <span className="serif-i" style={{ color: 'var(--accent)' }}>ownership mindset.</span>
-              </h2>
-            </div>
+          <div style={{ textAlign: 'center', marginBottom: 'clamp(48px, 6vw, 96px)' }}>
+            <div className="label" style={{ marginBottom: 16 }}>§ The Builder</div>
+            <h2 style={{ fontSize: 'clamp(40px, 5.5vw, 88px)' }}>
+              Engineering<br />with an <span className="serif-i" style={{ color: 'var(--accent)' }}>ownership mindset.</span>
+            </h2>
           </div>
         </Reveal>
 
@@ -92,8 +86,7 @@ export function About() {
 
       <style>{`
         @media (max-width: 880px) {
-          .ab-head, .ab-body { grid-template-columns: 1fr !important; }
-          .ab-label, .ab-headline { grid-column: 1 / -1 !important; }
+          .ab-body { grid-template-columns: 1fr !important; }
           .ab-stats { grid-template-columns: 1fr !important; }
           .ab-stat { border-right: none !important; border-bottom: 1px solid var(--rule); }
           .ab-stat:last-child { border-bottom: none; }

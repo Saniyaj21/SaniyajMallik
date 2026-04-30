@@ -164,7 +164,61 @@ export function SiteHeader() {
           transition: 'background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease',
         }}
       >
-        <Link href="/" className="logo"><em>S</em>aniyaj <em>M</em>allik</Link>
+        <Link href="/" className="logo" aria-label="Saniyaj Mallik — Home">
+          <svg viewBox="0 0 250 92" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ height: 35, width: 'auto', display: 'block' }}>
+            <defs>
+              <linearGradient id="nav-logo-j-grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#21759b"/>
+                <stop offset="100%" stopColor="#7c6cf2"/>
+              </linearGradient>
+            </defs>
+            <style>{`
+              /* One 3.2s cycle: ~1.8s draw, ~1.4s pause, instant reset at 100% */
+              /* Each keyframe bakes in its delay as a % of 3.2s so the stagger loops correctly */
+              @keyframes nl-s  { 0%,1.3%  {stroke-dashoffset:200} 11.3%,99.9% {stroke-dashoffset:0}   100% {stroke-dashoffset:200} }
+              @keyframes nl-ar { 0%,9.4%  {stroke-dashoffset:100} 17.5%,99.9% {stroke-dashoffset:0}   100% {stroke-dashoffset:100} }
+              @keyframes nl-as { 0%,16.3% {stroke-dashoffset:40}  20%,99.9%   {stroke-dashoffset:0}   100% {stroke-dashoffset:40}  }
+              @keyframes nl-n1 { 0%,17.5% {stroke-dashoffset:40}  21.3%,99.9% {stroke-dashoffset:0}   100% {stroke-dashoffset:40}  }
+              @keyframes nl-n2 { 0%,18.8% {stroke-dashoffset:120} 26.9%,99.9% {stroke-dashoffset:0}   100% {stroke-dashoffset:120} }
+              @keyframes nl-id { 0%,25%   {opacity:0;transform:scale(0)} 29.7%,99.9% {opacity:1;transform:scale(1)} 100% {opacity:0;transform:scale(0)} }
+              @keyframes nl-is { 0%,25.6% {stroke-dashoffset:40}  31.3%,99.9% {stroke-dashoffset:0}   100% {stroke-dashoffset:40}  }
+              @keyframes nl-y1 { 0%,29.4% {stroke-dashoffset:40}  33.8%,99.9% {stroke-dashoffset:0}   100% {stroke-dashoffset:40}  }
+              @keyframes nl-y2 { 0%,31.3% {stroke-dashoffset:100} 38.8%,99.9% {stroke-dashoffset:0}   100% {stroke-dashoffset:100} }
+              @keyframes nl-br { 0%,36.9% {stroke-dashoffset:100} 45%,99.9%   {stroke-dashoffset:0}   100% {stroke-dashoffset:100} }
+              @keyframes nl-bs { 0%,43.8% {stroke-dashoffset:40}  47.5%,99.9% {stroke-dashoffset:0}   100% {stroke-dashoffset:40}  }
+              @keyframes nl-jd { 0%,45%   {opacity:0;transform:scale(0)} 49.7%,99.9% {opacity:1;transform:scale(1)} 100% {opacity:0;transform:scale(0)} }
+              @keyframes nl-jp { 0%,46%   {stroke-dashoffset:100} 55.3%,99.9% {stroke-dashoffset:0}   100% {stroke-dashoffset:100} }
+              .nl-s  {stroke-dasharray:200; animation:nl-s  3.2s linear infinite}
+              .nl-ar {stroke-dasharray:100; animation:nl-ar 3.2s linear infinite}
+              .nl-as {stroke-dasharray:40;  animation:nl-as 3.2s linear infinite}
+              .nl-n1 {stroke-dasharray:40;  animation:nl-n1 3.2s linear infinite}
+              .nl-n2 {stroke-dasharray:120; animation:nl-n2 3.2s linear infinite}
+              .nl-id {transform-box:fill-box; transform-origin:50% 50%; animation:nl-id 3.2s linear infinite}
+              .nl-is {stroke-dasharray:40;  animation:nl-is 3.2s linear infinite}
+              .nl-y1 {stroke-dasharray:40;  animation:nl-y1 3.2s linear infinite}
+              .nl-y2 {stroke-dasharray:100; animation:nl-y2 3.2s linear infinite}
+              .nl-br {stroke-dasharray:100; animation:nl-br 3.2s linear infinite}
+              .nl-bs {stroke-dasharray:40;  animation:nl-bs 3.2s linear infinite}
+              .nl-jd {transform-box:fill-box; transform-origin:50% 50%; animation:nl-jd 3.2s linear infinite}
+              .nl-jp {stroke-dasharray:100; animation:nl-jp 3.2s linear infinite}
+            `}</style>
+            <g transform="translate(-100 -8)">
+              <path className="nl-s"  d="M 138 46 C 134 41, 126 40, 120 43 C 112 47, 113 56, 121 58 L 132 60 C 140 62, 140 70, 133 72 C 127 74, 119 73, 116 69" fill="none" stroke="#0e2230" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle className="nl-ar" cx="160" cy="58" r="14" fill="none" stroke="#0e2230" strokeWidth="7"/>
+              <path className="nl-as" d="M 174 44 V 72" fill="none" stroke="#0e2230" strokeWidth="7" strokeLinecap="round"/>
+              <path className="nl-n1" d="M 192 44 V 72" fill="none" stroke="#0e2230" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round"/>
+              <path className="nl-n2" d="M 192 52 C 192 46, 198 44, 204 44 C 212 44, 218 50, 218 58 V 72" fill="none" stroke="#0e2230" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle className="nl-id" cx="234" cy="35" r="3.6" fill="#0e2230"/>
+              <path className="nl-is" d="M 234 46 V 72" fill="none" stroke="#0e2230" strokeWidth="7" strokeLinecap="round"/>
+              <path className="nl-y1" d="M 250 44 L 264 66" fill="none" stroke="#0e2230" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round"/>
+              <path className="nl-y2" d="M 280 44 L 260 84 C 257 89, 252 90, 248 88" fill="none" stroke="#0e2230" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle className="nl-br" cx="298" cy="58" r="14" fill="none" stroke="#0e2230" strokeWidth="7"/>
+              <path className="nl-bs" d="M 312 44 V 72" fill="none" stroke="#0e2230" strokeWidth="7" strokeLinecap="round"/>
+              <circle className="nl-jd" cx="334" cy="35" r="3.8" fill="url(#nav-logo-j-grad)"/>
+              <path className="nl-jp" d="M 334 46 V 80 C 334 88, 327 92, 320 90" fill="none" stroke="url(#nav-logo-j-grad)" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round"/>
+            </g>
+          </svg>
+        </Link>
 
         {/* Desktop nav */}
         <nav className="nav-pill">

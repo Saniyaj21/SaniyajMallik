@@ -1,105 +1,24 @@
 'use client';
 
-import { useState, ReactNode } from 'react';
-import { Reveal } from './primitives';
+import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollParallax } from './primitives';
 
-function PhoneFrame({ children, accentBg = '#16140F' }: { children: ReactNode; accentBg?: string }) {
+function PhoneFrame({ screenshot, alt, accentBg = '#16140F' }: { screenshot: string; alt: string; accentBg?: string }) {
   return (
     <div style={{
-      width: '100%', maxWidth: 'clamp(200px, 70vw, 280px)', aspectRatio: '9/19.5',
-      background: '#0E0D0A', borderRadius: 36, padding: 8,
+      width: 200, maxWidth: '50vw', aspectRatio: '9/19.5',
+      background: '#0E0D0A', borderRadius: 36,
       boxShadow: '0 30px 60px -30px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.2)',
       position: 'relative',
     }}>
       <div style={{
-        width: '100%', height: '100%', background: accentBg,
-        borderRadius: 28, overflow: 'hidden', position: 'relative',
+        position: 'absolute', inset: 8,
+        background: accentBg, borderRadius: 28, overflow: 'hidden',
       }}>
-        <div style={{
-          position: 'absolute', top: 8, left: '50%', transform: 'translateX(-50%)',
-          width: 80, height: 22, background: '#0E0D0A', borderRadius: 100, zIndex: 5,
-        }} />
-        {children}
-      </div>
-    </div>
-  );
-}
-
-function NextMCQScreen() {
-  return (
-    <div style={{ width: '100%', height: '100%', background: 'linear-gradient(180deg, #1a1814 0%, #0E0D0A 100%)', color: '#F2EFE7', padding: '40px 16px 16px', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-body)' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18, fontSize: 11, opacity: 0.7, fontFamily: 'var(--font-mono)' }}>
-        <span>Q 7 / 20</span><span style={{ color: '#4ade80' }}>● 02:14</span>
-      </div>
-      <div style={{ height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 100, marginBottom: 24 }}>
-        <div style={{ height: '100%', width: '35%', background: 'var(--accent)', borderRadius: 100 }} />
-      </div>
-      <div style={{ fontSize: 15, lineHeight: 1.4, marginBottom: 20, fontWeight: 500 }}>
-        What&apos;s the time complexity of binary search?
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
-        {[
-          { l: 'A', t: 'O(n)', sel: false },
-          { l: 'B', t: 'O(log n)', sel: true },
-          { l: 'C', t: 'O(n²)', sel: false },
-          { l: 'D', t: 'O(1)', sel: false },
-        ].map(o => (
-          <div key={o.l} style={{
-            border: o.sel ? '1px solid var(--accent)' : '1px solid rgba(255,255,255,0.15)',
-            background: o.sel ? 'rgba(36,56,232,0.15)' : 'rgba(255,255,255,0.03)',
-            padding: '11px 12px', borderRadius: 10,
-            display: 'flex', gap: 10, alignItems: 'center', fontSize: 13,
-          }}>
-            <span style={{ width: 22, height: 22, borderRadius: 100, background: o.sel ? 'var(--accent)' : 'rgba(255,255,255,0.08)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 600 }}>{o.l}</span>
-            <span>{o.t}</span>
-          </div>
-        ))}
-      </div>
-      <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
-        <div style={{ flex: 1, padding: 11, border: '1px solid rgba(255,255,255,0.15)', borderRadius: 10, textAlign: 'center', fontSize: 12 }}>Skip</div>
-        <div style={{ flex: 1, padding: 11, background: 'var(--accent)', borderRadius: 10, textAlign: 'center', fontSize: 12, fontWeight: 600 }}>Submit →</div>
-      </div>
-    </div>
-  );
-}
-
-function WatchTogetherScreen() {
-  return (
-    <div style={{ width: '100%', height: '100%', background: '#0a0a0d', color: '#F2EFE7', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-body)' }}>
-      <div style={{ flex: 1.2, background: 'linear-gradient(135deg, #2438E8 0%, #6f1eff 50%, #ff3973 100%)', position: 'relative' }}>
-        <div style={{ position: 'absolute', top: 36, left: 14, right: 14, display: 'flex', justifyContent: 'space-between', fontSize: 10, fontFamily: 'var(--font-mono)' }}>
-          <span style={{ background: 'rgba(0,0,0,0.4)', padding: '4px 8px', borderRadius: 4, backdropFilter: 'blur(6px)' }}>● LIVE · 4 watching</span>
-          <span style={{ background: 'rgba(0,0,0,0.4)', padding: '4px 8px', borderRadius: 4, backdropFilter: 'blur(6px)' }}>SYNC ✓</span>
-        </div>
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ width: 56, height: 56, borderRadius: 100, background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ width: 0, height: 0, borderLeft: '12px solid white', borderTop: '8px solid transparent', borderBottom: '8px solid transparent', marginLeft: 4 }} />
-          </div>
-        </div>
-        <div style={{ position: 'absolute', bottom: 12, left: 14, right: 14 }}>
-          <div style={{ height: 3, background: 'rgba(255,255,255,0.25)', borderRadius: 100, marginBottom: 8 }}>
-            <div style={{ height: '100%', width: '42%', background: 'white', borderRadius: 100 }} />
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 9, opacity: 0.85, fontFamily: 'var(--font-mono)' }}>
-            <span>04:32</span><span>10:48</span>
-          </div>
-        </div>
-      </div>
-      <div style={{ flex: 1, padding: '14px 14px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-        <div style={{ fontSize: 11, fontFamily: 'var(--font-mono)', opacity: 0.6, marginBottom: 4 }}>ROOM · /sunset-vault</div>
-        {[
-          { c: '#ff7a59', n: 'A', t: 'this scene is wild 🔥' },
-          { c: '#4ade80', n: 'M', t: 'rewind 10s?' },
-          { c: '#60a5fa', n: 'K', t: 'we synced perfectly!' },
-        ].map((m, i) => (
-          <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 12 }}>
-            <div style={{ width: 22, height: 22, borderRadius: 100, background: m.c, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 600, color: '#0a0a0d' }}>{m.n}</div>
-            <div style={{ background: 'rgba(255,255,255,0.06)', padding: '6px 10px', borderRadius: 12, flex: 1 }}>{m.t}</div>
-          </div>
-        ))}
-        <div style={{ marginTop: 'auto', display: 'flex', gap: 8, alignItems: 'center', padding: '8px 12px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 100, fontSize: 11, opacity: 0.6 }}>
-          <span>say something…</span>
-        </div>
+        <Image src={screenshot} alt={alt} fill sizes="200px" style={{ objectFit: 'cover', objectPosition: 'top' }} />
       </div>
     </div>
   );
@@ -110,35 +29,99 @@ const PROJECTS = [
     n: '01', type: 'Mobile App · Education', name: 'NextMCQ',
     tagline: 'A full-featured MCQ learning platform.',
     desc: 'Students take timed tests, get instant scores, and track progress over time. Built and shipped end-to-end independently.',
-    metrics: [{ v: 'iOS · Android', l: 'Platforms' }, { v: '20+', l: 'Subjects' }, { v: 'Live', l: 'Status' }],
-    stack: ['React Native', 'Firebase', 'Node.js'],
-    accentBg: '#0E0D0A', bg: 'var(--paper)', inkOnDark: false,
-    Screen: NextMCQScreen, href: '/case-nextmcq',
+    features: ['MCQ test & student dashboard', 'Teacher test management', 'Batch management', 'Rewards & ranking', 'MCQ battle'],
+    accentBg: '#0E0D0A', bg: 'rgba(255,255,255,0.04)',
+    screenshot: '/nextmcq-screen.jpeg', playStore: 'https://play.google.com/store/apps/details?id=com.nextmcq.app',
   },
   {
     n: '02', type: 'Mobile App · Social', name: 'WatchTogether',
     tagline: 'Watch in sync. No accounts.',
     desc: 'Share a room link and the playback stays perfectly in sync — designed for zero-friction group viewing.',
-    metrics: [{ v: 'No-auth', l: 'Onboarding' }, { v: '<200ms', l: 'Sync drift' }, { v: 'Live', l: 'Status' }],
-    stack: ['React Native', 'WebSockets', 'Express'],
-    accentBg: '#0a0a0d', bg: '#16140F', inkOnDark: true,
-    Screen: WatchTogetherScreen, href: '/case-watchtogether',
+    features: ['No account creation', 'Realtime chat', 'Video sync'],
+    accentBg: '#0a0a0d', bg: 'rgba(255,255,255,0.04)',
+    screenshot: '/watch-togather-screen.jpeg', playStore: 'https://play.google.com/store/apps/details?id=com.saniyaj.watchtogather',
   },
 ] as const;
 
 function ProjectCard({ p, reverse }: { p: typeof PROJECTS[number]; reverse: boolean }) {
   const [hover, setHover] = useState(false);
-  const Screen = p.Screen;
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 90%',
+          end: 'top 35%',
+          scrub: 1.2,
+        },
+      });
+
+      // Card border + bg wash in
+      tl.fromTo(card, { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0);
+
+      // Label — wipe in from left
+      tl.from('.pc-label', {
+        x: -70, opacity: 0, duration: 0.4,
+      }, 0.02);
+
+      // Title — slam up from below with skew + scale (most dramatic element)
+      tl.from('.pc-title', {
+        y: 120, opacity: 0, scale: 0.84,
+        transformOrigin: 'left bottom',
+        duration: 0.7,
+      }, 0.06);
+
+      // Tagline — slide up after title
+      tl.from('.pc-tagline', {
+        y: 55, opacity: 0, duration: 0.5,
+      }, 0.22);
+
+      // Description — gentle drift up
+      tl.from('.pc-desc', {
+        y: 35, opacity: 0, duration: 0.4,
+      }, 0.33);
+
+      // Feature pills — scale pop staggered
+      tl.from('.pc-pill', {
+        scale: 0, opacity: 0,
+        transformOrigin: 'center',
+        stagger: 0.03, duration: 0.28,
+        ease: 'back.out(1.8)',
+      }, 0.42);
+
+      // CTA button — slide up last
+      tl.from('.pc-cta', {
+        y: 28, opacity: 0, duration: 0.35,
+      }, 0.54);
+
+      // Phone — dramatic swing in: rotate + drop + scale
+      tl.from('.pc-phone', {
+        y: 160, rotation: reverse ? 10 : -10,
+        scale: 0.72, opacity: 0,
+        transformOrigin: 'bottom center',
+        duration: 0.85,
+      }, 0.08);
+
+    }, card);
+
+    return () => ctx.revert();
+  }, [reverse]);
+
   return (
-    <a
-      href={p.href}
+    <div
+      ref={cardRef}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
-        textDecoration: 'none', display: 'block',
-        border: '1px solid var(--rule)', background: p.bg,
-        color: p.inkOnDark ? '#F2EFE7' : 'var(--ink)',
-        padding: 'clamp(28px, 4vw, 56px)',
+        display: 'block',
+        border: 'none', background: 'transparent',
+        color: '#F2EFE7',
+        padding: 'clamp(20px, 2.5vw, 36px)',
         position: 'relative', overflow: 'hidden',
         transition: 'transform 0.5s cubic-bezier(.2,.8,.2,1)',
         transform: hover ? 'translateY(-4px)' : 'none',
@@ -149,41 +132,64 @@ function ProjectCard({ p, reverse }: { p: typeof PROJECTS[number]; reverse: bool
         className={`pc-grid ${reverse ? 'pc-reverse' : ''}`}
       >
         <div style={{ order: reverse ? 2 : 1 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '4px 16px', marginBottom: 32, fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.7 }}>
-            <span>№ {p.n} · {p.type}</span>
-            <span style={{ flexShrink: 0 }}>↗ Case Study</span>
-          </div>
-          <h3 style={{ fontSize: 'clamp(48px, 7vw, 104px)', lineHeight: 0.95, marginBottom: 18 }}>{p.name}</h3>
-          <p className="serif-i" style={{ fontSize: 'clamp(20px, 2vw, 28px)', marginBottom: 20, opacity: 0.85 }}>{p.tagline}</p>
-          <p style={{ fontSize: 16, lineHeight: 1.55, opacity: 0.7, marginBottom: 32, maxWidth: 480 }}>{p.desc}</p>
-
-          <Reveal stagger style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, paddingTop: 24, paddingBottom: 24, borderTop: '1px solid currentColor', borderBottom: '1px solid currentColor', borderColor: p.inkOnDark ? 'rgba(242,239,231,0.18)' : 'var(--rule)', marginBottom: 24 }}>
-            {p.metrics.map((m, i) => (
-              <div key={i}>
-                <div className="serif" style={{ fontSize: 'clamp(22px, 2.4vw, 32px)', marginBottom: 4 }}>{m.v}</div>
-                <div className="label" style={{ opacity: 0.7 }}>{m.l}</div>
-              </div>
-            ))}
-          </Reveal>
-
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-            {p.stack.map(s => (
-              <span key={s} style={{ fontFamily: 'var(--font-mono)', fontSize: 11, padding: '6px 10px', border: '1px solid currentColor', borderColor: p.inkOnDark ? 'rgba(242,239,231,0.2)' : 'var(--rule)', borderRadius: 100, opacity: 0.85 }}>{s}</span>
-            ))}
+          <div
+            className="pc-label"
+            style={{ marginBottom: 16, fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.7 }}
+          >
+            № {p.n} · {p.type}
           </div>
 
-          <div style={{ marginTop: 36, display: 'inline-flex', alignItems: 'center', gap: 12, fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-            Read case study
-            <span style={{ display: 'inline-block', transition: 'transform 0.4s', transform: hover ? 'translateX(8px)' : 'none' }}>→</span>
+          {/* Title in overflow:hidden wrapper for mask-reveal feel */}
+          <div style={{ overflow: 'hidden', marginBottom: 10 }}>
+            <h3 className="pc-title" style={{ fontSize: 'clamp(36px, 5vw, 72px)', lineHeight: 0.95, margin: 0 }}>
+              {p.name}
+            </h3>
+          </div>
+
+          <p className="pc-tagline serif-i" style={{ fontSize: 'clamp(16px, 1.6vw, 22px)', marginBottom: 10, opacity: 0.85 }}>{p.tagline}</p>
+          <p className="pc-desc" style={{ fontSize: 15, lineHeight: 1.5, opacity: 0.7, marginBottom: 16, maxWidth: 480 }}>{p.desc}</p>
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 20 }}>
+            {p.features.map((f: string) => (
+              <span className="pc-pill" key={f} style={{
+                fontFamily: 'var(--font-mono)', fontSize: 11, padding: '6px 12px',
+                border: '1px solid rgba(242,239,231,0.2)', borderRadius: 100,
+                display: 'inline-flex', alignItems: 'center', gap: 6, opacity: 0.85,
+              }}>
+                <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--accent)', display: 'inline-block', flexShrink: 0 }} />
+                {f}
+              </span>
+            ))}
+          </div>
+
+          <div className="pc-cta" style={{ marginTop: 4 }}>
+            <a
+              href={p.playStore}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 10,
+                fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.1em', textTransform: 'uppercase',
+                color: '#F2EFE7', textDecoration: 'none',
+                padding: '12px 20px', border: '1px solid rgba(242,239,231,0.3)', borderRadius: 6,
+                background: hover ? 'rgba(255,255,255,0.08)' : 'transparent',
+                transition: 'background 0.3s',
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{ opacity: 0.9 }}>
+                <path d="M3.18 23.76c.3.17.64.22.98.14l11.35-6.56-2.76-2.76-9.57 9.18zm-1.8-20.4C1.14 3.7 1 4.1 1 4.56v14.88c0 .46.14.86.38 1.2l.08.07 8.34-8.34v-.2L1.46 3.3l-.08.06zm17.44 8.96l-2.37-1.37-2.95 2.95 2.95 2.95 2.39-1.38c.68-.39.68-1.77-.02-2.15zM4.16.22L15.51 6.78l-2.76 2.76L3.18.36C3.5.28 3.86.1 4.16.22z" />
+              </svg>
+              View on Play Store
+            </a>
           </div>
         </div>
 
         <div style={{ order: reverse ? 1 : 2, display: 'flex', justifyContent: 'center' }}>
-          <div style={{ transition: 'transform 0.6s cubic-bezier(.2,.8,.2,1)', transform: hover ? 'rotate(-2deg) scale(1.02)' : 'rotate(0) scale(1)' }}>
-            <PhoneFrame accentBg={p.accentBg}>
-              <Screen />
-            </PhoneFrame>
-          </div>
+          <ScrollParallax depth={-50}>
+            <div className="pc-phone" style={{ transition: 'transform 0.6s cubic-bezier(.2,.8,.2,1)', transform: hover ? 'rotate(-2deg) scale(1.02)' : 'rotate(0) scale(1)' }}>
+              <PhoneFrame screenshot={p.screenshot} alt={p.name} accentBg={p.accentBg} />
+            </div>
+          </ScrollParallax>
         </div>
       </div>
 
@@ -193,45 +199,54 @@ function ProjectCard({ p, reverse }: { p: typeof PROJECTS[number]; reverse: bool
           .pc-grid > div { order: unset !important; }
         }
       `}</style>
-    </a>
+    </div>
   );
 }
 
 export function FeaturedWork() {
-  return (
-    <section id="work" style={{ borderTop: '1px solid var(--rule)' }}>
-      <div className="container">
-        <Reveal>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'var(--gap-md)', marginBottom: 'clamp(48px, 6vw, 96px)' }} className="fw-head">
-            <div style={{ gridColumn: 'span 3' }} className="fw-label">
-              <div className="label">§ Proof of Execution</div>
-            </div>
-            <div style={{ gridColumn: 'span 9' }} className="fw-headline">
-              <h2 style={{ fontSize: 'clamp(40px, 5.5vw, 88px)', marginBottom: 24 }}>
-                Built end-to-end,<br /><span className="serif-i" style={{ color: 'var(--accent)' }}>independently.</span>
-              </h2>
-              <p style={{ fontSize: 17, lineHeight: 1.55, color: 'var(--ink-soft)', maxWidth: 640 }}>
-                Beyond personal projects, I&apos;ve delivered full WooCommerce stores and LearnDash course platforms for real businesses — under client confidentiality. The same craft goes into every independent build.
-              </p>
-            </div>
-          </div>
-        </Reveal>
+  const headingRef = useRef<HTMLDivElement>(null);
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(32px, 4vw, 64px)' }}>
+  useEffect(() => {
+    const el = headingRef.current;
+    if (!el) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          end: 'top 50%',
+          scrub: 1,
+        },
+      });
+
+      tl.from('.fw-label', { x: -50, opacity: 0, duration: 0.35 }, 0)
+        .from('.fw-h2', { y: 70, opacity: 0, scale: 0.9, duration: 0.6 }, 0.08)
+        .from('.fw-desc', { y: 30, opacity: 0, duration: 0.4 }, 0.28);
+    }, el);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section id="work" style={{ borderTop: '1px solid var(--rule)', background: '#0b0f1a', color: '#F2EFE7' }}>
+      <div className="container">
+        <div ref={headingRef} style={{ textAlign: 'center', marginBottom: 'clamp(48px, 6vw, 96px)' }}>
+          <div className="fw-label label" style={{ marginBottom: 16, color: 'rgba(242,239,231,0.5)' }}>§ Proof of Execution</div>
+          <h2 className="fw-h2" style={{ fontSize: 'clamp(40px, 5.5vw, 88px)', marginBottom: 24, color: '#F2EFE7' }}>
+            Built end-to-end,<br /><span className="serif-i" style={{ color: 'var(--accent)' }}>independently.</span>
+          </h2>
+          <p className="fw-desc" style={{ fontSize: 17, lineHeight: 1.55, color: 'rgba(242,239,231,0.6)', maxWidth: 640, margin: '0 auto' }}>
+            Beyond personal projects, I&apos;ve delivered full WooCommerce stores and LearnDash course platforms for real businesses — under client confidentiality. The same craft goes into every independent build.
+          </p>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(24px, 3vw, 40px)', maxWidth: 860, margin: '0 auto' }}>
           {PROJECTS.map((p, i) => (
-            <Reveal key={p.n}>
-              <ProjectCard p={p} reverse={i % 2 === 1} />
-            </Reveal>
+            <ProjectCard key={p.n} p={p} reverse={i % 2 === 1} />
           ))}
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 880px) {
-          .fw-head { grid-template-columns: 1fr !important; }
-          .fw-label, .fw-headline { grid-column: 1 / -1 !important; }
-        }
-      `}</style>
     </section>
   );
 }

@@ -41,18 +41,14 @@ export function Testimonials() {
     <section id="testimonials" style={{ borderTop: '1px solid var(--rule)', background: 'var(--bg-soft)' }}>
       <div className="container">
         <Reveal>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'var(--gap-md)', marginBottom: 'clamp(48px, 6vw, 80px)' }} className="ts-head">
-            <div style={{ gridColumn: 'span 3' }} className="ts-label">
-              <div className="label">§ Client Feedback</div>
-            </div>
-            <div style={{ gridColumn: 'span 9' }} className="ts-headline">
-              <h2 style={{ fontSize: 'clamp(40px, 5.5vw, 88px)', marginBottom: 24 }}>
-                The reviews are<br /><span className="serif-i" style={{ color: 'var(--accent)' }}>on their way.</span>
-              </h2>
-              <p style={{ fontSize: 17, lineHeight: 1.55, color: 'var(--ink-soft)', maxWidth: 640 }}>
-                Actively taking on first independent clients. If you work with me, yours will be the first.
-              </p>
-            </div>
+          <div style={{ textAlign: 'center', marginBottom: 'clamp(48px, 6vw, 80px)' }}>
+            <div className="label" style={{ marginBottom: 16 }}>§ Client Feedback</div>
+            <h2 style={{ fontSize: 'clamp(40px, 5.5vw, 88px)', marginBottom: 24 }}>
+              The reviews are<br /><span className="serif-i" style={{ color: 'var(--accent)' }}>on their way.</span>
+            </h2>
+            <p style={{ fontSize: 17, lineHeight: 1.55, color: 'var(--ink-soft)', maxWidth: 640, margin: '0 auto' }}>
+              Actively taking on first independent clients. If you work with me, yours will be the first.
+            </p>
           </div>
         </Reveal>
 
@@ -65,10 +61,6 @@ export function Testimonials() {
 
       <style>{`
         @media (max-width: 980px) { .ts-grid { grid-template-columns: 1fr !important; } }
-        @media (max-width: 768px) {
-          .ts-head { grid-template-columns: 1fr !important; }
-          .ts-label, .ts-headline { grid-column: 1 / -1 !important; }
-        }
       `}</style>
     </section>
   );
